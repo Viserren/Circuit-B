@@ -486,11 +486,21 @@ MonoBehaviour:
     width: 0.95
   m_Looped: 0
   m_Waypoints:
-  - position: {x: 3.286863, y: 0.16814744, z: -0.8771424}
+  - position: {x: 3.286863, y: 2, z: -0.8771424}
     roll: 0
-  - position: {x: 0.19787121, y: 0.16814741, z: 5.435251}
+  - position: {x: 0.19787121, y: 2, z: 5.435251}
     roll: 0
-  - position: {x: 3.7634287, y: 0.16814739, z: 10.982663}
+  - position: {x: 3.7634287, y: 2, z: 10.982663}
+    roll: 0
+  - position: {x: -3.3585148, y: 2, z: 12.450578}
+    roll: 0
+  - position: {x: -9.615236, y: 2, z: 8.0132675}
+    roll: 0
+  - position: {x: -14.792986, y: 2, z: 1.6472158}
+    roll: 0
+  - position: {x: -15.650623, y: 2, z: -6.1307383}
+    roll: 0
+  - position: {x: -7.601179, y: 2, z: -7.6981936}
     roll: 0
 --- !u!4 &56981096
 Transform:
@@ -913,23 +923,23 @@ MonoBehaviour:
     width: 0.3
   m_Looped: 0
   m_Waypoints:
-  - position: {x: 4.5831614, y: 2.670159, z: -3.1484146}
+  - position: {x: 4.5831614, y: 4, z: -3.1484146}
     roll: 0
-  - position: {x: -2.8887691, y: 2.670159, z: -3.2861228}
+  - position: {x: -2.8887691, y: 4, z: -3.2861228}
     roll: 0
-  - position: {x: -3.2873135, y: 2.670159, z: -7.166854}
+  - position: {x: -3.2873135, y: 3.25, z: -7.166854}
     roll: 0
-  - position: {x: -2.9214916, y: 0.49234763, z: -7.3415527}
+  - position: {x: -2.9214916, y: 1, z: -7.3415527}
     roll: 0
-  - position: {x: -3.142126, y: 0.16814753, z: -5.3102493}
+  - position: {x: -3.142126, y: 1, z: -5.3102493}
     roll: 0
-  - position: {x: -2.1214962, y: 0.1681475, z: -3.5346184}
+  - position: {x: -2.1214962, y: 1, z: -3.5346184}
     roll: 0
-  - position: {x: 1.0725527, y: 0.16814747, z: -3.341411}
+  - position: {x: 1.0725527, y: 1, z: -3.341411}
     roll: 0
-  - position: {x: 3.983014, y: 0.16814744, z: -4.5987554}
+  - position: {x: 3.983014, y: 1, z: -4.5987554}
     roll: 0
-  - position: {x: 4.505376, y: 0.16814741, z: -8.780282}
+  - position: {x: 4.505376, y: 1, z: -8.780282}
     roll: 0
 --- !u!4 &102373254
 Transform:
@@ -5838,7 +5848,7 @@ MonoBehaviour:
   m_Path: {fileID: 56981095}
   m_PathPosition: -1
   m_PositionUnits: 1
-  m_PathOffset: {x: 0, y: 2.5, z: 0}
+  m_PathOffset: {x: 0, y: 1, z: 0}
   m_XDamping: 4
   m_YDamping: 4
   m_ZDamping: 4
@@ -5849,7 +5859,7 @@ MonoBehaviour:
   m_AutoDolly:
     m_Enabled: 1
     m_PositionOffset: -1
-    m_SearchRadius: 5
+    m_SearchRadius: 3
     m_SearchResolution: 20
 --- !u!114 &943951863
 MonoBehaviour:
@@ -5863,12 +5873,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4044717213e31446939f7bd49c896ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_TrackedObjectOffset: {x: 0, y: 1, z: 0}
+  m_TrackedObjectOffset: {x: 0, y: 1.5, z: 0}
   m_LookaheadTime: 0.1
   m_LookaheadSmoothing: 1
-  m_LookaheadIgnoreY: 0
-  m_HorizontalDamping: 0.5
-  m_VerticalDamping: 0.5
+  m_LookaheadIgnoreY: 1
+  m_HorizontalDamping: 1
+  m_VerticalDamping: 1
   m_ScreenX: 0.5
   m_ScreenY: 0.5
   m_DeadZoneWidth: 0.1
@@ -6027,8 +6037,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 961739749}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.0025035995, y: 0.99576205, z: 0.08739583, w: -0.028525274}
-  m_LocalPosition: {x: -10.616521, y: 2.9258175, z: -5.1050014}
+  m_LocalRotation: {x: 0.002886057, y: 0.99450254, z: 0.10071929, w: -0.028496932}
+  m_LocalPosition: {x: -10.616449, y: 3.2980824, z: -5.1050014}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -9220,8 +9230,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1563496125}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.0025035995, y: 0.99576205, z: 0.08739583, w: -0.028525274}
-  m_LocalPosition: {x: -10.533136, y: 2.6681476, z: -3.2571425}
+  m_LocalRotation: {x: 0.002886057, y: 0.99450254, z: 0.10071929, w: -0.028496932}
+  m_LocalPosition: {x: -10.533136, y: 3, z: -3.2571425}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -9246,7 +9256,7 @@ MonoBehaviour:
   m_IgnoreTag: 
   m_TransparentLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8
   m_MinimumDistanceFromTarget: 0.3
   m_AvoidObstacles: 1
   m_DistanceLimit: 0
@@ -10140,7 +10150,7 @@ GameObject:
   - component: {fileID: 1776421798}
   - component: {fileID: 1776421797}
   - component: {fileID: 1776421796}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Floor (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
