@@ -1,0 +1,57 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="True">
+    <Style src="project://database/Assets/Item-Weapon%20System/Editor/UI/ItemDatabase.uss?fileID=7433441132597879392&amp;guid=8a0c9bb96e2ad564097d3760c67bd62f&amp;type=3#ItemDatabase" />
+    <ui:VisualElement style="flex-grow: 1;">
+        <ui:VisualElement name="ItemContainer" index="0" style="flex-grow: 1; flex-shrink: 0; flex-direction: column; background-color: rgba(0, 0, 0, 0); display: flex;">
+            <ui:Label text="Items" display-tooltip-when-elided="true" name="details-header" class="details-header" />
+            <ui:VisualElement style="flex-direction: row; width: 100%;">
+                <ui:Button text="New Item" display-tooltip-when-elided="true" binding-path="btn_AddNewItem" name="btn_AddNewItem" />
+                <ui:Button text="New Melee Weapon" display-tooltip-when-elided="true" binding-path="btn_AddNewMeleeWeapon" name="btn_AddNewMeleeWeapon" />
+                <ui:Button text="New Ranged Weapon" display-tooltip-when-elided="true" binding-path="btn_AddNewRangedWeapon" name="btn_AddNewRangedWeapon" />
+            </ui:VisualElement>
+            <ui:VisualElement style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); flex-direction: row;">
+                <ui:VisualElement name="ItemsTab" style="flex-grow: 1; width: 25%; max-width: 25%;" />
+                <ui:ScrollView name="ScrollViewItem_Details" vertical-scroller-visibility="AlwaysVisible" style="width: 75%; color: rgb(253, 253, 253); background-color: rgba(106, 106, 106, 0); display: flex; visibility: visible; height: 430px; top: auto; padding-bottom: 20px;">
+                    <ui:VisualElement name="Header" style="flex-direction: row; background-color: rgba(38, 38, 38, 0); -unity-text-align: upper-left; align-items: center; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; border-bottom-color: rgba(255, 183, 0, 0); border-bottom-width: 1px;">
+                        <ui:Label text="Details" display-tooltip-when-elided="true" style="flex-grow: 1; -unity-font-style: bold; font-size: 24px; margin-left: 10px; margin-right: 10px; margin-top: 5px; margin-bottom: 5px; background-color: rgba(0, 0, 0, 0);" />
+                        <ui:Button text="Save" display-tooltip-when-elided="true" name="btn_SaveItem" binding-path="btn_SaveItem" style="height: 25px; margin-right: 10px; background-color: rgb(41, 115, 40);" />
+                        <ui:Button text="Delete" display-tooltip-when-elided="true" name="btn_DeleteItem" binding-path="btn_DeleteItem" style="height: 25px; margin-right: 10px; background-color: rgb(161, 48, 40);" />
+                    </ui:VisualElement>
+                    <ui:VisualElement name="Content" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0);">
+                        <ui:VisualElement name="GeneralRow" style="flex-direction: row; align-items: center; background-color: rgba(0, 0, 0, 0);">
+                            <ui:VisualElement name="Icon" style="padding-right: 0; width: 122px; height: 122px; background-image: url(&apos;project://database/Assets/Item-Weapon%20System/Sprites/UnknownIcon.png?fileID=2800000&amp;guid=adf19249deeed064ba8874573a47eac1&amp;type=3#UnknownIcon&apos;); border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0; border-top-left-radius: 0; border-bottom-left-radius: 0; border-top-right-radius: 0; border-bottom-right-radius: 0; padding-left: 0; padding-top: 0; padding-bottom: 0; margin-left: 5px; margin-right: 5px; margin-top: 5px; margin-bottom: 5px; background-color: rgba(0, 0, 0, 0);" />
+                            <ui:VisualElement name="Container" style="flex-grow: 1; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; border-left-width: 1px; border-right-width: 1px; border-top-width: 1px; border-bottom-width: 1px; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0); margin-left: 5px; margin-right: 5px; margin-top: 5px; margin-bottom: 5px; -unity-background-image-tint-color: rgb(56, 56, 56); background-color: rgba(65, 65, 65, 0);">
+                                <ui:Label text="General" display-tooltip-when-elided="true" name="Header" class="details-header" />
+                                <ui:TextField picking-mode="Ignore" label="Item ID" value="filler text" binding-path="itemID" name="ItemID" style="padding-left: 5px; padding-right: 5px; padding-top: 5px; padding-bottom: 5px;" />
+                                <ui:TextField picking-mode="Ignore" label="Name" value="filler text" binding-path="ItemName" name="ItemName" style="padding-left: 5px; padding-right: 5px; padding-top: 5px; padding-bottom: 5px; display: flex;" />
+                                <uie:ObjectField label="Icon" name="IconPicker" binding-path="Icon" type="UnityEngine.Sprite, UnityEngine.CoreModule" style="padding-left: 5px; padding-right: 5px; padding-top: 5px; padding-bottom: 5px;" />
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                        <ui:VisualElement name="MeleeStatsRow" style="flex-direction: row; align-items: center; background-color: rgba(0, 0, 0, 0);">
+                            <ui:VisualElement name="MeleeStatsContainer" style="flex-grow: 1; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; border-left-width: 1px; border-right-width: 1px; border-top-width: 1px; border-bottom-width: 1px; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0); margin-left: 5px; margin-right: 5px; margin-top: 5px; margin-bottom: 5px; -unity-background-image-tint-color: rgb(56, 56, 56); background-color: rgba(65, 65, 65, 0);">
+                                <ui:Label text="Melee Stats" display-tooltip-when-elided="true" name="Header" class="details-header" />
+                                <ui:Slider picking-mode="Ignore" label="Damage" value="42" high-value="100" show-input-field="true" name="sld_damage" binding-path="sld_damage" />
+                                <ui:Slider picking-mode="Ignore" label="Hit Speed" value="42" high-value="100" show-input-field="true" name="sld_hitSpeed" binding-path="sld_hitSpeed" />
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                        <ui:VisualElement name="GunStatsRow" style="flex-direction: row; align-items: center; background-color: rgba(0, 0, 0, 0);">
+                            <ui:VisualElement name="GunStatsContainer" style="flex-grow: 1; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; border-left-width: 1px; border-right-width: 1px; border-top-width: 1px; border-bottom-width: 1px; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0); margin-left: 5px; margin-right: 5px; margin-top: 5px; margin-bottom: 5px; -unity-background-image-tint-color: rgb(56, 56, 56); background-color: rgba(65, 65, 65, 0);">
+                                <ui:Label text="Gun Stats" display-tooltip-when-elided="true" name="Header" class="details-header" />
+                                <ui:Slider picking-mode="Ignore" label="Reload Speed" value="42" high-value="100" show-input-field="true" name="sld_reloadSpeed" binding-path="sld_reloadSpeed" />
+                                <ui:Slider picking-mode="Ignore" label="Max Ammo In Clip" value="30" high-value="120" show-input-field="true" name="sld_maxAmmoInclip" binding-path="sld_maxAmmoInclip" />
+                                <ui:Slider picking-mode="Ignore" label="Fire Range" value="42" high-value="100" show-input-field="true" name="sld_fireRange" binding-path="sld_fireRange" />
+                                <ui:Slider picking-mode="Ignore" label="Fire Speed" value="42" high-value="100" show-input-field="true" name="sld_fireSpeed" binding-path="sld_fireSpeed" />
+                                <ui:Slider picking-mode="Ignore" label="Recoil Amount" value="42" high-value="100" show-input-field="true" name="sld_recoilAmount" binding-path="sld_recoilAmount" />
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                        <ui:VisualElement name="Row" style="flex-direction: row; background-color: rgba(0, 0, 0, 0);">
+                            <ui:VisualElement name="Container" style="flex-grow: 1; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; border-left-width: 1px; border-right-width: 1px; border-top-width: 1px; border-bottom-width: 1px; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0); margin-left: 5px; margin-right: 5px; margin-top: 5px; margin-bottom: 5px; background-color: rgba(65, 65, 65, 0); height: auto;">
+                                <ui:Label text="Description" display-tooltip-when-elided="true" name="Header" class="details-header" style="background-color: rgb(42, 42, 42); padding-left: 5px; padding-right: 3px; padding-top: 3px; padding-bottom: 3px; -unity-font-style: bold; font-size: 14px; margin-bottom: 5px;" />
+                                <ui:TextField picking-mode="Ignore" multiline="true" readonly="false" name="Description" binding-path="Description" style="height: 100px; margin-left: 8px; margin-right: 8px; margin-top: 5px; margin-bottom: 8px; align-items: stretch; white-space: normal; flex-grow: 1; flex-direction: column; flex-wrap: wrap; -unity-text-align: middle-left;" />
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                </ui:ScrollView>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
