@@ -22,6 +22,7 @@ public class PlayerStateMachine : MonoBehaviour
     Vector3 _currentMovement;
     Vector3 _currentRunMovement;
     Vector3 _appliedMovement;
+    Vector3 _cameraRelativeMovement;
     bool _isMovementPressed = false;
     bool _isRunPressed = false;
     float _rotationFactorPerFrame = 15;
@@ -137,7 +138,8 @@ public class PlayerStateMachine : MonoBehaviour
         Debug.Log(CharacterController.isGrounded);
         HandleRotation();
         _currentState.UpdateStates();
-        _characterController.Move(_appliedMovement * Time.deltaTime);
+        _cameraRelativeMovement = ConvertToCameraSpace(_appliedMovement);
+        _characterController.Move(_cameraRelativeMovement * Time.deltaTime);
     }
 
     void OnMove(InputAction.CallbackContext ctx)
@@ -189,9 +191,9 @@ public class PlayerStateMachine : MonoBehaviour
     {
         Vector3 positionToLookAt;
         // Set the position to look at based on the current movement input
-        positionToLookAt.x = _currentMovement.x;
+        positionToLookAt.x = _cameraRelativeMovement.x;
         positionToLookAt.y = 0.0f;
-        positionToLookAt.z = _currentMovement.z;
+        positionToLookAt.z = _cameraRelativeMovement.z;
 
         // Current rotation of the player
         Quaternion currentRotation = transform.rotation;
@@ -206,5 +208,30 @@ public class PlayerStateMachine : MonoBehaviour
             transform.rotation = Quaternion.Slerp(currentRotation, targetRotation, _rotationFactorPerFrame * Time.deltaTime);
         }
 
+    }
+
+    Vector3 ConvertToCameraSpace(Vector3 vectorToRotate)
+    {
+        // Get the current y value of the vector
+        float currentYValue = vectorToRotate.y;
+
+        // Get the camera's forward and right vectors
+        Vector3 cameraForward = Camera.main.transform.forward;
+        Vector3 cameraRight = Camera.main.transform.right;
+
+        // set the y values to 0 to ignore the y axis
+        cameraForward.y = 0;
+        cameraRight.y = 0;
+
+        // Normalize the vectors
+        cameraForward.Normalize();
+        cameraRight.Normalize();
+
+        Vector3 cameraForwardZProduct = vectorToRotate.z * cameraForward;
+        Vector3 cameraRightXProduct = vectorToRotate.x * cameraRight;
+
+        Vector3 vectorRotatedToCameraSpace = cameraForwardZProduct + cameraRightXProduct;
+        vectorRotatedToCameraSpace.y = currentYValue;
+        return vectorRotatedToCameraSpace;
     }
 }
