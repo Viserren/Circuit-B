@@ -1,55 +1,36 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
+using UnityEngine.Events;
 
 public class ManuManager : MonoBehaviour
 {
-    UIDocument _mainMenuDocument;
-    Button _loadGameButton;
-    Button _newGameButton;
-    Button _settingsButton;
-    Button _quitGameButton;
+    public UnityEvent OnMainMenu;
 
-    private void OnEnable()
+    public void LoadGameButton()
     {
-        _mainMenuDocument = GetComponent<UIDocument>();
-
-        _loadGameButton = _mainMenuDocument.rootVisualElement.Q("loadGameButton") as Button;
-        _newGameButton = _mainMenuDocument.rootVisualElement.Q("newGameButton") as Button;
-        _settingsButton = _mainMenuDocument.rootVisualElement.Q("settingsButton") as Button;
-        _quitGameButton = _mainMenuDocument.rootVisualElement.Q("quitButton") as Button;
-
-        _loadGameButton.RegisterCallback<ClickEvent>(LoadGameButton);
-        _newGameButton.RegisterCallback<ClickEvent>(NewGameButton);
-        _settingsButton.RegisterCallback<ClickEvent>(SettingsButton);
-        _quitGameButton.RegisterCallback<ClickEvent>(QuitGameButton);
+        // TODO: Add code to load the last saved game
     }
 
-    private void OnDisable()
+    public void NewGameButton()
     {
-        _loadGameButton.UnregisterCallback<ClickEvent>(LoadGameButton);
-        _newGameButton.UnregisterCallback<ClickEvent>(NewGameButton);
-        _settingsButton.UnregisterCallback<ClickEvent>(SettingsButton);
-        _quitGameButton.UnregisterCallback<ClickEvent>(QuitGameButton);
-    }
-    void LoadGameButton(ClickEvent clickEvent)
-    {
-
+        // TODO: Add code to start a new game
     }
 
-    void NewGameButton(ClickEvent clickEvent)
+    public void SettingsButton()
     {
-
+        // TODO: Add code to show the settings menu
     }
 
-    void SettingsButton(ClickEvent clickEvent)
-    {
-
-    }
-
-    void QuitGameButton(ClickEvent clickEvent)
+    public void QuitGameButton()
     {
         Debug.Log("Quit");
+        Application.Quit();
+    }
+
+    public void MainMenu()
+    {
+        OnMainMenu.Invoke();
+        // TODO: Add code to show the main menu
     }
 }
