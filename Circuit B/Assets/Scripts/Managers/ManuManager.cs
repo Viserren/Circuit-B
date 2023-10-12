@@ -1,11 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 
 public class ManuManager : MonoBehaviour
 {
     public UnityEvent OnMainMenu;
+    [SerializeField] TextMeshProUGUI _versionText;
+
+    private void Start()
+    {
+        _versionText.text = $"Version: {Application.version}";
+    }
 
     public void LoadGameButton()
     {
