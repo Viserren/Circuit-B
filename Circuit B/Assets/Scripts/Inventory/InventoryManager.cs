@@ -5,7 +5,7 @@ using UnityEditor;
 using UnityEngine;
 using static UnityEditor.Progress;
 
-public class InventoryManager : MonoBehaviour, Id
+public class InventoryManager : MonoBehaviour, IDataPersistance
 {
     public SO_Item test;
     private List<InventoryItem> items = new List<InventoryItem>();
@@ -42,6 +42,16 @@ public class InventoryManager : MonoBehaviour, Id
     public void ClearInventory()
     {
         items.Clear();
+    }
+
+    public void LoadData(GameData gameData)
+    {
+        this.items = gameData.inventory;
+    }
+
+    public void SaveData(ref GameData gameData)
+    {
+        gameData.inventory = this.items;
     }
 }
 
