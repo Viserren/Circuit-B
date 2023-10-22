@@ -24,7 +24,7 @@ public class PolygonHelper : MonoBehaviour
         return MathF.Abs(totalArea);
     }
 
-    public static bool Triangulate(Vector2[] vertices, out int[] triangles, out string errorMessage)
+    public static bool Triangulate(Vector3[] vertices, out int[] triangles, out string errorMessage)
     {
         triangles = null;
         errorMessage = string.Empty;
@@ -86,8 +86,10 @@ public class PolygonHelper : MonoBehaviour
 
         while (indexList.Count > 3)
         {
+            Debug.Log("Count: " + indexList.Count);
             for (int i = 0; i < indexList.Count; i++)
             {
+                Debug.Log("i: " + i);
                 int a = indexList[i];
                 int b = Util.GetItem(indexList, i - 1);
                 int c = Util.GetItem(indexList, i + 1);
