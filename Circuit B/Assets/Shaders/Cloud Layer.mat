@@ -47,11 +47,11 @@ Material:
     - _Noise_Large_Scale: 0.213
     - _Noise_Scale: 100
     - _Noise_Speed: 2
-    - _Pixel_Size: 128
+    - _Pixel_Size: 256
     - _QueueControl: 0
     - _QueueOffset: 0
     - _Scale: 1.65
-    - _Step_Strength: 0.336
+    - _Step_Strength: 0.296
     - _Voronoi_Density: 10
     - _Voronoi_Detail_Density: 33.6
     - _Voronoi_Detail_Offset: 32
