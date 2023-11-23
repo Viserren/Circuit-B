@@ -39,14 +39,14 @@ Material:
     m_Ints: []
     m_Floats:
     - _AnimationSpeed: 0.2
-    - _DistanceFadePower: 0.4
-    - _NadirBlendPower: 0.06
+    - _DistanceFadePower: 0.27
+    - _NadirBlendPower: 0.05
     - _Pixelate_Amount: 128
     - _QueueControl: 0
     - _QueueOffset: 0
     - _Scale: 0.54
     - _Sun_Size: 0.05
-    - _ZenithBlendPower: 0.01
+    - _ZenithBlendPower: 0.05
     m_Colors:
     - _CloudColour: {r: 0.9245283, g: 0.9245283, b: 0.9245283, a: 1}
     - _HorizonColour: {r: 1, g: 1, b: 1, a: 0}
