@@ -48,6 +48,9 @@ public class PlayerStateManager : MonoBehaviour
     PlayerBaseState _currentState;
     PlayerStateFactory _states;
 
+    [SerializeField] bool _isOvergrown = false;
+    List<ChangeBodyMeshes> _bodyMeshes = new List<ChangeBodyMeshes>();
+
     // Getters and setters
     public CharacterController CharacterController { get { return _characterController; } }
     public PlayerBaseState CurrentState { get { return _currentState; } set { _currentState = value; } }
@@ -102,6 +105,7 @@ public class PlayerStateManager : MonoBehaviour
     void Start()
     {
         _characterController.Move(_appliedMovement * Time.deltaTime);
+        _bodyMeshes.AddRange(GetComponentsInChildren<ChangeBodyMeshes>());
     }
 
     private void OnEnable()
@@ -135,6 +139,12 @@ public class PlayerStateManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        foreach (ChangeBodyMeshes bodyMesh in _bodyMeshes)
+        {
+            bodyMesh.ChangeMesh(_isOvergrown);
+        }
+
+
         //Debug.Log(CharacterController.isGrounded);
         HandleRotation();
         _currentState.UpdateStates();
