@@ -139,40 +139,52 @@ public class PlayerStateManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        foreach (ChangeBodyMeshes bodyMesh in _bodyMeshes)
+        if (GameStateManager.Instance.CurrentState == GameStateManager.Instance.StateFactory.Playing())
         {
-            bodyMesh.ChangeMesh(_isOvergrown);
+            foreach (ChangeBodyMeshes bodyMesh in _bodyMeshes)
+            {
+                bodyMesh.ChangeMesh(_isOvergrown);
+            }
+
+
+            //Debug.Log(CharacterController.isGrounded);
+            HandleRotation();
+            _currentState.UpdateStates();
+            _cameraRelativeMovement = ConvertToCameraSpace(_appliedMovement);
+            _characterController.Move(_cameraRelativeMovement * Time.deltaTime);
         }
-
-
-        //Debug.Log(CharacterController.isGrounded);
-        HandleRotation();
-        _currentState.UpdateStates();
-        _cameraRelativeMovement = ConvertToCameraSpace(_appliedMovement);
-        _characterController.Move(_cameraRelativeMovement * Time.deltaTime);
     }
 
     void OnMove(InputAction.CallbackContext ctx)
     {
-        // Read the value of the input action
-        _currentMovementInput = ctx.ReadValue<Vector2>();
-        _currentMovement.x = _currentMovementInput.x;
-        _currentRunMovement.x = _currentMovementInput.x * _runMultiplier;
+        if (GameStateManager.Instance.CurrentState == GameStateManager.Instance.StateFactory.Playing())
+        {
+            // Read the value of the input action
+            _currentMovementInput = ctx.ReadValue<Vector2>();
+            _currentMovement.x = _currentMovementInput.x;
+            _currentRunMovement.x = _currentMovementInput.x * _runMultiplier;
 
-        _currentMovement.z = _currentMovementInput.y;
-        _currentRunMovement.z = _currentMovementInput.y * _runMultiplier;
-        _isMovementPressed = _currentMovementInput.x != 0 || _currentMovementInput.y != 0;
+            _currentMovement.z = _currentMovementInput.y;
+            _currentRunMovement.z = _currentMovementInput.y * _runMultiplier;
+            _isMovementPressed = _currentMovementInput.x != 0 || _currentMovementInput.y != 0;
+        }
     }
 
     void OnRun(InputAction.CallbackContext ctx)
     {
-        _isRunPressed = ctx.ReadValueAsButton();
+        if (GameStateManager.Instance.CurrentState == GameStateManager.Instance.StateFactory.Playing())
+        {
+            _isRunPressed = ctx.ReadValueAsButton();
+        }
     }
 
     void OnJump(InputAction.CallbackContext ctx)
     {
-        _isJumpPressed = ctx.ReadValueAsButton();
-        _requireNewJumpPress = false;
+        if (GameStateManager.Instance.CurrentState == GameStateManager.Instance.StateFactory.Playing())
+        {
+            _isJumpPressed = ctx.ReadValueAsButton();
+            _requireNewJumpPress = false;
+        }
     }
 
     void SetUpJumpVariables()

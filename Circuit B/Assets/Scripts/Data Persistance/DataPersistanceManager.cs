@@ -22,7 +22,7 @@ public class DataPersistanceManager : MonoBehaviour
         if (Instance != null && Instance != this)
         {
             Debug.LogError("Multiple instances of DataPersistanceManager");
-            Destroy(this);
+            Destroy(gameObject);
             return;
         }
         Instance = this;

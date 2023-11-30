@@ -2,22 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GamePausedState : GameBaseState
+public class PausedGameState : GameBaseState
 {
-    public GamePausedState(GameStateManager currentContext, GameStateFactory gameStateFactory) : base(currentContext, gameStateFactory)
+    public PausedGameState(GameStateManager currentContext, GameStateFactory gameStateFactory) : base(currentContext, gameStateFactory)
     {
 
     }
 
     public override void CheckSwitchStates()
     {
-        if (Context.state == GameState.Playing)
+        if (Context.CurrentState == Context.StateFactory.Playing())
         {
             SwitchState(Factory.Playing());
         }
-        else if (Context.state == GameState.NotPlaying)
+        else if (Context.CurrentState == Context.StateFactory.MainMenu())
         {
-            SwitchState(Factory.NotPlaying());
+            SwitchState(Factory.MainMenu());
         }
     }
 

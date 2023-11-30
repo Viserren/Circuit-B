@@ -4,10 +4,24 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class ManuManager : MonoBehaviour
+public class MenuManager : MonoBehaviour
 {
-    public UnityEvent OnMainMenu;
+    //public UnityEvent OnMainMenu;
+    [SerializeField] Canvas _mainMenuCanvas;
     [SerializeField] TextMeshProUGUI _versionText;
+
+    public static MenuManager Instance { get; private set; }
+
+    private void Awake()
+    {
+        DontDestroyOnLoad(this);
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+    }
 
     private void Start()
     {
@@ -22,6 +36,9 @@ public class ManuManager : MonoBehaviour
     public void NewGameButton()
     {
         // TODO: Add code to start a new game
+
+        GameStateManager.Instance.CurrentState = GameStateManager.Instance.StateFactory.NewGame();
+        GameStateManager.Instance.CurrentState.EnterState();
     }
 
     public void SettingsButton()
@@ -37,7 +54,7 @@ public class ManuManager : MonoBehaviour
 
     public void MainMenu()
     {
-        OnMainMenu.Invoke();
+        //OnMainMenu.Invoke();
         // TODO: Add code to show the main menu
     }
 }

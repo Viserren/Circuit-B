@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class GameStateManager : MonoBehaviour
 {
-    public GameState state { get; private set; }
+    //public GameState state { get; private set; }
 
     public static GameStateManager Instance { get; private set; }
 
@@ -14,7 +14,7 @@ public class GameStateManager : MonoBehaviour
         DontDestroyOnLoad(this);
         if (Instance != null && Instance != this)
         {
-            Destroy(this);
+            Destroy(gameObject);
             return;
         }
         Instance = this;
@@ -27,13 +27,14 @@ public class GameStateManager : MonoBehaviour
 
     // Getters and setters
     public GameBaseState CurrentState { get { return _currentState; } set { _currentState = value; } }
+    public GameStateFactory StateFactory { get {  return _states; } }
 
     // Start is called before the first frame update
     void Start()
     {
         // Setup the state machine
         _states = new GameStateFactory(this);
-        _currentState = _states.NotPlaying();
+        _currentState = _states.MainMenu();
         _currentState.EnterState();
     }
 
@@ -43,23 +44,29 @@ public class GameStateManager : MonoBehaviour
         _currentState.UpdateStates();
     }
 
-    public void SwitchState(int newState)
-    {
-        try
-        {
-            state = (GameState)newState;
-        }
-        catch
-        {
-            Debug.LogError("Invalid state");
-            return;
-        }
-    }
+    //public void SwitchState(int newState)
+    //{
+    //    try
+    //    {
+    //        state = (GameState)newState;
+    //        Debug.Log("state is = " + state.ToString());
+    //        _currentState = _states.
+    //        _currentState.EnterState();
+    //    }
+    //    catch
+    //    {
+    //        Debug.LogError("Invalid state");
+    //        return;
+    //    }
+    //}
 }
 
-public enum GameState
-{
-    NotPlaying, // 0
-    Playing, // 1
-    Paused // 2
-}
+
+//public enum GameState
+//{
+//    MainMenu = 0,
+//    Playing = 1,
+//    Paused = 2,
+//    NewGame = 3,
+//    LoadGame = 4
+//}

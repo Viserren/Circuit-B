@@ -60,15 +60,15 @@ public class ClockManager : MonoBehaviour
         {
             case TimeToUseWhenUpdating.seconds:
                 tSeconds = (float)dateTime.TotalNumberOfSecondsInDay / 86400f;
-                Debug.Log(tSeconds);
+                //Debug.Log(tSeconds);
                 return tSeconds;
             case TimeToUseWhenUpdating.minutes:
                 tMinutes = (float)dateTime.TotalNumberOfMinutesInDay / 1440f;
-                Debug.Log(tMinutes);
+                //Debug.Log(tMinutes);
                 return tMinutes;
             case TimeToUseWhenUpdating.hours:
                 tHours = (float)dateTime.Hours / 24f;
-                Debug.Log(tHours);
+                //Debug.Log(tHours);
                 return tHours;
 
             default:
