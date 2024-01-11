@@ -1,0 +1,64 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4619802342334900793
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8967351581639203989}
+  - component: {fileID: 4120838139066740489}
+  m_Layer: 0
+  m_Name: Memory Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8967351581639203989
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4619802342334900793}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 620.5677, y: 384.80447, z: -1.0350293}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4120838139066740489
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4619802342334900793}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11d75375a397fb8409815730715f3af6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _memoriesDefault:
+  - _hasCollected: 0
+    _spawnLocation: {x: -2.625, y: -1.09375, z: 44.25}
+    _soMemory: {fileID: 11400000, guid: e6408005eb3c02f48a0f531bf719ad28, type: 2}
+  - _hasCollected: 0
+    _spawnLocation: {x: 30.795, y: 0.885, z: 41.703}
+    _soMemory: {fileID: 11400000, guid: e76160e6d3fce0f4eab57443a3cc14b8, type: 2}
+  - _hasCollected: 0
+    _spawnLocation: {x: -23.59375, y: 1.09375, z: 7.875}
+    _soMemory: {fileID: 11400000, guid: 35f54d33e2b74f44b84156ce14f0641c, type: 2}
+  _content: {fileID: 0}
+  _buttonPrefab: {fileID: 2450496050097848945, guid: 25ebf466e7470ca4187431a470de14ab,
+    type: 3}
+  _objectPrefab: {fileID: 5424945201419598296, guid: ffe544b2908e36e458c342a091bb0e16,
+    type: 3}
+  _memoryTitle: {fileID: 0}
+  _memoryDescription: {fileID: 0}
+  _memoryImage: {fileID: 0}

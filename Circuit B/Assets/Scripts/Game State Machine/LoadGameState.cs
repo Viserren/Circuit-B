@@ -10,7 +10,7 @@ public class LoadGameState : GameBaseState
     }
     public override void CheckSwitchStates()
     {
-        if (Context.CurrentState == Context.StateFactory.Playing())
+        if (Context.DoneLoading)
         {
             SwitchState(Factory.Playing());
         }
@@ -18,10 +18,13 @@ public class LoadGameState : GameBaseState
     public override void EnterState()
     {
         // TODO: load game save file
+        Debug.Log("Loading Game");
+        Context.LoadingGame = false;
     }
     public override void ExitState()
     {
         // TODO: once loaded, enter game with values
+
     }
     public override void UpdateState()
     {

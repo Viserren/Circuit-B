@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+#if UNITY_EDITOR
 public class PolygonHelper : MonoBehaviour
 {
     public static float FindPolygonArea(Vector2[] vertices)
@@ -187,3 +187,5 @@ public enum WindingOrder
 {
     Clockwise, CounterClockwise, Invalid
 }
+
+#endif

@@ -11,11 +11,11 @@ public class PausedGameState : GameBaseState
 
     public override void CheckSwitchStates()
     {
-        if (Context.CurrentState == Context.StateFactory.Playing())
+        if (!Context.IsPaused)
         {
             SwitchState(Factory.Playing());
         }
-        else if (Context.CurrentState == Context.StateFactory.MainMenu())
+        else if (Context.IsMainMenu)
         {
             SwitchState(Factory.MainMenu());
         }

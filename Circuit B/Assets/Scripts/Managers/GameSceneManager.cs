@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class GameSceneManager : MonoBehaviour
 {
     public static GameSceneManager Instance { get; private set; }
+    int _sceneToLoad;
     private void Awake()
     {
         DontDestroyOnLoad(this);
@@ -18,11 +19,26 @@ public class GameSceneManager : MonoBehaviour
     }
     public void LoadScene(int newScene)
     {
-        SceneManager.LoadSceneAsync(newScene, LoadSceneMode.Additive);
+        _sceneToLoad = newScene;
+        SceneManager.LoadSceneAsync(_sceneToLoad, LoadSceneMode.Additive).completed += OnceLoaded;
     }
 
     public void LoadScene(int newScene, LoadSceneMode mode)
     {
-        SceneManager.LoadSceneAsync(newScene, mode);
+        _sceneToLoad = newScene;
+        SceneManager.LoadSceneAsync(_sceneToLoad, mode).completed += OnceLoaded;
+    }
+
+    void OnceLoaded(AsyncOperation operation)
+    {
+        if (operation.isDone && _sceneToLoad == 1)
+        {
+            CameraManager.Instance.LoadCameras();
+            MenuManager.Instance.Menus.FindAll(r => r.MenuType == MenuType.InGame).ForEach(r => { r.IsActive = false; });
+            AudioManager.Instance.Play("Ambience 1");
+            MenuManager.Instance.MainMenuScreen();
+            MenuManager.Instance.HideOpeningScreen();
+        }
+
     }
 }

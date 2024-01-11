@@ -43,24 +43,25 @@ Material:
     - _Animation_Speed: 1
     - _Coronoi_Density: 1
     - _Falloff_Power: 0
-    - _Noise_Detail_Scale: 13.4
-    - _Noise_Large_Scale: 0.213
+    - _Noise_Detail_Scale: 14.1
+    - _Noise_Large_Scale: 0.354
     - _Noise_Scale: 100
-    - _Noise_Speed: 2
+    - _Noise_Speed: 1
     - _Pixel_Size: 256
     - _QueueControl: 0
     - _QueueOffset: 0
     - _Scale: 1.65
-    - _Step_Strength: 0.296
+    - _Step_Strength: 0.407
     - _Voronoi_Density: 10
     - _Voronoi_Detail_Density: 33.6
     - _Voronoi_Detail_Offset: 32
-    - _Voronoi_Large_Density: 0.313
+    - _Voronoi_Large_Density: 0.283
     - _Voronoi_Large_Offset: 191
     - _Voronoi_Offset: 50
     - _Voronoi_Speed: 0.01
     m_Colors:
     - _Cloud_Colour: {r: 0.9339623, g: 0.9339623, b: 0.9339623, a: 0}
+    - _Night_Cloud_Colour: {r: 0.084905684, g: 0.084905684, b: 0.084905684, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &3453030159254004091
 MonoBehaviour:

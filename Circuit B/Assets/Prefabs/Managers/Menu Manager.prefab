@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8057531859369443087}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -44,13 +44,48 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e43d3bcd24602a54395cc7121e51dc8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnMainMenu:
+  _versionText: {fileID: 0}
+  _menus:
+  - _menuName: Out Of Game
+    _menuNumber: 0
+    _menuObject: {fileID: 0}
+    _menuType: 0
+  - _menuName: In Game
+    _menuNumber: 1
+    _menuObject: {fileID: 0}
+    _menuType: 1
+  - _menuName: Main Menu
+    _menuNumber: 2
+    _menuObject: {fileID: 0}
+    _menuType: 0
+  - _menuName: Save Select
+    _menuNumber: 3
+    _menuObject: {fileID: 0}
+    _menuType: 0
+  - _menuName: Options
+    _menuNumber: 4
+    _menuObject: {fileID: 0}
+    _menuType: 0
+  - _menuName: Pause
+    _menuNumber: 5
+    _menuObject: {fileID: 0}
+    _menuType: 1
+  - _menuName: No Power
+    _menuNumber: 6
+    _menuObject: {fileID: 0}
+    _menuType: 1
+  - _menuName: Memories
+    _menuNumber: 7
+    _menuObject: {fileID: 0}
+    _menuType: 1
+  _opening: {fileID: 0}
+  MainMenuLoaded:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: GameStateManager, Assembly-CSharp
-        m_MethodName: SwitchState
-        m_Mode: 3
+        m_TargetAssemblyTypeName: PopulateSaveScreen, Assembly-CSharp
+        m_MethodName: Populate
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -59,4 +94,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  _versionText: {fileID: 0}
+  OptionsMenuLoaded:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: VolumeSettings, Assembly-CSharp
+        m_MethodName: LoadSliders
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

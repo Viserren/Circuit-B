@@ -3,14 +3,24 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.InputSystem;
 
 public class MenuManager : MonoBehaviour
 {
-    //public UnityEvent OnMainMenu;
-    [SerializeField] Canvas _mainMenuCanvas;
+    UIInputActions _uiInput;
     [SerializeField] TextMeshProUGUI _versionText;
 
+    [SerializeField] List<Menus> _menus = new List<Menus>();
+
+    [SerializeField] GameObject _opening;
+
     public static MenuManager Instance { get; private set; }
+
+    public UnityEvent MainMenuLoaded = new UnityEvent();
+
+    public UnityEvent OptionsMenuLoaded = new UnityEvent();
+
+    public List<Menus> Menus { get { return _menus; } set { _menus = value; } }
 
     private void Awake()
     {
@@ -21,6 +31,22 @@ public class MenuManager : MonoBehaviour
             return;
         }
         Instance = this;
+
+        _uiInput = new UIInputActions();
+    }
+
+    private void OnEnable()
+    {
+        _uiInput.UI.Enable();
+        _uiInput.UI.Cancel.performed += PauseScreen;
+        _uiInput.UI.Memories.performed += MemoriesScreen;
+    }
+
+    private void OnDisable()
+    {
+        _uiInput.UI.Disable();
+        _uiInput.UI.Cancel.performed -= PauseScreen;
+        _uiInput.UI.Memories.performed -= MemoriesScreen;
     }
 
     private void Start()
@@ -28,22 +54,125 @@ public class MenuManager : MonoBehaviour
         _versionText.text = $"Version: {Application.version}";
     }
 
-    public void LoadGameButton()
-    {
-        // TODO: Add code to load the last saved game
-    }
-
     public void NewGameButton()
     {
-        // TODO: Add code to start a new game
-
-        GameStateManager.Instance.CurrentState = GameStateManager.Instance.StateFactory.NewGame();
-        GameStateManager.Instance.CurrentState.EnterState();
+        GameStateManager.Instance.CreatingNewGame = true;
     }
 
-    public void SettingsButton()
+    void PauseScreen(InputAction.CallbackContext ctx)
     {
-        // TODO: Add code to show the settings menu
+        if (!GameStateManager.Instance.IsMainMenu)
+        {
+            PauseScreen();
+            OptionsMenuLoaded.Invoke();
+        }
+    }
+
+    void MemoriesScreen(InputAction.CallbackContext ctx)
+    {
+        if (!GameStateManager.Instance.IsPaused)
+        {
+            MemoriesScreen();
+        }
+    }
+
+    public void MemoriesScreen()
+    {
+        if (_menus.Find(r => r.MenuName == "Memories").IsActive)
+        {
+            HideAllScreenButton();
+            ShowScreenButton("In Game");
+            HideScreenButton("Memories");
+            Cursor.lockState = CursorLockMode.Locked;
+        }
+        else
+        {
+            HideAllScreenButton();
+            ShowScreenButton("In Game");
+            ShowScreenButton("Memories");
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
+    }
+
+    public void HideOpeningScreen()
+    {
+        _opening.GetComponent<Animator>().SetTrigger("Start");
+    }
+
+    public void DeadScreen()
+    {
+        HideAllScreenButton();
+        ShowScreenButton("In Game");
+        ShowScreenButton("No Power");
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+    }
+
+    public void PauseScreen()
+    {
+        if (GameStateManager.Instance.IsPaused)
+        {
+            HideAllScreenButton();
+            ShowScreenButton("In Game");
+            HideScreenButton("Pause");
+            Cursor.lockState = CursorLockMode.Locked;
+            GameStateManager.Instance.IsPaused = false;
+        }
+        else
+        {
+            HideAllScreenButton();
+            ShowScreenButton("In Game");
+            ShowScreenButton("Pause");
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+            GameStateManager.Instance.IsPaused = true;
+        }
+    }
+
+    public void BackScreenButton()
+    {
+        if (GameStateManager.Instance.IsMainMenu)
+        {
+            MainMenuScreen();
+        }
+
+        if (GameStateManager.Instance.IsPaused)
+        {
+            HideAllScreenButton();
+            ShowScreenButton("In Game");
+            ShowScreenButton("Pause");
+        }
+    }
+
+    public void MainMenuScreen()
+    {
+        HideAllScreenButton();
+        ShowScreenButton("Out Of Game");
+        ShowScreenButton("Main Menu");
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        GameStateManager.Instance.IsMainMenu = true;
+        MainMenuLoaded.Invoke();
+        OptionsMenuLoaded.Invoke();
+    }
+
+    public void ShowScreenButton(string screenName)
+    {
+        _menus.Find(r => r.MenuName == screenName).IsActive = true;
+    }
+
+    public void HideAllScreenButton()
+    {
+        foreach (var menu in _menus)
+        {
+            menu.IsActive = false;
+        }
+    }
+
+    public void HideScreenButton(string screenName)
+    {
+        _menus.Find(r => r.MenuName == screenName).IsActive = false;
     }
 
     public void QuitGameButton()
@@ -52,9 +181,45 @@ public class MenuManager : MonoBehaviour
         Application.Quit();
     }
 
-    public void MainMenu()
+
+}
+
+[System.Serializable]
+public class Menus
+{
+    [SerializeField] string _menuName;
+    [SerializeField] int _menuNumber;
+    [SerializeField] GameObject _menuObject;
+    [SerializeField] MenuType _menuType;
+    bool _isActive = false;
+
+    public int MenuNumber { get { return _menuNumber; } set { _menuNumber = value; } }
+    public string MenuName { get { return _menuName; } set { _menuName = value; } }
+    public GameObject MenuObject { get { return _menuObject; } set { _menuObject = value; } }
+    public MenuType MenuType { get { return _menuType; } set { _menuType = value; } }
+    public bool IsActive
     {
-        //OnMainMenu.Invoke();
-        // TODO: Add code to show the main menu
+        get { return _isActive; }
+        set
+        {
+            _isActive = value;
+            _menuObject.SetActive(value);
+        }
     }
+
+    public Menus(string menuName, int menuNumber, GameObject menuObject, MenuType menuType, bool isActive)
+    {
+        MenuName = menuName;
+        MenuNumber = menuNumber;
+        MenuObject = menuObject;
+        MenuType = menuType;
+        IsActive = isActive;
+    }
+}
+
+[System.Serializable]
+public enum MenuType
+{
+    MainMenu = 0,
+    InGame = 1
 }

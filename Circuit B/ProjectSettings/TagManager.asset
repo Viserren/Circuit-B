@@ -5,6 +5,10 @@ TagManager:
   serializedVersion: 2
   tags:
   - PlayerEyes
+  - InGame Canvas
+  - Main Canvas
+  - Player Power
+  - Replace
   layers:
   - Default
   - TransparentFX

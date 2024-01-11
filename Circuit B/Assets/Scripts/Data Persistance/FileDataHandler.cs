@@ -3,11 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using System.IO;
+using Unity.Mathematics;
 
 public class FileDataHandler
 {
-    private string _dataDirPath = "";
-    private string _dataFileName = "";
+    private string _dataDirPath;
+    private string _dataFileName;
+
+    public string dataFileName { get { return _dataFileName; } }
+
+    GameData[] _files;
 
     public FileDataHandler(string dataDirPath, string dataFileName)
     {
@@ -15,8 +20,49 @@ public class FileDataHandler
         this._dataFileName = dataFileName;
     }
 
-    public GameData Load()
+    public FileDataHandler(string dataDirPath)
     {
+        this._dataDirPath = dataDirPath;
+    }
+
+    public List<GameData> LoadAllFiles()
+    {
+        string[] files = System.IO.Directory.GetFiles(_dataDirPath, "*.txt");
+        List<GameData> loadedData = new List<GameData>();
+
+        if (files.Length > 0)
+        {
+            foreach (string file in files)
+            {
+                string fullPath = Path.Combine(_dataDirPath, file);
+                try
+                {
+                    // load the data from file
+                    string dataToLoad = "";
+                    using (FileStream stream = new FileStream(fullPath, FileMode.Open))
+                    {
+                        using (StreamReader reader = new StreamReader(stream))
+                        {
+                            dataToLoad = reader.ReadToEnd();
+                        }
+                    }
+
+                    // deserialize the data into a GameData object
+                    //Debug.Log(JsonUtility.FromJson<GameData>(dataToLoad));
+                    loadedData.Add(JsonUtility.FromJson<GameData>(dataToLoad));
+                }
+                catch (Exception e)
+                {
+                    Debug.LogError("Error occured while loading data from file: " + fullPath + "\n" + e);
+                }
+            }
+        }
+        return loadedData;
+    }
+
+    public GameData Load(string fileNameToLoad)
+    {
+        _dataFileName = fileNameToLoad;
         // Using Path.Combine to account for different OS's
         string fullPath = Path.Combine(_dataDirPath, _dataFileName);
         GameData loadedData = null;

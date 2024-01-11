@@ -14,8 +14,12 @@ public class PlayerStateFactory
         _states.Add("Jump", new PlayerJumpState(_context, this));
         _states.Add("Grounded", new PlayerGroundedState(_context, this));
         _states.Add("Falling", new PlayerFallState(_context, this));
+        _states.Add("Dead", new PlayerDeadState(_context, this));
     }
-
+    public PlayerBaseState Dead()
+    {
+        return _states["Dead"];
+    }
     public PlayerBaseState Idle()
     {
         return _states["Idle"];

@@ -19,6 +19,11 @@ public class PlayerGroundedState : PlayerBaseState, IRootState
             Debug.Log("Switching to falling state");
             SwitchState(Factory.Falling());
         }
+
+        if (Context.IsDead)
+        {
+            SwitchState(Factory.Dead());
+        }
     }
 
     public override void EnterState()

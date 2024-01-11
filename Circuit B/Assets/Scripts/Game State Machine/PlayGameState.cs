@@ -11,7 +11,7 @@ public class PlayGameState : GameBaseState
 
     public override void CheckSwitchStates()
     {
-        if (Context.CurrentState == Context.StateFactory.Paused())
+        if (Context.IsPaused)
         {
             SwitchState(Factory.Paused());
         }
@@ -19,12 +19,19 @@ public class PlayGameState : GameBaseState
 
     public override void EnterState()
     {
-        throw new System.NotImplementedException();
+        Context.DoneLoading = false;
+        Context.IsMainMenu = false;
+        Debug.Log("Enter Playing");
+        CameraManager.Instance.MainMenuCamera(false, this);
+        MenuManager.Instance.Menus.FindAll(r => r.MenuType == MenuType.MainMenu).ForEach(r => { r.IsActive = false; }); 
+        MenuManager.Instance.Menus.FindAll(r => r.MenuType == MenuType.InGame).ForEach(r => { r.IsActive = false; });
+        MenuManager.Instance.Menus.FindAll(r => r.MenuType == MenuType.InGame).Find(r => r.MenuName == "In Game").IsActive = true;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     public override void ExitState()
     {
-        throw new System.NotImplementedException();
+        Debug.Log("Exit Playing");
     }
 
     public override void UpdateState()

@@ -10,25 +10,38 @@ public class MainMenuGameState : GameBaseState
     }
     public override void CheckSwitchStates()
     {
-        if (Context.CurrentState == Context.StateFactory.NewGame())
+        if (Context.CreatingNewGame)
         {
             SwitchState(Factory.NewGame());
         }
-        else if(Context.CurrentState == Context.StateFactory.LoadGame())
+        else if (Context.LoadingGame)
         {
             SwitchState(Factory.LoadGame());
         }
     }
     public override void EnterState()
     {
-        GameSceneManager.Instance.LoadScene(1, UnityEngine.SceneManagement.LoadSceneMode.Additive);
+        CameraManager.Instance.MainMenuCamera(true, this);
+        Context.IsPaused = false;
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        if (!Context.LoadedWorld)
+        {
+            GameSceneManager.Instance.LoadScene(1);
+            MenuManager.Instance.Menus.FindAll(r => r.MenuType == MenuType.InGame).ForEach(r => { r.IsActive = false; });
+            Context.LoadedWorld = true;
+        }
     }
     public override void ExitState()
     {
-        
+        Debug.Log("Exit Main Menu");
     }
     public override void UpdateState()
     {
+        //if (MenuManager.Instance.InGameCanvas != null && MenuManager.Instance.InGameCanvas.enabled == true) 
+        //{
+        //    MenuManager.Instance.InGameCanvas.enabled = false;
+        //}
         CheckSwitchStates();
     }
 }

@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerWalkState : PlayerBaseState
 {
     public PlayerWalkState(PlayerStateManager currentContext, PlayerStateFactory playerStateFactory) : base(currentContext, playerStateFactory) { }
+
     public override void CheckSwitchStates()
     {
         if (!Context.IsMovementPressed)

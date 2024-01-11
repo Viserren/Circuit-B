@@ -2,13 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Playables;
 
-public class PlayerStateManager : MonoBehaviour
+public class PlayerStateManager : MonoBehaviour, IDataPersistance
 {
     // Reference variables
     PlayerInput _playerInput;
     CharacterController _characterController;
     Animator _animator;
+    BatteryHealth _batteryHealth;
 
     // Animation variables
     int _isWalkingHash;
@@ -16,6 +18,7 @@ public class PlayerStateManager : MonoBehaviour
     int _isJumpingHash;
     int _jumpCountHash;
     int _isFallingHash;
+    int _shouldDieHash;
 
     // Movement variables
     Vector2 _currentMovementInput;
@@ -27,6 +30,8 @@ public class PlayerStateManager : MonoBehaviour
     bool _isRunPressed = false;
     float _rotationFactorPerFrame = 15;
     float _runMultiplier = 3.0f;
+
+    bool _isDead = false;
 
     // Gravity variables
     float _gravity = -9.81f;
@@ -55,6 +60,7 @@ public class PlayerStateManager : MonoBehaviour
     public CharacterController CharacterController { get { return _characterController; } }
     public PlayerBaseState CurrentState { get { return _currentState; } set { _currentState = value; } }
     public Animator Animator { get { return _animator; } }
+    public BatteryHealth BatteryHealth { get { return _batteryHealth; } }
     public Coroutine CurrentJumpResetRoutine { get { return _currentJumpResetRoutine; } set { _currentJumpResetRoutine = value; } }
     public Dictionary<int, float> InitialJumpVelocities { get { return _initialJumpVelocities; } }
     public Dictionary<int, float> JumpGravities { get { return _jumpGravities; } }
@@ -63,12 +69,14 @@ public class PlayerStateManager : MonoBehaviour
     public int IsRunningHash { get { return _isRunningHash; } }
     public int IsJumpingHash { get { return _isJumpingHash; } }
     public int IsFallingHash { get { return _isFallingHash; } }
+    public int ShouldDieHash { get { return _shouldDieHash; } }
     public int JumpCountHash { get { return _jumpCountHash; } }
     public bool RequireNewJumpPress { get { return _requireNewJumpPress; } set { _requireNewJumpPress = value; } }
     //public bool IsJumping { set { _isJumping = value; } }
     public bool IsJumpPressed { get { return _isJumpPressed; } }
     public bool IsRunPressed { get { return _isRunPressed; } }
     public bool IsMovementPressed { get { return _isMovementPressed; } }
+    public bool IsDead { get { return _isDead; } set { _isDead = value; } }
     public float Gravity { get { return _gravity; } }
     public float MaxFallVelocity { get { return _maxFallVelocity; } }
     public float CurrentMovementY { get { return _currentMovement.y; } set { _currentMovement.y = value; } }
@@ -84,6 +92,7 @@ public class PlayerStateManager : MonoBehaviour
         _playerInput = new PlayerInput();
         _characterController = GetComponent<CharacterController>();
         _animator = GetComponent<Animator>();
+        _batteryHealth = GetComponentInChildren<BatteryHealth>(true);
 
         // Setup the state machine
         _states = new PlayerStateFactory(this);
@@ -96,6 +105,7 @@ public class PlayerStateManager : MonoBehaviour
         _isJumpingHash = Animator.StringToHash("isJumping");
         _jumpCountHash = Animator.StringToHash("jumpCount");
         _isFallingHash = Animator.StringToHash("isFalling");
+        _shouldDieHash = Animator.StringToHash("shouldDie");
 
         // Set the jump variables
         SetUpJumpVariables();
@@ -120,6 +130,8 @@ public class PlayerStateManager : MonoBehaviour
 
         _playerInput.CharacterControls.Jump.started += OnJump;
         _playerInput.CharacterControls.Jump.canceled += OnJump;
+
+
     }
 
     private void OnDisable()
@@ -145,7 +157,6 @@ public class PlayerStateManager : MonoBehaviour
             {
                 bodyMesh.ChangeMesh(_isOvergrown);
             }
-
 
             //Debug.Log(CharacterController.isGrounded);
             HandleRotation();
@@ -255,5 +266,61 @@ public class PlayerStateManager : MonoBehaviour
         Vector3 vectorRotatedToCameraSpace = cameraForwardZProduct + cameraRightXProduct;
         vectorRotatedToCameraSpace.y = currentYValue;
         return vectorRotatedToCameraSpace;
+    }
+
+    Coroutine _resetHealthCoroutine;
+    void TakeBatteryHealth(string Parameters)
+    {
+        string[] ParametersList = Parameters.Split(",");
+        int min = int.Parse(ParametersList[0]);
+        int max = int.Parse(ParametersList[1]);
+        int threshold = int.Parse(ParametersList[2]);
+        int damage = int.Parse(ParametersList[3]);
+
+        if (_resetHealthCoroutine == null)
+        {
+            int genNum = Random.Range(min, max);
+
+            if (genNum <= threshold)
+            {
+                BatteryHealth.DecreaseHealth(damage);
+                _resetHealthCoroutine = StartCoroutine(ResetTakeBatteryHealthTimer());
+            }
+        }
+    }
+
+    //void TakeBatteryHealth(int min, int max, int threshold, int damage = 1)
+    //{
+    //    if (_resetHealthCoroutine == null)
+    //    {
+    //        int genNum = Random.Range(min, max);
+
+    //        if (genNum <= threshold)
+    //        {
+    //            BatteryHealth.DecreaseHealth(damage);
+    //            _resetHealthCoroutine = StartCoroutine(ResetTakeBatteryHealthTimer());
+    //        }
+    //    }
+    //}
+
+    IEnumerator ResetTakeBatteryHealthTimer()
+    {
+        yield return new WaitForSeconds(30);
+        _resetHealthCoroutine = null;
+    }
+
+    public void LoadData(GameData gameData)
+    {
+        CharacterController.enabled = false;
+        CharacterController.transform.position = gameData.startLocation;
+        CharacterController.transform.rotation = gameData.startRotation;
+        CharacterController.enabled = true;
+    }
+
+    public void SaveData(ref GameData gameData)
+    {
+        gameData.startLocation = transform.position;
+        gameData.startRotation = transform.rotation;
+        gameData.dateLastSaved = System.DateTime.Now.ToString();
     }
 }

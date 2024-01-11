@@ -4,7 +4,7 @@ using UnityEngine;
 using System.Xml;
 using System.Linq;
 using UnityEditor;
-
+#if UNITY_EDITOR
 public class TextDataHandler : MonoBehaviour
 {
     [SerializeField] SO_TextData textData;
@@ -171,3 +171,4 @@ public static class Util
         }
     }
 }
+#endif

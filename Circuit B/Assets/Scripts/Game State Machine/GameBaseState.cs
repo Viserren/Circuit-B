@@ -30,5 +30,6 @@ public abstract class GameBaseState
 
         // New state enters
         newState.EnterState();
+        _context.CurrentState = newState;
     }
 }
