@@ -23,13 +23,15 @@ public class MainMenuGameState : GameBaseState
     {
         CameraManager.Instance.MainMenuCamera(true, this);
         Context.IsPaused = false;
+        Context.CreatingNewGame = false;
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
-        if (!Context.LoadedWorld)
+        CameraManager.Instance.MainMenuCamera(true, this);
+        if (!Context.FirstLoadComplete)
         {
             GameSceneManager.Instance.LoadScene(1);
             MenuManager.Instance.Menus.FindAll(r => r.MenuType == MenuType.InGame).ForEach(r => { r.IsActive = false; });
-            Context.LoadedWorld = true;
+            Context.FirstLoadComplete = true;
         }
     }
     public override void ExitState()

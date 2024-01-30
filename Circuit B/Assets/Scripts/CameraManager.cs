@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class CameraManager : MonoBehaviour
+public class CameraManager : MonoBehaviour, IDataPersistance
 {
     public static CameraManager Instance { get; private set; }
 
@@ -17,6 +17,7 @@ public class CameraManager : MonoBehaviour
     //CinemachineTrackedDolly _cameraTrack;
     //[SerializeField] CinemachineVirtualCamera _camera;
     [SerializeField] List<AreaCamera> _cameras;
+    string _currentLocation;
 
     public List<AreaCamera> Cameras { get { return _cameras; } }
 
@@ -65,6 +66,7 @@ public class CameraManager : MonoBehaviour
 
     public void MainMenuCamera(bool value, GameBaseState state = null)
     {
+        _mainMenuCamera = FindObjectOfType<MenuCamera>();
         if (state != null)
         {
             Debug.Log(state.ToString());
@@ -82,15 +84,29 @@ public class CameraManager : MonoBehaviour
         }
     }
 
-    public void ChangeCamera(int newCamera)
+    public void ChangeCamera(int newCamera, string newLocation)
     {
         if (_currentCamera)
         {
             _currentCamera.thisArea.virtualCamera.Priority = 0;
         }
 
+        _currentLocation = newLocation;
         _currentCamera = Cameras[newCamera - 1];
         _currentCamera.thisArea.virtualCamera.Priority = 10;
+    }
+
+    public void LoadData(GameData gameData)
+    {
+        _currentLocation = gameData.currentLocation;
+
+        AreaCamera cam = _cameras.Find(r => r.thisArea.cameraName == _currentLocation);
+        ChangeCamera(cam.thisArea.cameraNumber, _currentLocation);
+    }
+
+    public void SaveData(ref GameData gameData)
+    {
+        gameData.currentLocation = _currentLocation;
     }
 
     //public void ChangePath(CinemachineSmoothPath newPath)

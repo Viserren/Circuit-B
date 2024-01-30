@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class GameStateManager : MonoBehaviour
 {
-    bool _loadedWorld;
+    bool _firstLoadComplete;
     bool _creatingNewGame;
     bool _loadingGame;
     bool _doneLoading;
@@ -16,7 +16,7 @@ public class GameStateManager : MonoBehaviour
     public bool CreatingNewGame { get { return _creatingNewGame; } set { _creatingNewGame = value; } }
     public bool LoadingGame { get { return _loadingGame; } set { _loadingGame = value; } }
     public bool DoneLoading { get { return _doneLoading; } set { _doneLoading = value; } }
-    public bool LoadedWorld { get { return _loadedWorld; } set { _loadedWorld = value; } }
+    public bool FirstLoadComplete { get { return _firstLoadComplete; } set { _firstLoadComplete = value; } }
     public bool IsPaused { get { return _isPaused; } set { _isPaused = value; } }
     public bool IsMainMenu { get { return _isMainMenu; } set { _isMainMenu = value; } }
 

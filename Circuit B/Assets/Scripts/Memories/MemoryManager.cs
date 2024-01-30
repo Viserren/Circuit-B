@@ -88,9 +88,10 @@ public class MemoryManager : MonoBehaviour, IDataPersistance
             }
         }
 
+        Debug.Log(gameData.memories.Count);
         foreach (Memories mem in gameData.memories)
         {
-            //Debug.Log($"{gameData.uuid} - {mem.MemoryName}, {mem.HasCollected}");
+            Debug.Log($"{gameData.uuid} - {mem.MemoryName}, {mem.HasCollected}");
             if (mem.HasCollected)
             {
                 UnlockMemory(mem.MemoryName);
@@ -117,6 +118,7 @@ public class MemoryManager : MonoBehaviour, IDataPersistance
         return sourceList.Select(memory => new Memories
         (
             memory.MemoryButton,
+            memory.MemoryName,
             memory.HasCollected,
             memory.SpawnLocation,
             memory.SOMemory
@@ -130,21 +132,23 @@ public class Memories
     //[SerializeField] string _memoryName;
     [HideInInspector] GameObject _memoryObject;
     [HideInInspector] GameObject _memoryButton;
+    [SerializeField] string _memoryName;
     [SerializeField] bool _hasCollected = false;
     [SerializeField] Vector3 _spawnLocation;
     [SerializeField] SO_Memory _soMemory;
 
-    public string MemoryName { get { return _soMemory.Title; } }
+    public string MemoryName { get { return _memoryName; } set { _memoryName = _soMemory.Title; } }
     public GameObject MemoryObject { get { return _memoryObject; } set { _memoryObject = value; } }
     public GameObject MemoryButton { get { return _memoryButton; } set { _memoryButton = value; } }
     public bool HasCollected { get { return _hasCollected; } set { _hasCollected = value; } }
     public Vector3 SpawnLocation { get { return _spawnLocation; } set { _spawnLocation = value; } }
     public SO_Memory SOMemory { get { return _soMemory; } }
 
-    public Memories(GameObject memoryButton, bool hasCollected, Vector3 spawnLocation, SO_Memory soMemory)
+    public Memories(GameObject memoryButton, string memoryName, bool hasCollected, Vector3 spawnLocation, SO_Memory soMemory)
     {
         //_memoryObject = memoryObject;
         _memoryButton = memoryButton;
+        _memoryName = memoryName;
         _hasCollected = hasCollected;
         _spawnLocation = spawnLocation;
         _soMemory = soMemory;

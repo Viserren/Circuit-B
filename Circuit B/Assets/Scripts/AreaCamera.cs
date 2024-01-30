@@ -10,16 +10,21 @@ public class AreaCamera : MonoBehaviour
     [SerializeField] bool _solidOutline;
 
     [SerializeField] BoxCollider _selfCollider;
+    //[SerializeField] string _location;
 
     public CameraInfo thisArea {  get { return _thisArea; } set { _thisArea = value; } }
+    //public string Location { get { return _location; }  }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.TryGetComponent<PlayerStateManager>(out PlayerStateManager state))
+        if (!GameStateManager.Instance.IsMainMenu && !GameStateManager.Instance.IsPaused)
         {
-            CameraManager.Instance.ChangeCamera(_thisArea.cameraNumber);
-            //Debug.Log("Change Path");
-            //CameraManager.Instance.ChangePath(_path);
+            if (other.TryGetComponent<PlayerStateManager>(out PlayerStateManager state))
+            {
+                CameraManager.Instance.ChangeCamera(_thisArea.cameraNumber, thisArea.cameraName);
+                //Debug.Log("Change Path");
+                //CameraManager.Instance.ChangePath(_path);
+            }
         }
     }
 

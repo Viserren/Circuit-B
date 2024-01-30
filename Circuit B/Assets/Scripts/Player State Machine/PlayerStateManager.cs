@@ -289,20 +289,6 @@ public class PlayerStateManager : MonoBehaviour, IDataPersistance
         }
     }
 
-    //void TakeBatteryHealth(int min, int max, int threshold, int damage = 1)
-    //{
-    //    if (_resetHealthCoroutine == null)
-    //    {
-    //        int genNum = Random.Range(min, max);
-
-    //        if (genNum <= threshold)
-    //        {
-    //            BatteryHealth.DecreaseHealth(damage);
-    //            _resetHealthCoroutine = StartCoroutine(ResetTakeBatteryHealthTimer());
-    //        }
-    //    }
-    //}
-
     IEnumerator ResetTakeBatteryHealthTimer()
     {
         yield return new WaitForSeconds(30);

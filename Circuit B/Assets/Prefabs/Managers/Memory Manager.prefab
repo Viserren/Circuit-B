@@ -45,13 +45,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _memoriesDefault:
-  - _hasCollected: 0
-    _spawnLocation: {x: -2.625, y: -1.09375, z: 44.25}
-    _soMemory: {fileID: 11400000, guid: e6408005eb3c02f48a0f531bf719ad28, type: 2}
-  - _hasCollected: 0
+  - _memoryName: Tools
+    _hasCollected: 0
     _spawnLocation: {x: 30.795, y: 0.885, z: 41.703}
     _soMemory: {fileID: 11400000, guid: e76160e6d3fce0f4eab57443a3cc14b8, type: 2}
-  - _hasCollected: 0
+  - _memoryName: Lake
+    _hasCollected: 0
+    _spawnLocation: {x: -2.625, y: -1.09375, z: 44.25}
+    _soMemory: {fileID: 11400000, guid: e6408005eb3c02f48a0f531bf719ad28, type: 2}
+  - _memoryName: Spare Parts
+    _hasCollected: 0
     _spawnLocation: {x: -23.59375, y: 1.09375, z: 7.875}
     _soMemory: {fileID: 11400000, guid: 35f54d33e2b74f44b84156ce14f0641c, type: 2}
   _content: {fileID: 0}

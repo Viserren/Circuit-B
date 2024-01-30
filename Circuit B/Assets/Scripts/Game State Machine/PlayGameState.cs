@@ -15,6 +15,10 @@ public class PlayGameState : GameBaseState
         {
             SwitchState(Factory.Paused());
         }
+        else if ( Context.IsMainMenu)
+        {
+            SwitchState(Factory.MainMenu());
+        }
     }
 
     public override void EnterState()

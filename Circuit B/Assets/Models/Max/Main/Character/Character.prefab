@@ -1046,6 +1046,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 186881821239878585}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 0e65753210b4a594aa5d7cb899ff7447,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5866937091192922408}
     - targetCorrespondingSourceObject: {fileID: 796571245933008779, guid: 0e65753210b4a594aa5d7cb899ff7447,
         type: 3}
       insertIndex: -1
@@ -1585,3 +1589,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isOvergrown: 1
+--- !u!81 &5866937091192922408
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7948812888473666280}
+  m_Enabled: 1

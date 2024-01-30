@@ -20,6 +20,8 @@ public class MenuManager : MonoBehaviour
 
     public UnityEvent OptionsMenuLoaded = new UnityEvent();
 
+    bool _deadMenu;
+
     public List<Menus> Menus { get { return _menus; } set { _menus = value; } }
 
     private void Awake()
@@ -61,7 +63,7 @@ public class MenuManager : MonoBehaviour
 
     void PauseScreen(InputAction.CallbackContext ctx)
     {
-        if (!GameStateManager.Instance.IsMainMenu)
+        if (!GameStateManager.Instance.IsMainMenu && !_deadMenu)
         {
             PauseScreen();
             OptionsMenuLoaded.Invoke();
@@ -70,7 +72,7 @@ public class MenuManager : MonoBehaviour
 
     void MemoriesScreen(InputAction.CallbackContext ctx)
     {
-        if (!GameStateManager.Instance.IsPaused)
+        if (!GameStateManager.Instance.IsPaused && !_deadMenu)
         {
             MemoriesScreen();
         }
@@ -100,8 +102,9 @@ public class MenuManager : MonoBehaviour
         _opening.GetComponent<Animator>().SetTrigger("Start");
     }
 
-    public void DeadScreen()
+    public void DeadScreen(bool value)
     {
+        _deadMenu = value;
         HideAllScreenButton();
         ShowScreenButton("In Game");
         ShowScreenButton("No Power");
