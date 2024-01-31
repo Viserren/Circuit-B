@@ -104,12 +104,15 @@ public class MenuManager : MonoBehaviour
 
     public void DeadScreen(bool value)
     {
-        _deadMenu = value;
-        HideAllScreenButton();
-        ShowScreenButton("In Game");
-        ShowScreenButton("No Power");
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
+        if (value)
+        {
+            _deadMenu = value;
+            HideAllScreenButton();
+            ShowScreenButton("In Game");
+            ShowScreenButton("No Power");
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
     }
 
     public void PauseScreen()

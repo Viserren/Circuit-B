@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Net.NetworkInformation;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Playables;
@@ -19,6 +20,7 @@ public class PlayerStateManager : MonoBehaviour, IDataPersistance
     int _jumpCountHash;
     int _isFallingHash;
     int _shouldDieHash;
+    int _shouldAliveHash;
 
     // Movement variables
     Vector2 _currentMovementInput;
@@ -41,7 +43,7 @@ public class PlayerStateManager : MonoBehaviour, IDataPersistance
     bool _isJumpPressed = false;
     float _initialJumpVelocity;
     bool _requireNewJumpPress = false;
-    float _maxJumpHeight = 2;
+    float _maxJumpHeight = 1;
     float _maxJumpTime = 0.75f;
     //bool _isJumping = false;
     int _jumpCount = 0;
@@ -106,6 +108,7 @@ public class PlayerStateManager : MonoBehaviour, IDataPersistance
         _jumpCountHash = Animator.StringToHash("jumpCount");
         _isFallingHash = Animator.StringToHash("isFalling");
         _shouldDieHash = Animator.StringToHash("shouldDie");
+        _shouldAliveHash = Animator.StringToHash("shouldAlive");
 
         // Set the jump variables
         SetUpJumpVariables();
@@ -225,7 +228,7 @@ public class PlayerStateManager : MonoBehaviour, IDataPersistance
         Vector3 positionToLookAt;
         // Set the position to look at based on the current movement input
         positionToLookAt.x = _cameraRelativeMovement.x;
-        positionToLookAt.y = 0.0f;
+        positionToLookAt.y = 0;
         positionToLookAt.z = _cameraRelativeMovement.z;
 
         // Current rotation of the player
@@ -301,6 +304,14 @@ public class PlayerStateManager : MonoBehaviour, IDataPersistance
         CharacterController.transform.position = gameData.startLocation;
         CharacterController.transform.rotation = gameData.startRotation;
         CharacterController.enabled = true;
+        if(!gameData.isDead && Animator.GetCurrentAnimatorStateInfo(0).IsName("Dying"))
+        {
+            _animator.SetTrigger(_shouldAliveHash);
+        }
+        else if(gameData.isDead && !Animator.GetCurrentAnimatorStateInfo(0).IsName("Dying"))
+        {
+            _animator.SetTrigger(_shouldDieHash);
+        }
     }
 
     public void SaveData(ref GameData gameData)
