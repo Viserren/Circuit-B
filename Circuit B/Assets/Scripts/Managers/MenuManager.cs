@@ -102,17 +102,14 @@ public class MenuManager : MonoBehaviour
         _opening.GetComponent<Animator>().SetTrigger("Start");
     }
 
-    public void DeadScreen(bool value)
+    public void DeadScreen()
     {
-        if (value)
-        {
-            _deadMenu = value;
-            HideAllScreenButton();
-            ShowScreenButton("In Game");
-            ShowScreenButton("No Power");
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
-        }
+        _deadMenu = true;
+        HideAllScreenButton();
+        ShowScreenButton("In Game");
+        ShowScreenButton("No Power");
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 
     public void PauseScreen()
@@ -153,6 +150,7 @@ public class MenuManager : MonoBehaviour
 
     public void MainMenuScreen()
     {
+        _deadMenu = false;
         HideAllScreenButton();
         ShowScreenButton("Out Of Game");
         ShowScreenButton("Main Menu");

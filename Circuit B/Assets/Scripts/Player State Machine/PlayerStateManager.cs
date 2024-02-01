@@ -239,7 +239,7 @@ public class PlayerStateManager : MonoBehaviour, IDataPersistance
         {
             // Creates a new rotation based on the position to look at
             Quaternion targetRotation = Quaternion.LookRotation(positionToLookAt);
-
+            //Debug.Log($"Rotation: {targetRotation}");
             // Slerp the current rotation to the target rotation
             transform.rotation = Quaternion.Slerp(currentRotation, targetRotation, _rotationFactorPerFrame * Time.deltaTime);
         }
@@ -298,20 +298,30 @@ public class PlayerStateManager : MonoBehaviour, IDataPersistance
         _resetHealthCoroutine = null;
     }
 
+    public void Alive()
+    {
+        _animator.SetTrigger(_shouldAliveHash);
+        _isDead = false;
+    }
+
+    public void Dead()
+    {
+        _isDead = true;
+        _currentState = _states.Dead();
+        _currentState.EnterState();
+    }
+
     public void LoadData(GameData gameData)
     {
         CharacterController.enabled = false;
         CharacterController.transform.position = gameData.startLocation;
         CharacterController.transform.rotation = gameData.startRotation;
         CharacterController.enabled = true;
-        if(!gameData.isDead && Animator.GetCurrentAnimatorStateInfo(0).IsName("Dying"))
-        {
-            _animator.SetTrigger(_shouldAliveHash);
-        }
-        else if(gameData.isDead && !Animator.GetCurrentAnimatorStateInfo(0).IsName("Dying"))
-        {
-            _animator.SetTrigger(_shouldDieHash);
-        }
+        _resetHealthCoroutine = null;
+        _animator.SetBool(_isJumpingHash, false);
+        _animator.SetBool(_isRunningHash, false);
+        _animator.SetBool(_isWalkingHash, false);
+        _animator.SetBool(_isFallingHash, false);
     }
 
     public void SaveData(ref GameData gameData)

@@ -62,7 +62,7 @@ public class PlayerJumpState : PlayerBaseState, IRootState
 
     void HandleJump()
     {
-        Debug.Log("Handling jump");
+        //Debug.Log("Handling jump");
         if (Context.JumpCount < 3 && Context.CurrentJumpResetRoutine != null)
         {
             Context.StopCoroutine(Context.CurrentJumpResetRoutine);

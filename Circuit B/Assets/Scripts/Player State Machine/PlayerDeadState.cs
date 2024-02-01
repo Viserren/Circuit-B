@@ -7,7 +7,10 @@ public class PlayerDeadState : PlayerBaseState, IRootState
     public PlayerDeadState(PlayerStateManager currentContext, PlayerStateFactory playerStateFactory) : base(currentContext, playerStateFactory) { }
     public override void CheckSwitchStates()
     {
-        
+        if (!Context.IsDead)
+        {
+            SwitchState(Factory.Grounded());
+        }
     }
 
     public override void EnterState()

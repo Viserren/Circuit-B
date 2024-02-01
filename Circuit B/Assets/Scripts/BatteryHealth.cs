@@ -12,7 +12,8 @@ public class BatteryHealth : MonoBehaviour, IDataPersistance
     UnityEvent<float> HealthEvent = new UnityEvent<float>();
     UnityEvent<float> MaxHealthEvent = new UnityEvent<float>();
 
-    public UnityEvent<bool> Dead = new UnityEvent<bool>();
+    public UnityEvent Dead = new UnityEvent();
+    public UnityEvent Alive = new UnityEvent();
     bool _isDead = false;
 
     List<BatteryUI> _batteryUIs;
@@ -55,13 +56,13 @@ public class BatteryHealth : MonoBehaviour, IDataPersistance
         {
             _health = 0;
             _isDead = true;
-            Dead.Invoke(_isDead);
+            Dead.Invoke();
         }
         else
         {
             _health -= amount;
         }
-        Debug.Log("Decrease Health");
+        //Debug.Log("Decrease Health");
         HealthEvent.Invoke(_health);
     }
 
@@ -81,8 +82,16 @@ public class BatteryHealth : MonoBehaviour, IDataPersistance
     {
         _maxHealth = gameData.maxHealth;
         _health = gameData.health;
-        _isDead = gameData.isDead;
-        Dead.Invoke(_isDead);
+
+        if (_isDead == false && gameData.isDead == true)
+        {
+            _isDead = gameData.isDead;
+            Dead.Invoke();
+        }
+        else if(_isDead == true && gameData.isDead == false)
+        {
+            Alive.Invoke();
+        }
         UpdateUI();
     }
 

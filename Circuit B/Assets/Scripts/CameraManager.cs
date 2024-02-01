@@ -69,7 +69,7 @@ public class CameraManager : MonoBehaviour, IDataPersistance
         _mainMenuCamera = FindObjectOfType<MenuCamera>();
         if (state != null)
         {
-            Debug.Log(state.ToString());
+            //Debug.Log(state.ToString());
         }
         if (_mainMenuCamera)
         {
