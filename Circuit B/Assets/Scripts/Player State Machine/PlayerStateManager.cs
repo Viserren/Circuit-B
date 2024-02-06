@@ -274,20 +274,23 @@ public class PlayerStateManager : MonoBehaviour, IDataPersistance
     Coroutine _resetHealthCoroutine;
     void TakeBatteryHealth(string Parameters)
     {
-        string[] ParametersList = Parameters.Split(",");
-        int min = int.Parse(ParametersList[0]);
-        int max = int.Parse(ParametersList[1]);
-        int threshold = int.Parse(ParametersList[2]);
-        int damage = int.Parse(ParametersList[3]);
-
-        if (_resetHealthCoroutine == null)
+        if (_batteryHealth.enabled)
         {
-            int genNum = Random.Range(min, max);
+            string[] ParametersList = Parameters.Split(",");
+            int min = int.Parse(ParametersList[0]);
+            int max = int.Parse(ParametersList[1]);
+            int threshold = int.Parse(ParametersList[2]);
+            int damage = int.Parse(ParametersList[3]);
 
-            if (genNum <= threshold)
+            if (_resetHealthCoroutine == null)
             {
-                BatteryHealth.DecreaseHealth(damage);
-                _resetHealthCoroutine = StartCoroutine(ResetTakeBatteryHealthTimer());
+                int genNum = Random.Range(min, max);
+
+                if (genNum <= threshold)
+                {
+                    BatteryHealth.GetComponent<BatteryHealth>().DecreaseHealth(damage);
+                    _resetHealthCoroutine = StartCoroutine(ResetTakeBatteryHealthTimer());
+                }
             }
         }
     }

@@ -83,6 +83,15 @@ public class BatteryHealth : MonoBehaviour, IDataPersistance
         _maxHealth = gameData.maxHealth;
         _health = gameData.health;
 
+        if (gameData.hasBattery)
+        {
+            gameObject.SetActive(true);
+        }
+        else
+        {
+            gameObject.SetActive(false);
+        }
+
         if (_isDead == false && gameData.isDead == true)
         {
             _isDead = gameData.isDead;
@@ -100,5 +109,6 @@ public class BatteryHealth : MonoBehaviour, IDataPersistance
         gameData.health = _health;
         gameData.maxHealth = _maxHealth;
         gameData.isDead = _isDead;
+        gameData.hasBattery = gameObject.activeSelf;
     }
 }
