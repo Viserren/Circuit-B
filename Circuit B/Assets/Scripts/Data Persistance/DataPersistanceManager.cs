@@ -52,6 +52,8 @@ public class DataPersistanceManager : MonoBehaviour
         {
             dataPersistanceObject.LoadData(this._gameData);
         }
+
+        SaveGame();
     }
 
     public void LoadGame(string fileNameToLoad)

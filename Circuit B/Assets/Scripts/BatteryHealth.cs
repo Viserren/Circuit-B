@@ -86,10 +86,18 @@ public class BatteryHealth : MonoBehaviour, IDataPersistance
         if (gameData.hasBattery)
         {
             gameObject.SetActive(true);
+            foreach (BatteryUI batteryUI in _batteryUIs)
+            {
+                batteryUI.gameObject.SetActive(true);
+            }
         }
         else
         {
             gameObject.SetActive(false);
+            foreach (BatteryUI batteryUI in _batteryUIs)
+            {
+                batteryUI.gameObject.SetActive(false);
+            }
         }
 
         if (_isDead == false && gameData.isDead == true)
