@@ -35,6 +35,7 @@ public class FileDataHandler
             foreach (string file in files)
             {
                 string fullPath = Path.Combine(_dataDirPath, file);
+                Debug.Log($"Loading {fullPath}");
                 try
                 {
                     // load the data from file
@@ -49,7 +50,15 @@ public class FileDataHandler
 
                     // deserialize the data into a GameData object
                     //Debug.Log(JsonUtility.FromJson<GameData>(dataToLoad));
-                    loadedData.Add(JsonUtility.FromJson<GameData>(dataToLoad));
+
+                    GameData updatedData = new GameData("","");
+
+                    JsonUtility.FromJsonOverwrite(dataToLoad, updatedData);
+
+
+
+                    loadedData.Add(updatedData);
+                    Debug.Log("Loaded");
                 }
                 catch (Exception e)
                 {
@@ -64,38 +73,16 @@ public class FileDataHandler
     {
         _dataFileName = fileNameToLoad;
         // Using Path.Combine to account for different OS's
-        string fullPath = Path.Combine(_dataDirPath, _dataFileName);
-        GameData loadedData = null;
+        string fullPath = Path.Combine(_dataDirPath, $"{_dataFileName}.txt");
+        GameData loadedData = DataPersistanceManager.Instance.GameDatas.Find(r => r.uuid == fileNameToLoad);
 
-        if (File.Exists(fullPath))
-        {
-            try
-            {
-                // load the data from file
-                string dataToLoad = "";
-                using (FileStream stream = new FileStream(fullPath, FileMode.Open))
-                {
-                    using (StreamReader reader = new StreamReader(stream))
-                    {
-                        dataToLoad = reader.ReadToEnd();
-                    }
-                }
-
-                // deserialize the data into a GameData object
-                loadedData = JsonUtility.FromJson<GameData>(dataToLoad);
-            }
-            catch (Exception e)
-            {
-                Debug.LogError("Error occured while loading data from file: " + fullPath + "\n" + e);
-            }
-        }
         return loadedData;
     }
 
     public void Save(GameData gameData)
     {
         // Using Path.Combine to account for different OS's
-        string fullPath = Path.Combine(_dataDirPath, _dataFileName);
+        string fullPath = Path.Combine(_dataDirPath, $"{_dataFileName}.txt");
 
         try
         {
@@ -121,5 +108,12 @@ public class FileDataHandler
         {
             Debug.LogError("Error occured while saving data to file: " + fullPath + "\n" + e);
         }
+    }
+
+
+
+    void VerifyLoadedData(GameData gameData)
+    {
+        
     }
 }

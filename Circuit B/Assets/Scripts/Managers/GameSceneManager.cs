@@ -33,6 +33,7 @@ public class GameSceneManager : MonoBehaviour
     {
         if (operation.isDone && _sceneToLoad == 1)
         {
+            Debug.Log("Called");
             CameraManager.Instance.LoadCameras();
             MenuManager.Instance.Menus.FindAll(r => r.MenuType == MenuType.InGame).ForEach(r => { r.IsActive = false; });
             AudioManager.Instance.Play("Ambience 1");

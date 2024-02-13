@@ -30,7 +30,7 @@ public class DataPersistanceManager : MonoBehaviour
         }
         Instance = this;
 
-        LoadData();
+        //LoadData();
 
     }
 
@@ -43,7 +43,7 @@ public class DataPersistanceManager : MonoBehaviour
     public void NewGame()
     {
         Guid guid = Guid.NewGuid();
-        _fileName = $"{guid.ToString()}.txt";
+        _fileName = guid.ToString();
         this._fileDataHandler = new FileDataHandler(Application.persistentDataPath, this._fileName);
         this._dataPersistanceObjects = FindAllDataPersistanceObjects();
         this._gameData = new GameData(_fileName, "test");

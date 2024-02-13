@@ -99,6 +99,7 @@ public class MenuManager : MonoBehaviour
 
     public void HideOpeningScreen()
     {
+        Debug.Log("Hide Called");
         _opening.GetComponent<Animator>().SetTrigger("Start");
     }
 
