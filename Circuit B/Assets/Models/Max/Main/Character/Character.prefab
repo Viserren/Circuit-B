@@ -890,7 +890,7 @@ Transform:
   m_GameObject: {fileID: 9095379948738336230}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.25, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -909,11 +909,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _soundEmissions:
-  - soundsName: Footsteps
+  - soundsName: Jump
+    sounds:
+    - name: 1
+      clip: {fileID: 8300000, guid: ca5840b5ebe7fc24c85bb0e96d2d0fe1, type: 3}
+      volume: 0.5
+      pitch: 1
+      loop: 0
+      playOnAwake: 0
+      audioSource: {fileID: 0}
+      mixerGroup: {fileID: 6295319324238277952, guid: 3714d3b16d3edb04b8957209b5bf2309,
+        type: 2}
+  - soundsName: Concrete Footsteps
     sounds:
     - name: 1
       clip: {fileID: 8300000, guid: df46f41d2456db84da585589fb5ea62f, type: 3}
-      volume: 1
+      volume: 0.4
       pitch: 1
       loop: 0
       playOnAwake: 0
@@ -922,7 +933,7 @@ MonoBehaviour:
         type: 2}
     - name: 2
       clip: {fileID: 8300000, guid: cc2251cb7f1d6c1488498dd53d7d1ffb, type: 3}
-      volume: 1
+      volume: 0.4
       pitch: 1
       loop: 0
       playOnAwake: 0
@@ -931,7 +942,7 @@ MonoBehaviour:
         type: 2}
     - name: 3
       clip: {fileID: 8300000, guid: 0112ec3b0cce63840b7339d654a118db, type: 3}
-      volume: 1
+      volume: 0.4
       pitch: 1
       loop: 0
       playOnAwake: 0
@@ -940,7 +951,7 @@ MonoBehaviour:
         type: 2}
     - name: 4
       clip: {fileID: 8300000, guid: 43138d81f97b8594c8beea3f4cb39be7, type: 3}
-      volume: 1
+      volume: 0.4
       pitch: 1
       loop: 0
       playOnAwake: 0
@@ -949,7 +960,7 @@ MonoBehaviour:
         type: 2}
     - name: 5
       clip: {fileID: 8300000, guid: 46e4ae653c69be446a39fda63f8b1553, type: 3}
-      volume: 1
+      volume: 0.4
       pitch: 1
       loop: 0
       playOnAwake: 0
@@ -958,7 +969,7 @@ MonoBehaviour:
         type: 2}
     - name: 6
       clip: {fileID: 8300000, guid: 91ae84f52311bf043a4ea8bc72eabf50, type: 3}
-      volume: 1
+      volume: 0.4
       pitch: 1
       loop: 0
       playOnAwake: 0
@@ -967,7 +978,7 @@ MonoBehaviour:
         type: 2}
     - name: 7
       clip: {fileID: 8300000, guid: dd1ea67f3dbca9142ae82a206eb8e744, type: 3}
-      volume: 1
+      volume: 0.4
       pitch: 1
       loop: 0
       playOnAwake: 0
@@ -976,7 +987,7 @@ MonoBehaviour:
         type: 2}
     - name: 8
       clip: {fileID: 8300000, guid: ebc0cd09b6833384b870b945e3a18260, type: 3}
-      volume: 1
+      volume: 0.4
       pitch: 1
       loop: 0
       playOnAwake: 0
@@ -985,7 +996,7 @@ MonoBehaviour:
         type: 2}
     - name: 9
       clip: {fileID: 8300000, guid: 4d41f9df8fad7cf4b8c800aecef5bfc9, type: 3}
-      volume: 1
+      volume: 0.4
       pitch: 1
       loop: 0
       playOnAwake: 0
@@ -994,7 +1005,7 @@ MonoBehaviour:
         type: 2}
     - name: 10
       clip: {fileID: 8300000, guid: 1be40026b0c159e4a85b2537e3d069f7, type: 3}
-      volume: 1
+      volume: 0.4
       pitch: 1
       loop: 0
       playOnAwake: 0
@@ -1003,7 +1014,7 @@ MonoBehaviour:
         type: 2}
     - name: 11
       clip: {fileID: 8300000, guid: 2e04595864f793f41920a60ed8a90891, type: 3}
-      volume: 1
+      volume: 0.4
       pitch: 1
       loop: 0
       playOnAwake: 0
@@ -1012,7 +1023,7 @@ MonoBehaviour:
         type: 2}
     - name: 12
       clip: {fileID: 8300000, guid: 016430f736f638749b97009191632132, type: 3}
-      volume: 1
+      volume: 0.4
       pitch: 1
       loop: 0
       playOnAwake: 0
@@ -1021,7 +1032,7 @@ MonoBehaviour:
         type: 2}
     - name: 13
       clip: {fileID: 8300000, guid: 6215ef8a44286e548a73341b86e1813b, type: 3}
-      volume: 1
+      volume: 0.4
       pitch: 1
       loop: 0
       playOnAwake: 0
@@ -1030,7 +1041,263 @@ MonoBehaviour:
         type: 2}
     - name: 14
       clip: {fileID: 8300000, guid: e30cb09920401894b97c0d989bb88b4f, type: 3}
-      volume: 1
+      volume: 0.4
+      pitch: 1
+      loop: 0
+      playOnAwake: 0
+      audioSource: {fileID: 0}
+      mixerGroup: {fileID: 6295319324238277952, guid: 3714d3b16d3edb04b8957209b5bf2309,
+        type: 2}
+  - soundsName: Grass Footsteps
+    sounds:
+    - name: 1
+      clip: {fileID: 8300000, guid: a1f62e40c6e708947bdfd0d2de061a2d, type: 3}
+      volume: 0.2
+      pitch: 1
+      loop: 0
+      playOnAwake: 0
+      audioSource: {fileID: 0}
+      mixerGroup: {fileID: 6295319324238277952, guid: 3714d3b16d3edb04b8957209b5bf2309,
+        type: 2}
+    - name: 2
+      clip: {fileID: 8300000, guid: ec588a2c74202cd44a20550349f9f0ff, type: 3}
+      volume: 0.2
+      pitch: 1
+      loop: 0
+      playOnAwake: 0
+      audioSource: {fileID: 0}
+      mixerGroup: {fileID: 6295319324238277952, guid: 3714d3b16d3edb04b8957209b5bf2309,
+        type: 2}
+    - name: 3
+      clip: {fileID: 8300000, guid: 48a18f8173cb2194ebee9c50cdb65fa4, type: 3}
+      volume: 0.2
+      pitch: 1
+      loop: 0
+      playOnAwake: 0
+      audioSource: {fileID: 0}
+      mixerGroup: {fileID: 6295319324238277952, guid: 3714d3b16d3edb04b8957209b5bf2309,
+        type: 2}
+    - name: 4
+      clip: {fileID: 8300000, guid: c9000e977f161b946b3aeae0b773b35a, type: 3}
+      volume: 0.2
+      pitch: 1
+      loop: 0
+      playOnAwake: 0
+      audioSource: {fileID: 0}
+      mixerGroup: {fileID: 6295319324238277952, guid: 3714d3b16d3edb04b8957209b5bf2309,
+        type: 2}
+    - name: 5
+      clip: {fileID: 8300000, guid: 0e73ad3c6b222f54894c5e07b65e92db, type: 3}
+      volume: 0.2
+      pitch: 1
+      loop: 0
+      playOnAwake: 0
+      audioSource: {fileID: 0}
+      mixerGroup: {fileID: 6295319324238277952, guid: 3714d3b16d3edb04b8957209b5bf2309,
+        type: 2}
+    - name: 6
+      clip: {fileID: 8300000, guid: 356d21e1261bb004a88e39d145ee34bd, type: 3}
+      volume: 0.2
+      pitch: 1
+      loop: 0
+      playOnAwake: 0
+      audioSource: {fileID: 0}
+      mixerGroup: {fileID: 6295319324238277952, guid: 3714d3b16d3edb04b8957209b5bf2309,
+        type: 2}
+    - name: 7
+      clip: {fileID: 8300000, guid: 29750e777f168db40b8223e4af2d8042, type: 3}
+      volume: 0.2
+      pitch: 1
+      loop: 0
+      playOnAwake: 0
+      audioSource: {fileID: 0}
+      mixerGroup: {fileID: 6295319324238277952, guid: 3714d3b16d3edb04b8957209b5bf2309,
+        type: 2}
+    - name: 8
+      clip: {fileID: 8300000, guid: 35c58255f329d6c40bdbb9e16831adbd, type: 3}
+      volume: 0.2
+      pitch: 1
+      loop: 0
+      playOnAwake: 0
+      audioSource: {fileID: 0}
+      mixerGroup: {fileID: 6295319324238277952, guid: 3714d3b16d3edb04b8957209b5bf2309,
+        type: 2}
+    - name: 9
+      clip: {fileID: 8300000, guid: a6bb405211867dd439bc0c12e74eb408, type: 3}
+      volume: 0.2
+      pitch: 1
+      loop: 0
+      playOnAwake: 0
+      audioSource: {fileID: 0}
+      mixerGroup: {fileID: 6295319324238277952, guid: 3714d3b16d3edb04b8957209b5bf2309,
+        type: 2}
+    - name: 10
+      clip: {fileID: 8300000, guid: 8ac4f250315154d43b220bea6fc6086f, type: 3}
+      volume: 0.2
+      pitch: 1
+      loop: 0
+      playOnAwake: 0
+      audioSource: {fileID: 0}
+      mixerGroup: {fileID: 6295319324238277952, guid: 3714d3b16d3edb04b8957209b5bf2309,
+        type: 2}
+    - name: 11
+      clip: {fileID: 8300000, guid: 83754dd4c1a769248b75027343045aec, type: 3}
+      volume: 0.2
+      pitch: 1
+      loop: 0
+      playOnAwake: 0
+      audioSource: {fileID: 0}
+      mixerGroup: {fileID: 6295319324238277952, guid: 3714d3b16d3edb04b8957209b5bf2309,
+        type: 2}
+    - name: 12
+      clip: {fileID: 8300000, guid: b84afd31ce830ef458df149713efbcb9, type: 3}
+      volume: 0.2
+      pitch: 1
+      loop: 0
+      playOnAwake: 0
+      audioSource: {fileID: 0}
+      mixerGroup: {fileID: 6295319324238277952, guid: 3714d3b16d3edb04b8957209b5bf2309,
+        type: 2}
+    - name: 13
+      clip: {fileID: 8300000, guid: 5cf7623ad3c2d6a4c9cb4f39f672d0a8, type: 3}
+      volume: 0.2
+      pitch: 1
+      loop: 0
+      playOnAwake: 0
+      audioSource: {fileID: 0}
+      mixerGroup: {fileID: 6295319324238277952, guid: 3714d3b16d3edb04b8957209b5bf2309,
+        type: 2}
+    - name: 14
+      clip: {fileID: 8300000, guid: ecbaa33d1b371124e91799cfe29fd3f3, type: 3}
+      volume: 0.2
+      pitch: 1
+      loop: 0
+      playOnAwake: 0
+      audioSource: {fileID: 0}
+      mixerGroup: {fileID: 6295319324238277952, guid: 3714d3b16d3edb04b8957209b5bf2309,
+        type: 2}
+  - soundsName: Gravel Footsteps
+    sounds:
+    - name: 1
+      clip: {fileID: 8300000, guid: d7b2b02cee780294b878830af323a81a, type: 3}
+      volume: 0.4
+      pitch: 1
+      loop: 0
+      playOnAwake: 0
+      audioSource: {fileID: 0}
+      mixerGroup: {fileID: 6295319324238277952, guid: 3714d3b16d3edb04b8957209b5bf2309,
+        type: 2}
+    - name: 2
+      clip: {fileID: 8300000, guid: 19a07ea82a4f2e64a9e2fef595014a9b, type: 3}
+      volume: 0.4
+      pitch: 1
+      loop: 0
+      playOnAwake: 0
+      audioSource: {fileID: 0}
+      mixerGroup: {fileID: 6295319324238277952, guid: 3714d3b16d3edb04b8957209b5bf2309,
+        type: 2}
+    - name: 3
+      clip: {fileID: 8300000, guid: 6386871714ead2c43ad932fbfaf5da15, type: 3}
+      volume: 0.4
+      pitch: 1
+      loop: 0
+      playOnAwake: 0
+      audioSource: {fileID: 0}
+      mixerGroup: {fileID: 6295319324238277952, guid: 3714d3b16d3edb04b8957209b5bf2309,
+        type: 2}
+    - name: 4
+      clip: {fileID: 8300000, guid: 36f5d7d943d99164f84b9b6db538c810, type: 3}
+      volume: 0.4
+      pitch: 1
+      loop: 0
+      playOnAwake: 0
+      audioSource: {fileID: 0}
+      mixerGroup: {fileID: 6295319324238277952, guid: 3714d3b16d3edb04b8957209b5bf2309,
+        type: 2}
+    - name: 5
+      clip: {fileID: 8300000, guid: 85edc71fe8bee544ea8bae687cd4499a, type: 3}
+      volume: 0.4
+      pitch: 1
+      loop: 0
+      playOnAwake: 0
+      audioSource: {fileID: 0}
+      mixerGroup: {fileID: 6295319324238277952, guid: 3714d3b16d3edb04b8957209b5bf2309,
+        type: 2}
+    - name: 6
+      clip: {fileID: 8300000, guid: 3f59eba8929a1b44cbb731da978bcaf8, type: 3}
+      volume: 0.4
+      pitch: 1
+      loop: 0
+      playOnAwake: 0
+      audioSource: {fileID: 0}
+      mixerGroup: {fileID: 6295319324238277952, guid: 3714d3b16d3edb04b8957209b5bf2309,
+        type: 2}
+    - name: 7
+      clip: {fileID: 8300000, guid: cf0e6647b11ec314c9e03de07bea2150, type: 3}
+      volume: 0.4
+      pitch: 1
+      loop: 0
+      playOnAwake: 0
+      audioSource: {fileID: 0}
+      mixerGroup: {fileID: 6295319324238277952, guid: 3714d3b16d3edb04b8957209b5bf2309,
+        type: 2}
+    - name: 8
+      clip: {fileID: 8300000, guid: 47c7e14d7d2d069449b8a4807946e318, type: 3}
+      volume: 0.4
+      pitch: 1
+      loop: 0
+      playOnAwake: 0
+      audioSource: {fileID: 0}
+      mixerGroup: {fileID: 6295319324238277952, guid: 3714d3b16d3edb04b8957209b5bf2309,
+        type: 2}
+    - name: 9
+      clip: {fileID: 8300000, guid: 0053c205798e7114aac6e044a8a70dcd, type: 3}
+      volume: 0.4
+      pitch: 1
+      loop: 0
+      playOnAwake: 0
+      audioSource: {fileID: 0}
+      mixerGroup: {fileID: 6295319324238277952, guid: 3714d3b16d3edb04b8957209b5bf2309,
+        type: 2}
+    - name: 10
+      clip: {fileID: 8300000, guid: 1be8d21cba9925543a31e5814b560b6b, type: 3}
+      volume: 0.4
+      pitch: 1
+      loop: 0
+      playOnAwake: 0
+      audioSource: {fileID: 0}
+      mixerGroup: {fileID: 6295319324238277952, guid: 3714d3b16d3edb04b8957209b5bf2309,
+        type: 2}
+    - name: 11
+      clip: {fileID: 8300000, guid: 06b3c643931855d4abcc510ff4e10c36, type: 3}
+      volume: 0.4
+      pitch: 1
+      loop: 0
+      playOnAwake: 0
+      audioSource: {fileID: 0}
+      mixerGroup: {fileID: 6295319324238277952, guid: 3714d3b16d3edb04b8957209b5bf2309,
+        type: 2}
+    - name: 12
+      clip: {fileID: 8300000, guid: 01fc2a2a279ebbd4ca0441114ed42d9a, type: 3}
+      volume: 0.4
+      pitch: 1
+      loop: 0
+      playOnAwake: 0
+      audioSource: {fileID: 0}
+      mixerGroup: {fileID: 6295319324238277952, guid: 3714d3b16d3edb04b8957209b5bf2309,
+        type: 2}
+    - name: 13
+      clip: {fileID: 8300000, guid: f40de3525b5ecae4899274133f3d8831, type: 3}
+      volume: 0.4
+      pitch: 1
+      loop: 0
+      playOnAwake: 0
+      audioSource: {fileID: 0}
+      mixerGroup: {fileID: 6295319324238277952, guid: 3714d3b16d3edb04b8957209b5bf2309,
+        type: 2}
+    - name: 14
+      clip: {fileID: 8300000, guid: 170b47dcd72124241b3af32158af8077, type: 3}
+      volume: 0.4
       pitch: 1
       loop: 0
       playOnAwake: 0
@@ -2013,6 +2280,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6d0f49937ec20b4095ce8d6e015efea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _soundLayers:
+    serializedVersion: 2
+    m_Bits: 256
   _isOvergrown: 1
 --- !u!81 &5866937091192922408
 AudioListener:

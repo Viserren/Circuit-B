@@ -9,6 +9,9 @@ TagManager:
   - Main Canvas
   - Player Power
   - Replace
+  - Concrete
+  - Grass
+  - Gravel
   layers:
   - Default
   - TransparentFX
@@ -18,7 +21,7 @@ TagManager:
   - UI
   - Camera Area
   - Player
-  - 
+  - Walkable
   - 
   - 
   - 

@@ -17,6 +17,8 @@ public class PlayerStateManager : MonoBehaviour, IDataPersistance
     BatteryHealth _batteryHealth;
     SoundObject _soundObject;
     SoundEmissions[] _soundEmissions;
+    [SerializeField] LayerMask _soundLayers;
+    Sound[] _grassSounds, _concreteSounds, _gravelSounds;
 
     // Animation variables
     int _isWalkingHash;
@@ -127,6 +129,7 @@ public class PlayerStateManager : MonoBehaviour, IDataPersistance
     {
         _characterController.Move(_appliedMovement * Time.deltaTime);
         _bodyMeshes.AddRange(GetComponentsInChildren<ChangeBodyMeshes>());
+        SetupSounds();
     }
 
     private void OnEnable()
@@ -296,12 +299,43 @@ public class PlayerStateManager : MonoBehaviour, IDataPersistance
             }
         }
     }
+
+    void SetupSounds()
+    {
+        _concreteSounds = _soundObject.GetSoundArray("Concrete Footsteps");
+        _grassSounds = _soundObject.GetSoundArray("Grass Footsteps");
+        _gravelSounds = _soundObject.GetSoundArray("Gravel Footsteps");
+    }
     void PlayWalkingSound()
     {
-        Sound[] sounds = _soundObject.GetSoundArray("Footsteps");
+        RaycastHit raycastHit;
+        if (Physics.Raycast(_soundObject.transform.position, Vector3.down, out raycastHit, .5f, _soundLayers))
+        {
+            string tag = raycastHit.transform.tag;
+            Debug.Log($"Tag: {tag}");
+            switch (tag)
+            {
+                case "Concrete":
+                    PlaySound(_concreteSounds);
+                    break;
+                case "Grass":
+                    PlaySound(_grassSounds);
+                    break;
+                case "Gravel":
+                    PlaySound(_gravelSounds);
+                    break;
+                default:
+                    PlaySound(_grassSounds);
+                    break;
+            }
+        }
+    }
+
+    void PlaySound(Sound[] sounds)
+    {
         try
         {
-            Sound s = sounds[Random.Range(0, _soundObject.SoundEmissions.Length)];
+            Sound s = sounds[Random.Range(0, sounds.Length)];
             s.audioSource.Play();
         }
         catch (Exception e)
@@ -311,6 +345,20 @@ public class PlayerStateManager : MonoBehaviour, IDataPersistance
         }
     }
 
+    public void PlayJumpSound()
+    {
+        Sound[] sounds = _soundObject.GetSoundArray("Jump");
+        try
+        {
+            Sound s = sounds[Random.Range(0, sounds.Length)];
+            s.audioSource.Play();
+        }
+        catch (Exception e)
+        {
+            Debug.Log($"{e.Message}");
+            throw;
+        }
+    }
 
     void HandleOnWalk(string Parameters)
     {
@@ -320,7 +368,7 @@ public class PlayerStateManager : MonoBehaviour, IDataPersistance
         int threshold = int.Parse(ParametersList[2]);
         int damage = int.Parse(ParametersList[3]);
 
-        TakeBatteryHealth(min,max,threshold,damage);
+        TakeBatteryHealth(min, max, threshold, damage);
         PlayWalkingSound();
     }
 

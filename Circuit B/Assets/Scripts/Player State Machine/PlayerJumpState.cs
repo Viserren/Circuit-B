@@ -21,6 +21,7 @@ public class PlayerJumpState : PlayerBaseState, IRootState
     {
         InitializeSubState();
         HandleJump();
+        Context.PlayJumpSound();
     }
 
     public override void ExitState()
