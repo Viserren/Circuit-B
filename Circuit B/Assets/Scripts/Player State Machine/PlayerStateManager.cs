@@ -1,9 +1,12 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Net.NetworkInformation;
+using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Playables;
+using Random = UnityEngine.Random;
 
 public class PlayerStateManager : MonoBehaviour, IDataPersistance
 {
@@ -12,6 +15,8 @@ public class PlayerStateManager : MonoBehaviour, IDataPersistance
     CharacterController _characterController;
     Animator _animator;
     BatteryHealth _batteryHealth;
+    SoundObject _soundObject;
+    SoundEmissions[] _soundEmissions;
 
     // Animation variables
     int _isWalkingHash;
@@ -62,6 +67,7 @@ public class PlayerStateManager : MonoBehaviour, IDataPersistance
     public CharacterController CharacterController { get { return _characterController; } }
     public PlayerBaseState CurrentState { get { return _currentState; } set { _currentState = value; } }
     public Animator Animator { get { return _animator; } }
+    public SoundEmissions[] SoundEmissions { get { return _soundEmissions; } }
     public BatteryHealth BatteryHealth { get { return _batteryHealth; } }
     public Coroutine CurrentJumpResetRoutine { get { return _currentJumpResetRoutine; } set { _currentJumpResetRoutine = value; } }
     public Dictionary<int, float> InitialJumpVelocities { get { return _initialJumpVelocities; } }
@@ -95,6 +101,8 @@ public class PlayerStateManager : MonoBehaviour, IDataPersistance
         _characterController = GetComponent<CharacterController>();
         _animator = GetComponent<Animator>();
         _batteryHealth = GetComponentInChildren<BatteryHealth>(true);
+
+        _soundObject = gameObject.GetComponentInChildren<SoundObject>();
 
         // Setup the state machine
         _states = new PlayerStateFactory(this);
@@ -272,16 +280,10 @@ public class PlayerStateManager : MonoBehaviour, IDataPersistance
     }
 
     Coroutine _resetHealthCoroutine;
-    void TakeBatteryHealth(string Parameters)
+    void TakeBatteryHealth(int min, int max, int threshold, int damage)
     {
         if (_batteryHealth.enabled)
         {
-            string[] ParametersList = Parameters.Split(",");
-            int min = int.Parse(ParametersList[0]);
-            int max = int.Parse(ParametersList[1]);
-            int threshold = int.Parse(ParametersList[2]);
-            int damage = int.Parse(ParametersList[3]);
-
             if (_resetHealthCoroutine == null)
             {
                 int genNum = Random.Range(min, max);
@@ -293,6 +295,33 @@ public class PlayerStateManager : MonoBehaviour, IDataPersistance
                 }
             }
         }
+    }
+    void PlayWalkingSound()
+    {
+        Sound[] sounds = _soundObject.GetSoundArray("Footsteps");
+        try
+        {
+            Sound s = sounds[Random.Range(0, _soundObject.SoundEmissions.Length)];
+            s.audioSource.Play();
+        }
+        catch (Exception e)
+        {
+            Debug.Log($"{e.Message}");
+            throw;
+        }
+    }
+
+
+    void HandleOnWalk(string Parameters)
+    {
+        string[] ParametersList = Parameters.Split(",");
+        int min = int.Parse(ParametersList[0]);
+        int max = int.Parse(ParametersList[1]);
+        int threshold = int.Parse(ParametersList[2]);
+        int damage = int.Parse(ParametersList[3]);
+
+        TakeBatteryHealth(min,max,threshold,damage);
+        PlayWalkingSound();
     }
 
     IEnumerator ResetTakeBatteryHealthTimer()

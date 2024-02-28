@@ -46,11 +46,6 @@ public class CameraManager : MonoBehaviour, IDataPersistance
             Cameras[i].CreateCamera(i + 1);
             Cameras[i].thisArea.virtualCamera.Priority = 0;
         }
-
-        if(GameStateManager.Instance.CurrentState == GameStateManager.Instance.StateFactory.MainMenu())
-        {
-            MainMenuCamera(true);
-        }
     }
 
     public void LoadCameras()

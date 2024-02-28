@@ -26,7 +26,6 @@ public class MainMenuGameState : GameBaseState
         Context.CreatingNewGame = false;
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
-        CameraManager.Instance.MainMenuCamera(true, this);
         if (!Context.FirstLoadComplete)
         {
             GameSceneManager.Instance.LoadScene(1);
