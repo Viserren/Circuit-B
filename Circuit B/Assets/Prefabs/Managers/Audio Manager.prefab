@@ -46,11 +46,39 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _audioMixer: {fileID: 24100000, guid: 3714d3b16d3edb04b8957209b5bf2309, type: 2}
   sounds:
-  - name: Ambience 1
-    clip: {fileID: 8300000, guid: 19ef764323d8a7e4bbdd143d2d28bd7f, type: 3}
+  - name: Music 1
+    clip: {fileID: 8300000, guid: 337f7acb4a5bfa94cac17be3690b188c, type: 3}
     volume: 1
     pitch: 1
-    loop: 1
+    loop: 0
+    playOnAwake: 0
     audioSource: {fileID: 0}
-    mixerGroup: {fileID: -207907125809386183, guid: 3714d3b16d3edb04b8957209b5bf2309,
+    mixerGroup: {fileID: -2511588224459882221, guid: 3714d3b16d3edb04b8957209b5bf2309,
+      type: 2}
+  - name: Music 2
+    clip: {fileID: 8300000, guid: ddaa7d9b7389e2240a32be64c13fa161, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
+    audioSource: {fileID: 0}
+    mixerGroup: {fileID: -2511588224459882221, guid: 3714d3b16d3edb04b8957209b5bf2309,
+      type: 2}
+  - name: Music 3
+    clip: {fileID: 8300000, guid: c764552f51c08584290de85305833e11, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
+    audioSource: {fileID: 0}
+    mixerGroup: {fileID: -2511588224459882221, guid: 3714d3b16d3edb04b8957209b5bf2309,
+      type: 2}
+  - name: Music 4
+    clip: {fileID: 8300000, guid: 14278fc677cb7ab4c9c9d390309cc526, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
+    audioSource: {fileID: 0}
+    mixerGroup: {fileID: -2511588224459882221, guid: 3714d3b16d3edb04b8957209b5bf2309,
       type: 2}
