@@ -4,11 +4,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 using static UnityEngine.Rendering.DebugUI;
+using Random = UnityEngine.Random;
 
 public class AudioManager : MonoBehaviour
 {
     [SerializeField] AudioMixer _audioMixer;
     public Sound[] sounds;
+
+
+    [Header("Background Music")]
+    Sound _currentPlayerMusic;
+    Sound[] _backgroundMusic;
+    [SerializeField] float _secondsBetweenMusic = 60;
     public static AudioManager Instance { get; private set; }
 
     public const string MASTER_KEY = "MasterKey";
@@ -46,6 +53,8 @@ public class AudioManager : MonoBehaviour
     public void Start()
     {
         LoadVolumes();
+        LoadBackgroundMusic();
+        StartCoroutine(PlayBackgroundMusic());
     }
 
     public void Play(string name)
@@ -54,6 +63,39 @@ public class AudioManager : MonoBehaviour
         {
             Sound s = Array.Find(sounds, sound => sound.name == name);
             s.audioSource.Play();
+        }
+        catch (Exception e)
+        {
+            Debug.Log($"{e.Message}");
+            throw;
+        }
+    }
+
+    IEnumerator PlayBackgroundMusic()
+    {
+        int temp = Random.Range(0, _backgroundMusic.Length);
+        if (_currentPlayerMusic == null)
+        {
+            if (!_currentPlayerMusic.audioSource.isPlaying)
+            {
+                _currentPlayerMusic = _backgroundMusic[temp];
+                Play(_currentPlayerMusic.name);
+            }
+        }
+        else
+        {
+            _currentPlayerMusic = _backgroundMusic[temp];
+            Play(_currentPlayerMusic.name);
+        }
+
+        yield return new WaitForSeconds(_secondsBetweenMusic);
+    }
+
+    void LoadBackgroundMusic()
+    {
+        try
+        {
+            _backgroundMusic = Array.FindAll(sounds, sound => sound.isMainBackgroundMusic == true);
         }
         catch (Exception e)
         {

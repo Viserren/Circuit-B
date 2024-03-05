@@ -36,7 +36,7 @@ public class GameSceneManager : MonoBehaviour
             Debug.Log("Called");
             CameraManager.Instance.LoadCameras();
             MenuManager.Instance.Menus.FindAll(r => r.MenuType == MenuType.InGame).ForEach(r => { r.IsActive = false; });
-            AudioManager.Instance.Play("Music 4");
+            //AudioManager.Instance.play
             MenuManager.Instance.MainMenuScreen();
             MenuManager.Instance.HideOpeningScreen();
         }

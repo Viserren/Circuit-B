@@ -14,6 +14,7 @@ public class Sound
     public float pitch = 1;
     public bool loop;
     public bool playOnAwake;
+    public bool isMainBackgroundMusic;
 
     [HideInInspector] public AudioSource audioSource;
     public AudioMixerGroup mixerGroup;

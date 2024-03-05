@@ -48,10 +48,11 @@ MonoBehaviour:
   sounds:
   - name: Music 1
     clip: {fileID: 8300000, guid: 337f7acb4a5bfa94cac17be3690b188c, type: 3}
-    volume: 1
+    volume: 0
     pitch: 1
     loop: 0
     playOnAwake: 0
+    isMainBackgroundMusic: 0
     audioSource: {fileID: 0}
     mixerGroup: {fileID: -2511588224459882221, guid: 3714d3b16d3edb04b8957209b5bf2309,
       type: 2}
@@ -61,6 +62,7 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     playOnAwake: 0
+    isMainBackgroundMusic: 1
     audioSource: {fileID: 0}
     mixerGroup: {fileID: -2511588224459882221, guid: 3714d3b16d3edb04b8957209b5bf2309,
       type: 2}
@@ -70,6 +72,7 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     playOnAwake: 0
+    isMainBackgroundMusic: 1
     audioSource: {fileID: 0}
     mixerGroup: {fileID: -2511588224459882221, guid: 3714d3b16d3edb04b8957209b5bf2309,
       type: 2}
@@ -79,6 +82,8 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     playOnAwake: 0
+    isMainBackgroundMusic: 0
     audioSource: {fileID: 0}
     mixerGroup: {fileID: -2511588224459882221, guid: 3714d3b16d3edb04b8957209b5bf2309,
       type: 2}
+  _secondsBetweenMusic: 60
