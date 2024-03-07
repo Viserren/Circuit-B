@@ -7,13 +7,12 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: CVD Shader
-  m_Shader: {fileID: -6465566751694194690, guid: 755a89cff0c390740a0589c966c02fd6,
+  m_Name: Test Fog
+  m_Shader: {fileID: -6465566751694194690, guid: 2380bcc8144d697489721b59cf64f549,
     type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
-  m_ValidKeywords:
-  - _COLOURVISIONDEFICIENCY_NONE
+  m_ValidKeywords: []
   m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -25,10 +24,6 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -43,7 +38,9 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _COLOURVISIONDEFICIENCY: 0
-    - _Strength: 1
-    m_Colors: []
+    - _Float: 0
+    - _Fog_Density: 51.74
+    - _Fog_Distance: 364.7
+    m_Colors:
+    - _Fog_Colour: {r: 1, g: 0.62797165, b: 0.33490568, a: 1}
   m_BuildTextureStacks: []
