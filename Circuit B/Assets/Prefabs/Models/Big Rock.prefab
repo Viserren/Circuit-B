@@ -16,7 +16,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1162460098646218519
 Transform:
@@ -97,7 +97,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &6647356382277349513
 Transform:
@@ -131,7 +131,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &8246888823560812047
 Transform:
@@ -212,7 +212,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &5281060054806177066
 Transform:
@@ -244,7 +244,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &6673056571028366444
 Transform:
@@ -274,32 +274,32 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 9c9cc1bb882ee1847a9d8babe33b39aa,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.64
+      value: -23.338245
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9c9cc1bb882ee1847a9d8babe33b39aa,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -17.705883
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9c9cc1bb882ee1847a9d8babe33b39aa,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 3.72
+      value: -46.65405
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9c9cc1bb882ee1847a9d8babe33b39aa,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.70710695
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9c9cc1bb882ee1847a9d8babe33b39aa,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9c9cc1bb882ee1847a9d8babe33b39aa,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0.70710665
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9c9cc1bb882ee1847a9d8babe33b39aa,
         type: 3}
@@ -314,7 +314,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 9c9cc1bb882ee1847a9d8babe33b39aa,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9c9cc1bb882ee1847a9d8babe33b39aa,
         type: 3}
@@ -336,6 +336,11 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Gravel
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 9c9cc1bb882ee1847a9d8babe33b39aa,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 8164078558771037576, guid: 9c9cc1bb882ee1847a9d8babe33b39aa,
         type: 3}
       propertyPath: m_Layer
@@ -345,6 +350,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_TagString
       value: Gravel
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: 9c9cc1bb882ee1847a9d8babe33b39aa,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -391,11 +401,11 @@ LODGroup:
   m_AnimateCrossFading: 1
   m_LastLODIsBillboard: 0
   m_LODs:
-  - screenRelativeHeight: 0.5
+  - screenRelativeHeight: 0.2
     fadeTransitionWidth: 0
     renderers:
     - renderer: {fileID: 6963778718172740114}
-  - screenRelativeHeight: 0.25
+  - screenRelativeHeight: 0.1
     fadeTransitionWidth: 0
     renderers:
     - renderer: {fileID: 3148483664376834305}

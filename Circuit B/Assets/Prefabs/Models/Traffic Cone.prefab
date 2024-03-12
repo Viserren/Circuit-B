@@ -14,7 +14,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &3933124443262374575
 Transform:
@@ -46,7 +46,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &7859434690031897102
 Transform:
@@ -81,7 +81,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &4174533276229614935
 Transform:
@@ -164,7 +164,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1622175133149019621
 Transform:
@@ -245,7 +245,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &2620643259286364183
 Transform:
@@ -274,17 +274,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: b3412b868262bce4b809abb7335f50f9,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 42.902172
+      value: -15.900745
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b3412b868262bce4b809abb7335f50f9,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.09375
+      value: -17.299633
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b3412b868262bce4b809abb7335f50f9,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -15.321928
+      value: -26.466549
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b3412b868262bce4b809abb7335f50f9,
         type: 3}
@@ -294,7 +294,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: b3412b868262bce4b809abb7335f50f9,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b3412b868262bce4b809abb7335f50f9,
         type: 3}
@@ -325,6 +325,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Traffic Cone
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b3412b868262bce4b809abb7335f50f9,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: b3412b868262bce4b809abb7335f50f9,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -360,16 +370,16 @@ LODGroup:
   m_GameObject: {fileID: 5959051701990051721}
   serializedVersion: 2
   m_LocalReferencePoint: {x: 0, y: 0, z: 0}
-  m_Size: 0.40625
+  m_Size: 0.8
   m_FadeMode: 1
   m_AnimateCrossFading: 1
   m_LastLODIsBillboard: 0
   m_LODs:
-  - screenRelativeHeight: 0.6
+  - screenRelativeHeight: 0.2
     fadeTransitionWidth: 0
     renderers:
     - renderer: {fileID: 5222974970693532085}
-  - screenRelativeHeight: 0.4
+  - screenRelativeHeight: 0.1
     fadeTransitionWidth: 0
     renderers:
     - renderer: {fileID: 131247376342127011}

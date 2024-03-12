@@ -9,6 +9,8 @@ public class PopulateLoadButton : MonoBehaviour
     [SerializeField] TextMeshProUGUI _saveTitle;
     [SerializeField] TextMeshProUGUI _location;
     [SerializeField] TextMeshProUGUI _timeDate;
+    string _date;
+    public System.DateTime date { get { return System.DateTime.Parse(_date); } }
     string _uuid;
     Button _self;
     
@@ -17,7 +19,8 @@ public class PopulateLoadButton : MonoBehaviour
         _uuid = uuid;
         _saveTitle.text = saveTitle;
         _location.text = location;
-        _timeDate.text = $"{date}";
+        _date = date;
+        _timeDate.text = $"{_date}";
 
         _self = GetComponent<Button>();
         _self.onClick.AddListener(() => DataPersistanceManager.Instance.LoadGame(_uuid));

@@ -13,6 +13,7 @@ public class ClockManager : MonoBehaviour
     public TextMeshProUGUI Date, Time, Season, Week;
 
     [SerializeField] AudioMixerSnapshot _daySnapshot,_nightSnapshot;
+    [SerializeField] Color dayColour, nightColour;
 
     //public Image weatherSprite;
     //public Sprite[] weatherSprites;
@@ -80,6 +81,7 @@ public class ClockManager : MonoBehaviour
         {
             sunLight.transform.rotation = Quaternion.Lerp(lowAngle, highAngle, sunPos);
             sunLight.intensity = Mathf.Lerp(nightIntensity, dayIntensity, sunIntensity);
+            RenderSettings.fogColor = Color.Lerp(dayColour, nightColour, sunPos);
         }
     }
 
