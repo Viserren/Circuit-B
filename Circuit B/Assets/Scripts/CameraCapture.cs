@@ -3,32 +3,51 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Experimental.Rendering;
 
 #if UNITY_EDITOR
 public class CameraCapture : MonoBehaviour
 {
-    public int FileCounter = 0;
+    [SerializeField] string _fileName;
+    [SerializeField] int _captureWidth, _captureHeight;
+    [SerializeField] int _fileCounter = 0;
     [SerializeField] Camera mainCamera;
+    TextureCreationFlags flags;
+
+    private void Start()
+    {
+        StartCoroutine(Capture());
+    }
+
+    IEnumerator Capture()
+    {
+        yield return new WaitForEndOfFrame();
+        CamCapture();
+    }
 
     public void CamCapture()
     {
         //mainCamera = Camera.main;
+        //mainCamera.clearFlags = CameraClearFlags.Depth;
 
-        RenderTexture currentRT = RenderTexture.active;
+        RenderTexture currentRT = new RenderTexture(_captureWidth, _captureHeight, 32, GraphicsFormat.R8G8B8A8_UNorm);
+        mainCamera.targetTexture = currentRT;
         RenderTexture.active = mainCamera.targetTexture;
 
         mainCamera.Render();
 
-        Texture2D Image = new Texture2D(mainCamera.targetTexture.width, mainCamera.targetTexture.height);
-        Image.ReadPixels(new Rect(0, 0, mainCamera.targetTexture.width, mainCamera.targetTexture.height), 0, 0);
+        Texture2D Image = new Texture2D(_captureWidth, _captureHeight, TextureFormat.ARGB32, false);
+        Image.ReadPixels(new Rect(0, 0, _captureWidth, _captureHeight), 0, 0);
         Image.Apply();
-        RenderTexture.active = currentRT;
+
+        //RenderTexture.active = null;
+        //mainCamera.targetTexture = null;
 
         var Bytes = Image.EncodeToPNG();
         DestroyImmediate(Image);
 
-        File.WriteAllBytes(Application.dataPath + "/Backgrounds/" + FileCounter + ".png", Bytes);
-        FileCounter++;
+        File.WriteAllBytes($"{Application.dataPath}/Backgrounds/{_fileName} {_fileCounter}.png", Bytes);
+        _fileCounter++;
     }
 }
 

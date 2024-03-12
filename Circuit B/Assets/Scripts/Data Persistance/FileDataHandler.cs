@@ -109,11 +109,4 @@ public class FileDataHandler
             Debug.LogError("Error occured while saving data to file: " + fullPath + "\n" + e);
         }
     }
-
-
-
-    void VerifyLoadedData(GameData gameData)
-    {
-        
-    }
 }
