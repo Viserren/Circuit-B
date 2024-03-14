@@ -42,11 +42,15 @@ Material:
     - _Alpha_Clip: 0
     - _Animation_Speed: 1
     - _Coronoi_Density: 1
+    - _DecalMeshBiasType: 0
+    - _DecalMeshDepthBias: 0
+    - _DecalMeshViewBias: 0
+    - _DrawOrder: 0
     - _Falloff_Power: 0
     - _Noise_Detail_Scale: 14.1
     - _Noise_Large_Scale: 0.354
     - _Noise_Scale: 100
-    - _Noise_Speed: 0.01
+    - _Noise_Speed: 0.05
     - _Pixel_Size: 256
     - _QueueControl: 0
     - _QueueOffset: 0
@@ -58,10 +62,10 @@ Material:
     - _Voronoi_Large_Density: 0.283
     - _Voronoi_Large_Offset: 191
     - _Voronoi_Offset: 50
-    - _Voronoi_Speed: 0.0001
+    - _Voronoi_Speed: 0.0005
     m_Colors:
-    - _Cloud_Colour: {r: 0.73579305, g: 0.7125, b: 0.75, a: 0}
-    - _Night_Cloud_Colour: {r: 0.084905684, g: 0.084905684, b: 0.084905684, a: 0}
+    - _Cloud_Colour: {r: 0.8018868, g: 0.6933599, b: 0.6770648, a: 1}
+    - _Night_Cloud_Colour: {r: 0.08490565, g: 0.08490565, b: 0.08490565, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &3453030159254004091
 MonoBehaviour:

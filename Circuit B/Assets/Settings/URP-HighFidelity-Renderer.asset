@@ -1,5 +1,22 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-7864657862254462326
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d613f08f173d4dd895bb07b3230baa9, type: 3}
+  m_Name: FullScreenPassRendererFeature
+  m_EditorClassIdentifier: 
+  m_Active: 1
+  passMaterial: {fileID: 2100000, guid: 46d7d173f0538c24581ac45bf1033029, type: 2}
+  injectionPoint: 600
+  requirements: -1
+  passIndex: 0
 --- !u!114 &-1878332245247344467
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -54,7 +71,9 @@ MonoBehaviour:
   m_RendererFeatures:
   - {fileID: -1878332245247344467}
   - {fileID: 3782507129996643804}
-  m_RendererFeatureMap: adc0de57c6d2eee5dc0dd5b3312a7e34
+  - {fileID: -7864657862254462326}
+  - {fileID: 6831528847597674208}
+  m_RendererFeatureMap: adc0de57c6d2eee5dc0dd5b3312a7e348afa56d0571fdb92e09ee4b94a77ce5e
   m_UseNativeRenderPass: 0
   postProcessData: {fileID: 11400000, guid: cbbf330e1aea25a499c7ffb1d57f6b7d, type: 2}
   xrSystemData: {fileID: 11400000, guid: 60e1133243b97e347b653163a8c01b64, type: 2}
@@ -111,6 +130,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Active: 1
   passMaterial: {fileID: 2100000, guid: 5d7c5d6a2d8655b47b6937afc8e5efa6, type: 2}
+  injectionPoint: 600
+  requirements: 4
+  passIndex: 0
+--- !u!114 &6831528847597674208
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d613f08f173d4dd895bb07b3230baa9, type: 3}
+  m_Name: Outline
+  m_EditorClassIdentifier: 
+  m_Active: 1
+  passMaterial: {fileID: 2100000, guid: 90971fc8664e07b47b2080ac8584af75, type: 2}
   injectionPoint: 600
   requirements: 4
   passIndex: 0
