@@ -10,9 +10,13 @@ public class StartTest : MonoBehaviour
         Debug.Log("Opening ready");
     }
 
-    // Update is called once per frame
-    void Update()
+    public void LoadScene()
     {
-        
+        GameStateManager.Instance.LoadSceneAfter();
+    }
+
+    public void DoneLoading()
+    {
+        GameStateManager.Instance.DoneSceneLoad();
     }
 }

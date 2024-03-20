@@ -48,8 +48,7 @@ public class GameStateManager : MonoBehaviour
         // Setup the state machine
         _states = new GameStateFactory(this);
         _currentState = _states.MainMenu();
-        IsMainMenu = true;
-        _currentState.EnterState();
+        //IsMainMenu = true;
     }
 
     // Update is called once per frame
@@ -57,5 +56,15 @@ public class GameStateManager : MonoBehaviour
     {
         _currentState.UpdateStates();
         //Debug.Log($"Current State: {_currentState}");
+    }
+
+    public void LoadSceneAfter()
+    {
+        _currentState.EnterState();
+    }
+
+    public void DoneSceneLoad()
+    {
+        MenuManager.Instance.MainMenuScreen();
     }
 }
