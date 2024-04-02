@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class PopulateSaveScreen : MonoBehaviour
 {
@@ -10,6 +12,12 @@ public class PopulateSaveScreen : MonoBehaviour
     [SerializeField] GameObject _viewport;
 
     List<PopulateLoadButton> _loadButtons = new List<PopulateLoadButton>();
+
+
+    private void OnEnable()
+    {
+        _loadButtons[0].GetComponent<Button>().Select();
+    }
 
     public void Populate()
     {

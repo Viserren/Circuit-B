@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class MemoryManager : MonoBehaviour, IDataPersistance
@@ -53,12 +54,14 @@ public class MemoryManager : MonoBehaviour, IDataPersistance
 
     public void UpdateMemoryViewer(string memoryToFind, bool lockMemory = false)
     {
+        EventSystem.current.SetSelectedGameObject(null);
         Memories temp = _memoriesInGame.Find(r => r.MemoryName == memoryToFind);
         if (!lockMemory)
         {
             _memoryTitle.text = temp.SOMemory.Title;
             _memoryDescription.text = temp.SOMemory.Description;
             _memoryImage.sprite = temp.SOMemory.Picture;
+            EventSystem.current.SetSelectedGameObject(temp.MemoryButton);
         }
         else
         {

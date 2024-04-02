@@ -4,15 +4,17 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class MenuManager : MonoBehaviour
 {
-    UIInputActions _uiInput;
+    PlayerInput _uiInput;
     [SerializeField] TextMeshProUGUI _versionText;
 
     [SerializeField] List<Menus> _menus = new List<Menus>();
 
     [SerializeField] GameObject _opening;
+    [SerializeField] Button _selectedButton;
 
     public static MenuManager Instance { get; private set; }
 
@@ -34,20 +36,20 @@ public class MenuManager : MonoBehaviour
         }
         Instance = this;
 
-        _uiInput = new UIInputActions();
+        _uiInput = new PlayerInput();
     }
 
     private void OnEnable()
     {
         _uiInput.UI.Enable();
-        _uiInput.UI.Cancel.performed += PauseScreen;
+        _uiInput.UI.Pause.performed += PauseScreen;
         _uiInput.UI.Memories.performed += MemoriesScreen;
     }
 
     private void OnDisable()
     {
         _uiInput.UI.Disable();
-        _uiInput.UI.Cancel.performed -= PauseScreen;
+        _uiInput.UI.Pause.performed -= PauseScreen;
         _uiInput.UI.Memories.performed -= MemoriesScreen;
     }
 
@@ -160,6 +162,8 @@ public class MenuManager : MonoBehaviour
         GameStateManager.Instance.IsMainMenu = true;
         MainMenuLoaded.Invoke();
         OptionsMenuLoaded.Invoke();
+        _selectedButton.Select();
+
     }
 
     public void ShowScreenButton(string screenName)
@@ -228,3 +232,6 @@ public enum MenuType
     MainMenu = 0,
     InGame = 1
 }
+
+// 204              197             167
+// 0.8018868        0.7734498       0.6543699
