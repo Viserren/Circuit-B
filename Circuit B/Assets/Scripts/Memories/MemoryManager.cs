@@ -17,6 +17,7 @@ public class MemoryManager : MonoBehaviour, IDataPersistance
     [SerializeField] TextMeshProUGUI _memoryTitle;
     [SerializeField] TextMeshProUGUI _memoryDescription;
     [SerializeField] Image _memoryImage;
+    [SerializeField] AudioSource _memoryAudioSource;
 
     public static MemoryManager Instance { get; private set; }
     public List<Memories> Memories { get { return _memoriesDefault; } }
@@ -44,6 +45,22 @@ public class MemoryManager : MonoBehaviour, IDataPersistance
         }
     }
 
+    public void UnlockandOpenMemory(string memoryToFind)
+    {
+        Memories tempMemory = _memoriesInGame.Find(r => r.MemoryName == memoryToFind);
+        UnlockMemory(tempMemory);
+        _memoryAudioSource.PlayOneShot(_memoryAudioSource.clip);
+
+        MenuManager.Instance.MemoriesScreen();
+    }
+
+    public void UnlockMemory(Memories memoryToFind)
+    {
+        memoryToFind.HasCollected = true;
+        memoryToFind.MemoryButton.GetComponent<MemoryButton>().ButtonText.text = memoryToFind.MemoryName;
+        UpdateMemoryViewer(memoryToFind);
+    }
+
     public void UnlockMemory(string memoryToFind)
     {
         Memories tempMemory = _memoriesInGame.Find(r => r.MemoryName == memoryToFind);
@@ -62,6 +79,24 @@ public class MemoryManager : MonoBehaviour, IDataPersistance
             _memoryDescription.text = temp.SOMemory.Description;
             _memoryImage.sprite = temp.SOMemory.Picture;
             EventSystem.current.SetSelectedGameObject(temp.MemoryButton);
+        }
+        else
+        {
+            _memoryTitle.text = "";
+            _memoryDescription.text = "";
+            _memoryImage.sprite = null;
+        }
+    }
+
+    public void UpdateMemoryViewer(Memories memoryToFind, bool lockMemory = false)
+    {
+        EventSystem.current.SetSelectedGameObject(null);
+        if (!lockMemory)
+        {
+            _memoryTitle.text = memoryToFind.SOMemory.Title;
+            _memoryDescription.text = memoryToFind.SOMemory.Description;
+            _memoryImage.sprite = memoryToFind.SOMemory.Picture;
+            EventSystem.current.SetSelectedGameObject(memoryToFind.MemoryButton);
         }
         else
         {
@@ -139,6 +174,7 @@ public class Memories
     [SerializeField] bool _hasCollected = false;
     [SerializeField] Vector3 _spawnLocation;
     [SerializeField] SO_Memory _soMemory;
+    [SerializeField] AudioClip _audioClip;
 
     public string MemoryName { get { return _memoryName; } set { _memoryName = _soMemory.Title; } }
     public GameObject MemoryObject { get { return _memoryObject; } set { _memoryObject = value; } }
@@ -146,6 +182,7 @@ public class Memories
     public bool HasCollected { get { return _hasCollected; } set { _hasCollected = value; } }
     public Vector3 SpawnLocation { get { return _spawnLocation; } set { _spawnLocation = value; } }
     public SO_Memory SOMemory { get { return _soMemory; } }
+    public AudioClip MemnoryAudio { get { return _audioClip; } }
 
     public Memories(GameObject memoryButton, string memoryName, bool hasCollected, Vector3 spawnLocation, SO_Memory soMemory)
     {

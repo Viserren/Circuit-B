@@ -74,28 +74,28 @@ public class MenuManager : MonoBehaviour
 
     void MemoriesScreen(InputAction.CallbackContext ctx)
     {
-        if (!GameStateManager.Instance.IsPaused && !_deadMenu)
-        {
-            MemoriesScreen();
-        }
+        MemoriesScreen();
     }
 
     public void MemoriesScreen()
     {
-        if (_menus.Find(r => r.MenuName == "Memories").IsActive)
+        if (!GameStateManager.Instance.IsPaused && !_deadMenu)
         {
-            HideAllScreenButton();
-            ShowScreenButton("In Game");
-            HideScreenButton("Memories");
-            Cursor.lockState = CursorLockMode.Locked;
-        }
-        else
-        {
-            HideAllScreenButton();
-            ShowScreenButton("In Game");
-            ShowScreenButton("Memories");
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
+            if (_menus.Find(r => r.MenuName == "Memories").IsActive)
+            {
+                HideAllScreenButton();
+                ShowScreenButton("In Game");
+                HideScreenButton("Memories");
+                Cursor.lockState = CursorLockMode.Locked;
+            }
+            else
+            {
+                HideAllScreenButton();
+                ShowScreenButton("In Game");
+                ShowScreenButton("Memories");
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
+            }
         }
     }
 

@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8967351581639203989}
   - component: {fileID: 4120838139066740489}
+  - component: {fileID: 1284441427237601156}
   m_Layer: 0
   m_Name: Memory Manager
   m_TagString: Untagged
@@ -45,18 +46,46 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _memoriesDefault:
-  - _memoryName: Tools
+  - _memoryName: Bridge
     _hasCollected: 0
     _spawnLocation: {x: 30.795, y: 0.885, z: 41.703}
-    _soMemory: {fileID: 11400000, guid: e76160e6d3fce0f4eab57443a3cc14b8, type: 2}
-  - _memoryName: Lake
+    _soMemory: {fileID: 11400000, guid: abc270e9e7f5b5547a2231ec00f8154f, type: 2}
+    _audioClip: {fileID: 0}
+  - _memoryName: Car
     _hasCollected: 0
     _spawnLocation: {x: -2.625, y: -1.09375, z: 44.25}
-    _soMemory: {fileID: 11400000, guid: e6408005eb3c02f48a0f531bf719ad28, type: 2}
-  - _memoryName: Spare Parts
+    _soMemory: {fileID: 11400000, guid: eca7dce03ca70604f8d56bb0bd97eeaa, type: 2}
+    _audioClip: {fileID: 0}
+  - _memoryName: Flag
     _hasCollected: 0
     _spawnLocation: {x: -23.59375, y: 1.09375, z: 7.875}
-    _soMemory: {fileID: 11400000, guid: 35f54d33e2b74f44b84156ce14f0641c, type: 2}
+    _soMemory: {fileID: 11400000, guid: 6988494475d68c24a9f69db187c01e53, type: 2}
+    _audioClip: {fileID: 0}
+  - _memoryName: Graffiti
+    _hasCollected: 0
+    _spawnLocation: {x: -23.59375, y: 1.09375, z: 7.875}
+    _soMemory: {fileID: 11400000, guid: 2236acb57cfb8d041b1a42645f9f68fb, type: 2}
+    _audioClip: {fileID: 0}
+  - _memoryName: Plants
+    _hasCollected: 0
+    _spawnLocation: {x: -23.59375, y: 1.09375, z: 7.875}
+    _soMemory: {fileID: 11400000, guid: ad494bcc425d8a444b664250c4ed72d5, type: 2}
+    _audioClip: {fileID: 0}
+  - _memoryName: Scrapyard
+    _hasCollected: 0
+    _spawnLocation: {x: -23.59375, y: 1.09375, z: 7.875}
+    _soMemory: {fileID: 11400000, guid: 551bb3edb91a71d498c87f91cc3190b3, type: 2}
+    _audioClip: {fileID: 0}
+  - _memoryName: Sky
+    _hasCollected: 0
+    _spawnLocation: {x: -23.59375, y: 1.09375, z: 7.875}
+    _soMemory: {fileID: 11400000, guid: 91b902c44e2dfa44c80628dac3f5618e, type: 2}
+    _audioClip: {fileID: 0}
+  - _memoryName: Tool Shack
+    _hasCollected: 0
+    _spawnLocation: {x: -23.59375, y: 1.09375, z: 7.875}
+    _soMemory: {fileID: 11400000, guid: aeaa683ea6575ef4182d1f561a572ea4, type: 2}
+    _audioClip: {fileID: 0}
   _content: {fileID: 0}
   _buttonPrefab: {fileID: 2450496050097848945, guid: 25ebf466e7470ca4187431a470de14ab,
     type: 3}
@@ -65,3 +94,101 @@ MonoBehaviour:
   _memoryTitle: {fileID: 0}
   _memoryDescription: {fileID: 0}
   _memoryImage: {fileID: 0}
+  _memoryAudioSource: {fileID: 1284441427237601156}
+--- !u!82 &1284441427237601156
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4619802342334900793}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 6295319324238277952, guid: 3714d3b16d3edb04b8957209b5bf2309,
+    type: 2}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 0.75
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 10
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
