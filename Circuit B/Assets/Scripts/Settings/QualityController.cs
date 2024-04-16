@@ -37,7 +37,7 @@ public class QualityController : MonoBehaviour
     void LoadQualitySetting()
     {
         _quality = PlayerPrefs.GetInt(CURRENTQUALITY_KEY, QualitySettings.GetQualityLevel());
-
+        Debug.Log($"Quality: {_quality}");
         _qualityDropDown.value = _quality;
     }
 

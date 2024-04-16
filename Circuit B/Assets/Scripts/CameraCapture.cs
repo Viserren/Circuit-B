@@ -15,6 +15,7 @@ public class CameraCapture : MonoBehaviour
     [SerializeField] int _fileCounter = 0;
     [SerializeField] Camera mainCamera;
     TextureCreationFlags flags;
+    [SerializeField] bool _isTransparent;
 
     private void Start()
     {
@@ -46,21 +47,24 @@ public class CameraCapture : MonoBehaviour
         RenderTexture.active = null;
         mainCamera.targetTexture = null;
 
-        Color32[] colors = Image.GetPixels32();
-        for (int i = 0; i < colors.Length; i++)
+        if (_isTransparent)
         {
-            //Debug.Log(colors[i].g);
-            if (colors[i].r > 0 || colors[i].g > 0 || colors[i].b > 0)
+            Color32[] colors = Image.GetPixels32();
+            for (int i = 0; i < colors.Length; i++)
             {
-                colors[i].a = 255;
+                //Debug.Log(colors[i].g);
+                if (colors[i].r > 0 || colors[i].g > 0 || colors[i].b > 0)
+                {
+                    colors[i].a = 255;
+                }
+                else
+                {
+                    colors[i].a = 0;
+                }
             }
-            else
-            {
-                colors[i].a = 0;
-            }
+            Image.SetPixels32(colors);
+            Image.Apply();
         }
-        Image.SetPixels32(colors);
-        Image.Apply();
 
         var Bytes = Image.EncodeToPNG();
 
