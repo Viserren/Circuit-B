@@ -36,6 +36,7 @@ public class DataPersistanceManager : MonoBehaviour
 
     public void LoadData()
     {
+        //Debug.Log("Load Data");
         this._fileDataHandler = new FileDataHandler(Application.persistentDataPath);
         _saveDatas = _fileDataHandler.LoadAllFiles();
     }
@@ -46,7 +47,7 @@ public class DataPersistanceManager : MonoBehaviour
         _fileName = guid.ToString();
         this._fileDataHandler = new FileDataHandler(Application.persistentDataPath, this._fileName);
         this._dataPersistanceObjects = FindAllDataPersistanceObjects();
-        this._gameData = new GameData(_fileName, "test");
+        this._gameData = new GameData(_fileName, "encryped");
 
         foreach (IDataPersistance dataPersistanceObject in this._dataPersistanceObjects)
         {

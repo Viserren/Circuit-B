@@ -95,7 +95,7 @@ public class CameraManager : MonoBehaviour, IDataPersistance
     {
         _currentLocation = gameData.currentLocation;
 
-        Debug.Log(_currentLocation);
+        //Debug.Log(_currentLocation);
 
         AreaCamera cam = _cameras.Find(r => r.thisArea.cameraName == _currentLocation);
         ChangeCamera(cam.thisArea.cameraNumber, _currentLocation);

@@ -101,7 +101,7 @@ public class PolygonHelper : MonoBehaviour
                 Vector2 va_to_vb = vb - va;
                 Vector2 va_to_vc = vc - va;
 
-                // Is ear test vertex convex?
+                // Is ear encryped vertex convex?
                 if (Util.Cross(va_to_vb, va_to_vc) < 0f)
                 {
                     continue;
@@ -109,7 +109,7 @@ public class PolygonHelper : MonoBehaviour
 
                 bool isEar = true;
 
-                // Does test ear contain any polygon vertices?
+                // Does encryped ear contain any polygon vertices?
                 for (int j = 0; j < vertices.Length; j++)
                 {
                     if (j == a || j == b || j == c)

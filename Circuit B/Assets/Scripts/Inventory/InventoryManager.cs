@@ -6,7 +6,7 @@
 
 //public class InventoryManager : MonoBehaviour, IDataPersistance
 //{
-//    public SO_Item test;
+//    public SO_Item encryped;
 //    private List<InventoryItem> items = new List<InventoryItem>();
 
 //    public void AddItemToIntentory(SO_Item itemToAdd, int amountToAdd = 1)
@@ -98,12 +98,12 @@
 //        base.OnInspectorGUI();
 //        if (GUILayout.Button("Add Item"))
 //        {
-//            inventoryManager.AddItemToIntentory(inventoryManager.test);
+//            inventoryManager.AddItemToIntentory(inventoryManager.encryped);
 //        }
 
 //        if (GUILayout.Button("Remove Item"))
 //        {
-//            inventoryManager.RemoveItemFromIntentory(inventoryManager.test);
+//            inventoryManager.RemoveItemFromIntentory(inventoryManager.encryped);
 //        }
 
 //        if (GUILayout.Button("Clear List"))

@@ -312,7 +312,7 @@ public class PlayerStateManager : MonoBehaviour, IDataPersistance
         if (Physics.Raycast(_soundObject.transform.position, Vector3.down, out raycastHit, .5f, _soundLayers))
         {
             string tag = raycastHit.transform.tag;
-            Debug.Log($"Tag: {tag}");
+            //Debug.Log($"Tag: {tag}");
             switch (tag)
             {
                 case "Concrete":

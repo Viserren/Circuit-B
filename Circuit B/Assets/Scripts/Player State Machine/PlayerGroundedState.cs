@@ -16,7 +16,7 @@ public class PlayerGroundedState : PlayerBaseState, IRootState
         }
         else if (!Context.CharacterController.isGrounded)
         {
-            Debug.Log("Switching to falling state");
+            //Debug.Log("Switching to falling state");
             SwitchState(Factory.Falling());
         }
 

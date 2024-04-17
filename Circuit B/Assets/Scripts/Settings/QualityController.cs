@@ -11,12 +11,10 @@ public class QualityController : MonoBehaviour
     public const string CURRENTREFRESHRATE_KEY = "CurrentRefreshRateKey";
 
     int _quality;
-    int _resWidth;
-    int _resHeight;
-    double _refreshRate;
+    int _refreshRate;
 
     Resolution[] _resolutions;
-    RefreshRate[] _refreshRates;
+    List<int> _refreshRates = new List<int>();
 
     [SerializeField] TMP_Dropdown _qualityDropDown;
     [SerializeField] TMP_Dropdown _resolutionsDropDown;
@@ -32,7 +30,7 @@ public class QualityController : MonoBehaviour
         LoadQualitySetting();
         LoadResolutionSetting();
         //LoadRefreshSetting();
-        Debug.Log($"Value: {Screen.currentResolution.refreshRateRatio.value} \n Numerator: {Screen.currentResolution.refreshRateRatio.numerator} \n Denominator: {Screen.currentResolution.refreshRateRatio.denominator}");
+        //Debug.Log($"Value: {Screen.currentResolution.refreshRateRatio.value} \n Numerator: {Screen.currentResolution.refreshRateRatio.numerator} \n Denominator: {Screen.currentResolution.refreshRateRatio.denominator}");
     }
 
     #region Quality
@@ -88,15 +86,15 @@ public class QualityController : MonoBehaviour
     void LoadResolutionSetting()
     {
         _resolutions = Screen.resolutions;
-        _resWidth = PlayerPrefs.GetInt(CURRENTRESOLUTIONWIDTH_KEY, Screen.currentResolution.width);
-        _resHeight = PlayerPrefs.GetInt(CURRENTRESOLUTIONHEIGHT_KEY, Screen.currentResolution.height);
+        int _resWidth = PlayerPrefs.GetInt(CURRENTRESOLUTIONWIDTH_KEY, Screen.currentResolution.width);
+        int _resHeight = PlayerPrefs.GetInt(CURRENTRESOLUTIONHEIGHT_KEY, Screen.currentResolution.height);
 
         _resolutionsDropDown.ClearOptions();
         List<string> resolutions = new List<string>();
         for (int i = 0; i < _resolutions.Length; i++)
         {
             resolutions.Add($"{_resolutions[i].width} x {_resolutions[i].height}");
-            Debug.Log($"{_resolutions[i].width} x {_resolutions[i].height}");
+            //Debug.Log($"{_resolutions[i].width} x {_resolutions[i].height}");
         }
         _resolutionsDropDown.AddOptions(resolutions);
         for (int i = 0; i < _resolutions.Length; i++)
@@ -107,43 +105,55 @@ public class QualityController : MonoBehaviour
             }
         }
         _resolutionsDropDown.RefreshShownValue();
+
+        LoadRefreshSetting();
     }
     #endregion
 
     #region RefreshRate
     public void SwitchRefreshRate(int index)
     {
-        Screen.SetResolution(Screen.width, Screen.height, FullScreenMode.FullScreenWindow, _refreshRates[index]);
+        Application.targetFrameRate = _refreshRates[index];
+        _refreshRate = _refreshRates[index];
     }
 
-    public void SaveRefreshRateSetting(int index)
+    public void SaveRefreshRateSetting()
     {
-        PlayerPrefs.SetInt(CURRENTREFRESHRATE_KEY, Convert.ToInt32(_refreshRates[index].value));
+        PlayerPrefs.SetInt(CURRENTREFRESHRATE_KEY, _refreshRate);
     }
 
     void LoadRefreshSetting()
     {
-        _resolutions = Screen.resolutions;
         _refreshRate = PlayerPrefs.GetInt(CURRENTREFRESHRATE_KEY, Convert.ToInt32(Screen.currentResolution.refreshRateRatio.value));
 
-        _resolutionsDropDown.ClearOptions();
+        _refreshRateDropDown.ClearOptions();
+        int[] tempRefreshRates = new int[] { 30, 60, 120, 144, 240, 360 };
         List<string> refreshrates = new List<string>();
-        for (int i = 0; i < _resolutions.Length; i++)
+        for (int i = 0; i < tempRefreshRates.Length; i++)
         {
-            if (!refreshrates.Contains($"{_resolutions[i].refreshRateRatio.value}Hz"))
+            if (tempRefreshRates[i] < Convert.ToInt32(Screen.currentResolution.refreshRateRatio.value))
             {
-                refreshrates.Add($"{_resolutions[i].refreshRateRatio.value}Hz");
-
+                _refreshRates.Add(tempRefreshRates[i]);
+                refreshrates.Add($"{tempRefreshRates[i].ToString()}Hz");
+            }
+            else
+            {
+                _refreshRates.Add(Convert.ToInt32(Screen.currentResolution.refreshRateRatio.value));
+                refreshrates.Add($"{Convert.ToInt32(Screen.currentResolution.refreshRateRatio.value)}Hz");
+                break;
             }
         }
+
         _refreshRateDropDown.AddOptions(refreshrates);
-        for (int i = 0; i < _resolutions.Length; i++)
+
+        for (int i = 0; i < _refreshRates.Count; i++)
         {
-            if (_refreshRate == _resolutions[i].refreshRateRatio.value)
+            if (_refreshRate == _refreshRates[i])
             {
                 _refreshRateDropDown.value = i;
             }
         }
+        Application.targetFrameRate = _refreshRate;
         _refreshRateDropDown.RefreshShownValue();
     }
     #endregion

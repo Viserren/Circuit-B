@@ -4,11 +4,17 @@ using UnityEngine;
 using System;
 using System.IO;
 using Unity.Mathematics;
+using System.Text;
+using UnityEngine.Experimental.Rendering;
 
 public class FileDataHandler
 {
     private string _dataDirPath;
     private string _dataFileName;
+
+    static string _fileSuffix = ".cb";
+
+    Base64FormattingOptions options = Base64FormattingOptions.InsertLineBreaks;
 
     public string dataFileName { get { return _dataFileName; } }
 
@@ -27,7 +33,7 @@ public class FileDataHandler
 
     public List<GameData> LoadAllFiles()
     {
-        string[] files = System.IO.Directory.GetFiles(_dataDirPath, "*.txt");
+        string[] files = System.IO.Directory.GetFiles(_dataDirPath, $"*{_fileSuffix}");
         List<GameData> loadedData = new List<GameData>();
 
         if (files.Length > 0)
@@ -35,7 +41,7 @@ public class FileDataHandler
             foreach (string file in files)
             {
                 string fullPath = Path.Combine(_dataDirPath, file);
-                Debug.Log($"Loading {fullPath}");
+                //Debug.Log($"Loading {fullPath}");
                 try
                 {
                     // load the data from file
@@ -53,18 +59,22 @@ public class FileDataHandler
 
                     GameData updatedData = new GameData("","");
 
-                    JsonUtility.FromJsonOverwrite(dataToLoad, updatedData);
+                    JsonUtility.FromJsonOverwrite(Base64Decode(dataToLoad), updatedData);
 
 
 
                     loadedData.Add(updatedData);
-                    Debug.Log("Loaded");
+                    //Debug.Log("Loaded");
                 }
                 catch (Exception e)
                 {
                     Debug.LogError("Error occured while loading data from file: " + fullPath + "\n" + e);
                 }
             }
+        }
+        else
+        {
+            Debug.Log("No Files");
         }
         return loadedData;
     }
@@ -73,7 +83,7 @@ public class FileDataHandler
     {
         _dataFileName = fileNameToLoad;
         // Using Path.Combine to account for different OS's
-        string fullPath = Path.Combine(_dataDirPath, $"{_dataFileName}.txt");
+        string fullPath = Path.Combine(_dataDirPath, $"{_dataFileName}{_fileSuffix}");
         GameData loadedData = DataPersistanceManager.Instance.GameDatas.Find(r => r.uuid == fileNameToLoad);
 
         return loadedData;
@@ -82,7 +92,7 @@ public class FileDataHandler
     public void Save(GameData gameData)
     {
         // Using Path.Combine to account for different OS's
-        string fullPath = Path.Combine(_dataDirPath, $"{_dataFileName}.txt");
+        string fullPath = Path.Combine(_dataDirPath, $"{_dataFileName}{_fileSuffix}");
 
         try
         {
@@ -100,7 +110,7 @@ public class FileDataHandler
             {
                 using (StreamWriter writer = new StreamWriter(stream))
                 {
-                    writer.Write(jsonData);
+                    writer.Write(Base64Encode(jsonData));
                 }
             }
         }
@@ -108,5 +118,21 @@ public class FileDataHandler
         {
             Debug.LogError("Error occured while saving data to file: " + fullPath + "\n" + e);
         }
+    }
+
+    string Base64Encode(string jsonText)
+    {
+        byte[] defaultBytes = System.Text.Encoding.UTF8.GetBytes(jsonText);
+        string jsonString = System.Convert.ToBase64String(defaultBytes, options);
+
+        return jsonString;
+    }
+
+    string Base64Decode(string base64EncodedData)
+    {
+        byte[] base64EncodedBytes = System.Convert.FromBase64String(base64EncodedData);
+        string jsonString = System.Text.Encoding.UTF8.GetString(base64EncodedBytes);
+
+        return jsonString;
     }
 }

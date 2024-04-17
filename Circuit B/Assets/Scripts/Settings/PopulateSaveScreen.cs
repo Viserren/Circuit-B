@@ -21,6 +21,7 @@ public class PopulateSaveScreen : MonoBehaviour
 
     public void Populate()
     {
+        //Debug.Log("Yes, tis populated");
         DataPersistanceManager.Instance.LoadData();
         foreach (GameData gameData in DataPersistanceManager.Instance.GameDatas)
         {

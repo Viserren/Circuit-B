@@ -18,7 +18,7 @@ public class LoadGameState : GameBaseState
     public override void EnterState()
     {
         // TODO: load game save file
-        Debug.Log("Loading Game");
+        //Debug.Log("Loading Game");
         Context.LoadingGame = false;
     }
     public override void ExitState()

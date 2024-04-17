@@ -35,7 +35,7 @@ public class MainMenuGameState : GameBaseState
     }
     public override void ExitState()
     {
-        Debug.Log("Exit Main Menu");
+        //Debug.Log("Exit Main Menu");
     }
     public override void UpdateState()
     {
