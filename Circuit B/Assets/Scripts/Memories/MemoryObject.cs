@@ -23,7 +23,7 @@ public class MemoryObject : MonoBehaviour
     {
         if (other.TryGetComponent<PlayerStateManager>(out PlayerStateManager playerStateManager))
         {
-            MemoryManager.Instance.UnlockMemory(_memoryName);
+            MemoryManager.Instance.UnlockandOpenMemory(_memoryName);
             //MemoryManager.Instance.UpdateMemoryViewer(_memory);
             //gameObject.SetActive(false);
             Destroy(gameObject);
