@@ -9,16 +9,21 @@ public class QualityController : MonoBehaviour
     public const string CURRENTRESOLUTIONWIDTH_KEY = "CurrentResolutionWidthKey";
     public const string CURRENTRESOLUTIONHEIGHT_KEY = "CurrentResolutionHeightKey";
     public const string CURRENTREFRESHRATE_KEY = "CurrentRefreshRateKey";
+    public const string CURRENTSCREENMODE_KEY = "CurrentScreenModeKey";
 
     int _quality;
     int _refreshRate;
+    FullScreenMode _fullscreenMode;
+    int _screenMode;
 
-    Resolution[] _resolutions;
+    List<Resolution> _resolutions = new List<Resolution>();
+    FullScreenMode[] _fullscreenModes = new FullScreenMode[] { FullScreenMode.ExclusiveFullScreen, FullScreenMode.FullScreenWindow, FullScreenMode.Windowed};
     List<int> _refreshRates = new List<int>();
 
     [SerializeField] TMP_Dropdown _qualityDropDown;
     [SerializeField] TMP_Dropdown _resolutionsDropDown;
     [SerializeField] TMP_Dropdown _refreshRateDropDown;
+    [SerializeField] TMP_Dropdown _screenModeDropDown;
 
     // Start is called before the first frame update
     void Start()
@@ -29,7 +34,8 @@ public class QualityController : MonoBehaviour
         }
         LoadQualitySetting();
         LoadResolutionSetting();
-        //LoadRefreshSetting();
+        LoadRefreshSetting();
+        LoadScreenModeSetting();
         //Debug.Log($"Value: {Screen.currentResolution.refreshRateRatio.value} \n Numerator: {Screen.currentResolution.refreshRateRatio.numerator} \n Denominator: {Screen.currentResolution.refreshRateRatio.denominator}");
     }
 
@@ -75,7 +81,7 @@ public class QualityController : MonoBehaviour
     #region Resolution
     public void SwitchResolution(int index)
     {
-        Screen.SetResolution(_resolutions[index].width, _resolutions[index].height, FullScreenMode.FullScreenWindow);
+        Screen.SetResolution(_resolutions[index].width, _resolutions[index].height, _fullscreenMode);
     }
     public void SaveResolutionSetting()
     {
@@ -85,19 +91,23 @@ public class QualityController : MonoBehaviour
 
     void LoadResolutionSetting()
     {
-        _resolutions = Screen.resolutions;
+        Resolution[] screenResolutions = Screen.resolutions;
         int _resWidth = PlayerPrefs.GetInt(CURRENTRESOLUTIONWIDTH_KEY, Screen.currentResolution.width);
         int _resHeight = PlayerPrefs.GetInt(CURRENTRESOLUTIONHEIGHT_KEY, Screen.currentResolution.height);
 
         _resolutionsDropDown.ClearOptions();
         List<string> resolutions = new List<string>();
-        for (int i = 0; i < _resolutions.Length; i++)
+        for (int i = 0; i < screenResolutions.Length; i++)
         {
-            resolutions.Add($"{_resolutions[i].width} x {_resolutions[i].height}");
+            if (!resolutions.Contains($"{screenResolutions[i].width} x {screenResolutions[i].height}"))
+            {
+                _resolutions.Add(screenResolutions[i]);
+                resolutions.Add($"{screenResolutions[i].width} x {screenResolutions[i].height}");
+            }
             //Debug.Log($"{_resolutions[i].width} x {_resolutions[i].height}");
         }
         _resolutionsDropDown.AddOptions(resolutions);
-        for (int i = 0; i < _resolutions.Length; i++)
+        for (int i = 0; i < _resolutions.Count; i++)
         {
             if (_resWidth == _resolutions[i].width && _resHeight == _resolutions[i].height)
             {
@@ -159,6 +169,23 @@ public class QualityController : MonoBehaviour
     #endregion
 
     #region Fullscreen
+    public void SwitchScreenMode(int index)
+    {
+        _screenMode = index;
+        _fullscreenMode = _fullscreenModes[_screenMode];
+        Screen.SetResolution(Screen.currentResolution.width, Screen.currentResolution.width, _fullscreenMode);
+    }
+    public void SaveScreenModeSetting()
+    {
+        PlayerPrefs.SetInt(CURRENTSCREENMODE_KEY, _screenMode);
+    }
 
+    void LoadScreenModeSetting()
+    {
+        _screenMode = PlayerPrefs.GetInt(CURRENTSCREENMODE_KEY, 1);
+        Screen.SetResolution(Screen.currentResolution.width, Screen.currentResolution.width, _fullscreenMode);
+        _screenModeDropDown.value = _screenMode;
+        _screenModeDropDown.RefreshShownValue();
+    }
     #endregion
 }
