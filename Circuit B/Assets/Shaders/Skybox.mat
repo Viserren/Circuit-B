@@ -50,9 +50,10 @@ Material:
     m_Colors:
     - _CloudColour: {r: 0.9245283, g: 0.9245283, b: 0.9245283, a: 1}
     - _HorizonColour: {r: 1, g: 1, b: 1, a: 0}
-    - _NadirColour: {r: 0.3427936, g: 0.8207547, b: 0.33681917, a: 1}
-    - _Sun_Colour: {r: 11.984315, g: 6.3132377, b: 0, a: 0}
-    - _ZenithColour: {r: 0.735849, g: 0.42776167, b: 0.19784608, a: 1}
+    - _NadirColour: {r: 0.6431373, g: 0.6627451, b: 0.41176474, a: 1}
+    - _NadirNightColour: {r: 0.3962264, g: 0.28174382, b: 0.19624421, a: 1}
+    - _Sun_Colour: {r: 47.93726, g: 25.25295, b: 0, a: 1}
+    - _ZenithColour: {r: 0.6431373, g: 0.6609676, b: 0.41176468, a: 1}
     - _ZenithNightColour: {r: 0.047169805, g: 0.015317956, b: 0.0064524747, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &4832325013496746132

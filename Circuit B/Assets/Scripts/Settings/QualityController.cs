@@ -183,6 +183,7 @@ public class QualityController : MonoBehaviour
     void LoadScreenModeSetting()
     {
         _screenMode = PlayerPrefs.GetInt(CURRENTSCREENMODE_KEY, 1);
+        _fullscreenMode = _fullscreenModes[_screenMode];
         Screen.SetResolution(Screen.currentResolution.width, Screen.currentResolution.width, _fullscreenMode);
         _screenModeDropDown.value = _screenMode;
         _screenModeDropDown.RefreshShownValue();

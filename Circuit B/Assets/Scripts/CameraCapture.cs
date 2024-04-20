@@ -14,7 +14,6 @@ public class CameraCapture : MonoBehaviour
     [SerializeField] int _captureWidth, _captureHeight;
     [SerializeField] int _fileCounter = 0;
     [SerializeField] Camera mainCamera;
-    TextureCreationFlags flags;
     [SerializeField] bool _isTransparent;
 
     private void Start()
@@ -30,7 +29,6 @@ public class CameraCapture : MonoBehaviour
 
     public void CamCapture()
     {
-        flags = TextureCreationFlags.DontInitializePixels;
         RenderTexture currentRT = new RenderTexture(_captureWidth, _captureHeight, 32, GraphicsFormat.B8G8R8A8_SRGB);
         currentRT.depthStencilFormat = GraphicsFormat.D24_UNorm_S8_UInt;
 

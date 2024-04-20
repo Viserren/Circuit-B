@@ -74,7 +74,7 @@ public class AudioManager : MonoBehaviour
     IEnumerator PlayBackgroundMusic()
     {
         int temp = Random.Range(0, _backgroundMusic.Length);
-        if (_currentPlayerMusic == null)
+        if (_currentPlayerMusic != null)
         {
             if (!_currentPlayerMusic.audioSource.isPlaying)
             {

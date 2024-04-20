@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
 using TMPro;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
@@ -12,7 +13,7 @@ public class ClockManager : MonoBehaviour
     //public RectTransform ClockFace;
     public TextMeshProUGUI Date, Time, Season, Week;
 
-    [SerializeField] AudioMixerSnapshot _daySnapshot,_nightSnapshot;
+    [SerializeField] AudioMixerSnapshot _daySnapshot, _nightSnapshot;
     [SerializeField] Color dayColour, nightColour;
 
     //public Image weatherSprite;
@@ -31,6 +32,16 @@ public class ClockManager : MonoBehaviour
     //float tMinutes;
     //float tHours;
 
+    [SerializeField] int _secondsToAdd;
+    [Tooltip("1 Second is 1 Seconds in real life, so 0.5 will be 2x as fast as real time")]
+    [SerializeField] float _timeInterval;
+    public int secondsToAdd { get { return _secondsToAdd; } set { _secondsToAdd = value; } }
+
+    int _totalSeconds;
+    int _secondsAim;
+
+    Coroutine _moveTime;
+
     private void Awake()
     {
         //startingRotation = ClockFace.eulerAngles.z;
@@ -39,7 +50,70 @@ public class ClockManager : MonoBehaviour
 
     private void FixedUpdate()
     {
-        UpdateRealDateTime();
+        //UpdateRealDateTime();
+        UpdateTime();
+    }
+
+    public void UpdateTime()
+    {
+        DateTimeFormatInfo dfi = DateTimeFormatInfo.CurrentInfo;
+        Calendar cal = dfi.Calendar;
+
+        #region Sun Angle
+        int currenWeek = cal.GetWeekOfYear(System.DateTime.Today, dfi.CalendarWeekRule, dfi.FirstDayOfWeek);
+        float pos = (float)currenWeek / 52f;
+        #endregion
+
+        // Default 86400f
+        float linierTime = (float)_totalSeconds / 43200f;
+        //Debug.Log($"0 To 1 Time: {linierTime}, 0 To 1 Week: {pos} Seconds: {_totalSeconds}");
+        float newRotation = Mathf.Lerp(-180, 180, linierTime);
+
+        if (linierTime > .25f && linierTime < .75f)
+        {
+            _daySnapshot.TransitionTo(20);
+        }
+        else
+        {
+            _nightSnapshot.TransitionTo(20);
+        }
+        //40 32 31
+        // Winter 20
+        // Autumn 40
+        // Spring 60
+        // Summer 80
+
+        Quaternion lowAngle = Quaternion.Euler(20, 0, 0) * Quaternion.Euler(0, newRotation + sunStartingRotation, 0);
+        Quaternion highAngle = Quaternion.Euler(80, 0, 0) * Quaternion.Euler(0, newRotation + sunStartingRotation, 0);
+
+        float sunPos = sunHeightCurve.Evaluate(pos);
+        float sunIntensity = dayNightCurve.Evaluate(linierTime);
+        if (sunLight)
+        {
+            sunLight.transform.rotation = Quaternion.Lerp(lowAngle, highAngle, sunPos);
+            sunLight.intensity = Mathf.Lerp(nightIntensity, dayIntensity, sunIntensity);
+        }
+        RenderSettings.fogColor = Color.Lerp(nightColour, dayColour, sunIntensity);
+    }
+
+    public void AddSeconds(int seconds)
+    {
+        _secondsAim += seconds;
+        if (_moveTime == null)
+        {
+            _moveTime = StartCoroutine(UpdateSeconds());
+        }
+    }
+
+    IEnumerator UpdateSeconds()
+    {
+        for (int i = 0; i < _secondsAim; i++)
+        {
+            _totalSeconds++;
+            //Debug.Log($"Total Seconds: {_totalSeconds} : Time Interval: {_timeInterval}");
+            yield return new WaitForSeconds(_timeInterval);
+        }
+        _moveTime = null;
     }
 
     public void UpdateRealDateTime()
@@ -55,10 +129,10 @@ public class ClockManager : MonoBehaviour
         int totalSeconds = (totalMinutes * 60) + System.DateTime.Now.Second;
 
         float linierTime = (float)totalSeconds / 86400f;
-        //Debug.Log($"0 To 1 Time: {linierTime}, 0 To 1 Week: {pos} Seconds: {totalSeconds}");
+        //Debug.Log($"0 To 1 Time: {linierTime}, 0 To 1 Week: {pos} Seconds: {_totalSeconds}");
         float newRotation = Mathf.Lerp(-180, 180, linierTime);
 
-        if(linierTime > .25f && linierTime < .75f)
+        if (linierTime > .25f && linierTime < .75f)
         {
             _daySnapshot.TransitionTo(20);
         }
@@ -148,6 +222,22 @@ public class ClockManager : MonoBehaviour
     //        Week.text = $"Week: {dateTime.CurrentWeek.ToString()}";
     //    }
     //}
+}
+
+[CustomEditor(typeof(ClockManager))]
+public class ClockManagerEditor : Editor
+{
+    public override void OnInspectorGUI()
+    {
+        ClockManager _target = (ClockManager)target;
+        base.OnInspectorGUI();
+
+        if (GUILayout.Button("AdvanceTime"))
+        {
+            _target.AddSeconds(_target.secondsToAdd);
+            _target.secondsToAdd = 0;
+        }
+    }
 }
 
 //[System.Serializable]
