@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.Playables;
 
 // ONLY IN THIS STATE IF IN MAIN MENU
 public class NewGameState : GameBaseState
@@ -42,5 +43,22 @@ public class NewGameState : GameBaseState
         DataPersistanceManager.Instance.NewGame();
         await Task.Delay(1000);
         Context.DoneLoading = true;
+
+        MenuManager.Instance.Menus.FindAll(r => r.MenuType == MenuType.MainMenu).ForEach(r => { r.IsActive = false; });
+        MenuManager.Instance.Menus.FindAll(r => r.MenuType == MenuType.InGame).ForEach(r => { r.IsActive = false; });
+        MenuManager.Instance.Menus.FindAll(r => r.MenuType == MenuType.InGame).Find(r => r.MenuName == "Console Panel").IsActive = true;
+        MenuManager.Instance.Menus.FindAll(r => r.MenuType == MenuType.InGame).Find(r => r.MenuName == "Thoughts Panel").IsActive = true;
+        Context.Clip.Play();
+        Context.Clip.stopped += OnPlayableDirectorStopped;
+    }
+
+    public void OnPlayableDirectorStopped(PlayableDirector director)
+    {
+        if (Context.Clip == director)
+        {
+            Context.DoneLoading = true;
+            MenuManager.Instance.Menus.FindAll(r => r.MenuType == MenuType.InGame).Find(r => r.MenuName == "Console Panel").IsActive = false;
+            MenuManager.Instance.Menus.FindAll(r => r.MenuType == MenuType.InGame).Find(r => r.MenuName == "Thoughts Panel").IsActive = false;
+        }
     }
 }

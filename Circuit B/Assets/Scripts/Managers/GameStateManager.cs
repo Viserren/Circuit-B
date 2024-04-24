@@ -1,7 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.Playables;
+using UnityEngine.Timeline;
 
 public class GameStateManager : MonoBehaviour
 {
@@ -12,6 +13,10 @@ public class GameStateManager : MonoBehaviour
 
     bool _isPaused;
     bool _isMainMenu;
+
+    [SerializeField] PlayableDirector _playableDirector;
+
+    public PlayableDirector Clip { get { return _playableDirector; } }
 
     public bool CreatingNewGame { get { return _creatingNewGame; } set { _creatingNewGame = value; } }
     public bool LoadingGame { get { return _loadingGame; } set { _loadingGame = value; } }
