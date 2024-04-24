@@ -917,6 +917,7 @@ MonoBehaviour:
       pitch: 1
       loop: 0
       playOnAwake: 0
+      isMainBackgroundMusic: 0
       audioSource: {fileID: 0}
       mixerGroup: {fileID: 6295319324238277952, guid: 3714d3b16d3edb04b8957209b5bf2309,
         type: 2}
@@ -928,6 +929,7 @@ MonoBehaviour:
       pitch: 1
       loop: 0
       playOnAwake: 0
+      isMainBackgroundMusic: 0
       audioSource: {fileID: 0}
       mixerGroup: {fileID: 6295319324238277952, guid: 3714d3b16d3edb04b8957209b5bf2309,
         type: 2}
@@ -937,6 +939,7 @@ MonoBehaviour:
       pitch: 1
       loop: 0
       playOnAwake: 0
+      isMainBackgroundMusic: 0
       audioSource: {fileID: 0}
       mixerGroup: {fileID: 6295319324238277952, guid: 3714d3b16d3edb04b8957209b5bf2309,
         type: 2}
@@ -946,6 +949,7 @@ MonoBehaviour:
       pitch: 1
       loop: 0
       playOnAwake: 0
+      isMainBackgroundMusic: 0
       audioSource: {fileID: 0}
       mixerGroup: {fileID: 6295319324238277952, guid: 3714d3b16d3edb04b8957209b5bf2309,
         type: 2}
@@ -955,6 +959,7 @@ MonoBehaviour:
       pitch: 1
       loop: 0
       playOnAwake: 0
+      isMainBackgroundMusic: 0
       audioSource: {fileID: 0}
       mixerGroup: {fileID: 6295319324238277952, guid: 3714d3b16d3edb04b8957209b5bf2309,
         type: 2}
@@ -964,6 +969,7 @@ MonoBehaviour:
       pitch: 1
       loop: 0
       playOnAwake: 0
+      isMainBackgroundMusic: 0
       audioSource: {fileID: 0}
       mixerGroup: {fileID: 6295319324238277952, guid: 3714d3b16d3edb04b8957209b5bf2309,
         type: 2}
@@ -973,6 +979,7 @@ MonoBehaviour:
       pitch: 1
       loop: 0
       playOnAwake: 0
+      isMainBackgroundMusic: 0
       audioSource: {fileID: 0}
       mixerGroup: {fileID: 6295319324238277952, guid: 3714d3b16d3edb04b8957209b5bf2309,
         type: 2}
@@ -982,6 +989,7 @@ MonoBehaviour:
       pitch: 1
       loop: 0
       playOnAwake: 0
+      isMainBackgroundMusic: 0
       audioSource: {fileID: 0}
       mixerGroup: {fileID: 6295319324238277952, guid: 3714d3b16d3edb04b8957209b5bf2309,
         type: 2}
@@ -991,6 +999,7 @@ MonoBehaviour:
       pitch: 1
       loop: 0
       playOnAwake: 0
+      isMainBackgroundMusic: 0
       audioSource: {fileID: 0}
       mixerGroup: {fileID: 6295319324238277952, guid: 3714d3b16d3edb04b8957209b5bf2309,
         type: 2}
@@ -1000,6 +1009,7 @@ MonoBehaviour:
       pitch: 1
       loop: 0
       playOnAwake: 0
+      isMainBackgroundMusic: 0
       audioSource: {fileID: 0}
       mixerGroup: {fileID: 6295319324238277952, guid: 3714d3b16d3edb04b8957209b5bf2309,
         type: 2}
@@ -1009,6 +1019,7 @@ MonoBehaviour:
       pitch: 1
       loop: 0
       playOnAwake: 0
+      isMainBackgroundMusic: 0
       audioSource: {fileID: 0}
       mixerGroup: {fileID: 6295319324238277952, guid: 3714d3b16d3edb04b8957209b5bf2309,
         type: 2}
@@ -1018,6 +1029,7 @@ MonoBehaviour:
       pitch: 1
       loop: 0
       playOnAwake: 0
+      isMainBackgroundMusic: 0
       audioSource: {fileID: 0}
       mixerGroup: {fileID: 6295319324238277952, guid: 3714d3b16d3edb04b8957209b5bf2309,
         type: 2}
@@ -1027,6 +1039,7 @@ MonoBehaviour:
       pitch: 1
       loop: 0
       playOnAwake: 0
+      isMainBackgroundMusic: 0
       audioSource: {fileID: 0}
       mixerGroup: {fileID: 6295319324238277952, guid: 3714d3b16d3edb04b8957209b5bf2309,
         type: 2}
@@ -1036,6 +1049,7 @@ MonoBehaviour:
       pitch: 1
       loop: 0
       playOnAwake: 0
+      isMainBackgroundMusic: 0
       audioSource: {fileID: 0}
       mixerGroup: {fileID: 6295319324238277952, guid: 3714d3b16d3edb04b8957209b5bf2309,
         type: 2}
@@ -1045,6 +1059,7 @@ MonoBehaviour:
       pitch: 1
       loop: 0
       playOnAwake: 0
+      isMainBackgroundMusic: 0
       audioSource: {fileID: 0}
       mixerGroup: {fileID: 6295319324238277952, guid: 3714d3b16d3edb04b8957209b5bf2309,
         type: 2}
@@ -1056,6 +1071,7 @@ MonoBehaviour:
       pitch: 1
       loop: 0
       playOnAwake: 0
+      isMainBackgroundMusic: 0
       audioSource: {fileID: 0}
       mixerGroup: {fileID: 6295319324238277952, guid: 3714d3b16d3edb04b8957209b5bf2309,
         type: 2}
@@ -1065,6 +1081,7 @@ MonoBehaviour:
       pitch: 1
       loop: 0
       playOnAwake: 0
+      isMainBackgroundMusic: 0
       audioSource: {fileID: 0}
       mixerGroup: {fileID: 6295319324238277952, guid: 3714d3b16d3edb04b8957209b5bf2309,
         type: 2}
@@ -1074,6 +1091,7 @@ MonoBehaviour:
       pitch: 1
       loop: 0
       playOnAwake: 0
+      isMainBackgroundMusic: 0
       audioSource: {fileID: 0}
       mixerGroup: {fileID: 6295319324238277952, guid: 3714d3b16d3edb04b8957209b5bf2309,
         type: 2}
@@ -1083,6 +1101,7 @@ MonoBehaviour:
       pitch: 1
       loop: 0
       playOnAwake: 0
+      isMainBackgroundMusic: 0
       audioSource: {fileID: 0}
       mixerGroup: {fileID: 6295319324238277952, guid: 3714d3b16d3edb04b8957209b5bf2309,
         type: 2}
@@ -1092,6 +1111,7 @@ MonoBehaviour:
       pitch: 1
       loop: 0
       playOnAwake: 0
+      isMainBackgroundMusic: 0
       audioSource: {fileID: 0}
       mixerGroup: {fileID: 6295319324238277952, guid: 3714d3b16d3edb04b8957209b5bf2309,
         type: 2}
@@ -1101,6 +1121,7 @@ MonoBehaviour:
       pitch: 1
       loop: 0
       playOnAwake: 0
+      isMainBackgroundMusic: 0
       audioSource: {fileID: 0}
       mixerGroup: {fileID: 6295319324238277952, guid: 3714d3b16d3edb04b8957209b5bf2309,
         type: 2}
@@ -1110,6 +1131,7 @@ MonoBehaviour:
       pitch: 1
       loop: 0
       playOnAwake: 0
+      isMainBackgroundMusic: 0
       audioSource: {fileID: 0}
       mixerGroup: {fileID: 6295319324238277952, guid: 3714d3b16d3edb04b8957209b5bf2309,
         type: 2}
@@ -1119,6 +1141,7 @@ MonoBehaviour:
       pitch: 1
       loop: 0
       playOnAwake: 0
+      isMainBackgroundMusic: 0
       audioSource: {fileID: 0}
       mixerGroup: {fileID: 6295319324238277952, guid: 3714d3b16d3edb04b8957209b5bf2309,
         type: 2}
@@ -1128,6 +1151,7 @@ MonoBehaviour:
       pitch: 1
       loop: 0
       playOnAwake: 0
+      isMainBackgroundMusic: 0
       audioSource: {fileID: 0}
       mixerGroup: {fileID: 6295319324238277952, guid: 3714d3b16d3edb04b8957209b5bf2309,
         type: 2}
@@ -1137,6 +1161,7 @@ MonoBehaviour:
       pitch: 1
       loop: 0
       playOnAwake: 0
+      isMainBackgroundMusic: 0
       audioSource: {fileID: 0}
       mixerGroup: {fileID: 6295319324238277952, guid: 3714d3b16d3edb04b8957209b5bf2309,
         type: 2}
@@ -1146,6 +1171,7 @@ MonoBehaviour:
       pitch: 1
       loop: 0
       playOnAwake: 0
+      isMainBackgroundMusic: 0
       audioSource: {fileID: 0}
       mixerGroup: {fileID: 6295319324238277952, guid: 3714d3b16d3edb04b8957209b5bf2309,
         type: 2}
@@ -1155,6 +1181,7 @@ MonoBehaviour:
       pitch: 1
       loop: 0
       playOnAwake: 0
+      isMainBackgroundMusic: 0
       audioSource: {fileID: 0}
       mixerGroup: {fileID: 6295319324238277952, guid: 3714d3b16d3edb04b8957209b5bf2309,
         type: 2}
@@ -1164,6 +1191,7 @@ MonoBehaviour:
       pitch: 1
       loop: 0
       playOnAwake: 0
+      isMainBackgroundMusic: 0
       audioSource: {fileID: 0}
       mixerGroup: {fileID: 6295319324238277952, guid: 3714d3b16d3edb04b8957209b5bf2309,
         type: 2}
@@ -1173,6 +1201,7 @@ MonoBehaviour:
       pitch: 1
       loop: 0
       playOnAwake: 0
+      isMainBackgroundMusic: 0
       audioSource: {fileID: 0}
       mixerGroup: {fileID: 6295319324238277952, guid: 3714d3b16d3edb04b8957209b5bf2309,
         type: 2}
@@ -1184,6 +1213,7 @@ MonoBehaviour:
       pitch: 1
       loop: 0
       playOnAwake: 0
+      isMainBackgroundMusic: 0
       audioSource: {fileID: 0}
       mixerGroup: {fileID: 6295319324238277952, guid: 3714d3b16d3edb04b8957209b5bf2309,
         type: 2}
@@ -1193,6 +1223,7 @@ MonoBehaviour:
       pitch: 1
       loop: 0
       playOnAwake: 0
+      isMainBackgroundMusic: 0
       audioSource: {fileID: 0}
       mixerGroup: {fileID: 6295319324238277952, guid: 3714d3b16d3edb04b8957209b5bf2309,
         type: 2}
@@ -1202,6 +1233,7 @@ MonoBehaviour:
       pitch: 1
       loop: 0
       playOnAwake: 0
+      isMainBackgroundMusic: 0
       audioSource: {fileID: 0}
       mixerGroup: {fileID: 6295319324238277952, guid: 3714d3b16d3edb04b8957209b5bf2309,
         type: 2}
@@ -1211,6 +1243,7 @@ MonoBehaviour:
       pitch: 1
       loop: 0
       playOnAwake: 0
+      isMainBackgroundMusic: 0
       audioSource: {fileID: 0}
       mixerGroup: {fileID: 6295319324238277952, guid: 3714d3b16d3edb04b8957209b5bf2309,
         type: 2}
@@ -1220,6 +1253,7 @@ MonoBehaviour:
       pitch: 1
       loop: 0
       playOnAwake: 0
+      isMainBackgroundMusic: 0
       audioSource: {fileID: 0}
       mixerGroup: {fileID: 6295319324238277952, guid: 3714d3b16d3edb04b8957209b5bf2309,
         type: 2}
@@ -1229,6 +1263,7 @@ MonoBehaviour:
       pitch: 1
       loop: 0
       playOnAwake: 0
+      isMainBackgroundMusic: 0
       audioSource: {fileID: 0}
       mixerGroup: {fileID: 6295319324238277952, guid: 3714d3b16d3edb04b8957209b5bf2309,
         type: 2}
@@ -1238,6 +1273,7 @@ MonoBehaviour:
       pitch: 1
       loop: 0
       playOnAwake: 0
+      isMainBackgroundMusic: 0
       audioSource: {fileID: 0}
       mixerGroup: {fileID: 6295319324238277952, guid: 3714d3b16d3edb04b8957209b5bf2309,
         type: 2}
@@ -1247,6 +1283,7 @@ MonoBehaviour:
       pitch: 1
       loop: 0
       playOnAwake: 0
+      isMainBackgroundMusic: 0
       audioSource: {fileID: 0}
       mixerGroup: {fileID: 6295319324238277952, guid: 3714d3b16d3edb04b8957209b5bf2309,
         type: 2}
@@ -1256,6 +1293,7 @@ MonoBehaviour:
       pitch: 1
       loop: 0
       playOnAwake: 0
+      isMainBackgroundMusic: 0
       audioSource: {fileID: 0}
       mixerGroup: {fileID: 6295319324238277952, guid: 3714d3b16d3edb04b8957209b5bf2309,
         type: 2}
@@ -1265,6 +1303,7 @@ MonoBehaviour:
       pitch: 1
       loop: 0
       playOnAwake: 0
+      isMainBackgroundMusic: 0
       audioSource: {fileID: 0}
       mixerGroup: {fileID: 6295319324238277952, guid: 3714d3b16d3edb04b8957209b5bf2309,
         type: 2}
@@ -1274,6 +1313,7 @@ MonoBehaviour:
       pitch: 1
       loop: 0
       playOnAwake: 0
+      isMainBackgroundMusic: 0
       audioSource: {fileID: 0}
       mixerGroup: {fileID: 6295319324238277952, guid: 3714d3b16d3edb04b8957209b5bf2309,
         type: 2}
@@ -1283,6 +1323,7 @@ MonoBehaviour:
       pitch: 1
       loop: 0
       playOnAwake: 0
+      isMainBackgroundMusic: 0
       audioSource: {fileID: 0}
       mixerGroup: {fileID: 6295319324238277952, guid: 3714d3b16d3edb04b8957209b5bf2309,
         type: 2}
@@ -1292,6 +1333,7 @@ MonoBehaviour:
       pitch: 1
       loop: 0
       playOnAwake: 0
+      isMainBackgroundMusic: 0
       audioSource: {fileID: 0}
       mixerGroup: {fileID: 6295319324238277952, guid: 3714d3b16d3edb04b8957209b5bf2309,
         type: 2}
@@ -1301,6 +1343,7 @@ MonoBehaviour:
       pitch: 1
       loop: 0
       playOnAwake: 0
+      isMainBackgroundMusic: 0
       audioSource: {fileID: 0}
       mixerGroup: {fileID: 6295319324238277952, guid: 3714d3b16d3edb04b8957209b5bf2309,
         type: 2}

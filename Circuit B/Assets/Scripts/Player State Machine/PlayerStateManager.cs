@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Net.NetworkInformation;
 using System.Security.Cryptography;
+using UnityEditor.U2D.Aseprite;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Playables;
@@ -391,12 +392,17 @@ public class PlayerStateManager : MonoBehaviour, IDataPersistance
         _currentState.EnterState();
     }
 
-    public void LoadData(GameData gameData)
+    public void SetCharacterPosition(Vector3 position, Quaternion rotation)
     {
         CharacterController.enabled = false;
-        CharacterController.transform.position = gameData.startLocation;
-        CharacterController.transform.rotation = gameData.startRotation;
+        CharacterController.transform.position = position;
+        CharacterController.transform.rotation = rotation;
         CharacterController.enabled = true;
+    }
+
+    public void LoadData(GameData gameData)
+    {
+        SetCharacterPosition(gameData.startLocation, gameData.startRotation);
         _resetHealthCoroutine = null;
         _animator.SetBool(_isJumpingHash, false);
         _animator.SetBool(_isRunningHash, false);

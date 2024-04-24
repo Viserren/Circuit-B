@@ -65,11 +65,19 @@ public class MenuManager : MonoBehaviour
 
     void PauseScreen(InputAction.CallbackContext ctx)
     {
-        if (!GameStateManager.Instance.IsMainMenu && !_deadMenu)
+        if (_menus.Find(r => r.MenuName == "Memories").IsActive)
         {
-            PauseScreen();
-            OptionsMenuLoaded.Invoke();
+            MemoriesScreen();
         }
+        else
+        {
+            if (!GameStateManager.Instance.IsMainMenu && !_deadMenu)
+            {
+                PauseScreen();
+                OptionsMenuLoaded.Invoke();
+            }
+        }
+
     }
 
     void MemoriesScreen(InputAction.CallbackContext ctx)

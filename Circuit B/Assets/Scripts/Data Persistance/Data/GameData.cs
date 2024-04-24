@@ -40,8 +40,8 @@ public class GameData
         this.isDead = false;
         this.hasBattery = false;
         //this.inventory = new List<InventoryItem>();
-        this.startLocation = new Vector3(33.1020012f, 0.931999981f, 51.5740013f);
-        this.startRotation = new Quaternion(0, -0.700010002f, 0, -0.714133084f);
+        this.startLocation = new Vector3(31.9375f, -4.09375f, 53.03125f);
+        this.startRotation = new Quaternion(0, -0.216590568f, 0, -0.976262569f);
         this.memories = MemoryManager.Instance.Memories;
     }
 }
