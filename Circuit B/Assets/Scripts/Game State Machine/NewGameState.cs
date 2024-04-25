@@ -43,6 +43,8 @@ public class NewGameState : GameBaseState
         DataPersistanceManager.Instance.NewGame();
         await Task.Delay(1000);
 
+        AudioManager.Instance.PlayMusic("You Want Dark Tunes");
+
         MenuManager.Instance.Menus.FindAll(r => r.MenuType == MenuType.MainMenu).ForEach(r => { r.IsActive = false; });
         MenuManager.Instance.Menus.FindAll(r => r.MenuType == MenuType.InGame).ForEach(r => { r.IsActive = false; });
         MenuManager.Instance.Menus.FindAll(r => r.MenuType == MenuType.InGame).Find(r => r.MenuName == "Console Panel").IsActive = true;

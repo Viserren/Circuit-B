@@ -16,6 +16,9 @@ public class MenuManager : MonoBehaviour
     [SerializeField] GameObject _opening;
     [SerializeField] Button _selectedButton;
 
+    [SerializeField] float _timeOutTime = 300;
+    float _timeOut;
+
     public static MenuManager Instance { get; private set; }
 
     public UnityEvent MainMenuLoaded = new UnityEvent();
@@ -37,11 +40,16 @@ public class MenuManager : MonoBehaviour
         Instance = this;
 
         _uiInput = new PlayerInput();
+        _timeOut = _timeOutTime;
     }
 
     private void OnEnable()
     {
         _uiInput.UI.Enable();
+        for (int i = 0; i < _uiInput.asset.actionMaps.Count; i++)
+        {
+            _uiInput.asset.actionMaps[i].actionTriggered += TestCheckInput;
+        }
         _uiInput.UI.Pause.performed += PauseScreen;
         _uiInput.UI.Memories.performed += MemoriesScreen;
     }
@@ -49,6 +57,10 @@ public class MenuManager : MonoBehaviour
     private void OnDisable()
     {
         _uiInput.UI.Disable();
+        for (int i = 0; i < _uiInput.asset.actionMaps.Count; i++)
+        {
+            _uiInput.asset.actionMaps[i].actionTriggered -= TestCheckInput;
+        }
         _uiInput.UI.Pause.performed -= PauseScreen;
         _uiInput.UI.Memories.performed -= MemoriesScreen;
     }
@@ -56,6 +68,22 @@ public class MenuManager : MonoBehaviour
     private void Start()
     {
         _versionText.text = $"Version: {Application.version}";
+    }
+
+    private void Update()
+    {
+        if (_timeOut > 0)
+        {
+            _timeOut -= Time.deltaTime;
+        }
+    }
+
+    public void TestCheckInput(InputAction.CallbackContext ctx)
+    {
+        if (ctx.phase == InputActionPhase.Waiting)
+        {
+            _timeOut = _timeOutTime;
+        }
     }
 
     public void NewGameButton()

@@ -5240,8 +5240,9 @@ MonoBehaviour:
   _fileName: Tree
   _captureWidth: 512
   _captureHeight: 512
-  _fileCounter: 50
+  _fileCounter: 51
   mainCamera: {fileID: 855016404}
+  _isTransparent: 0
 --- !u!114 &855016402
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7228,7 +7229,7 @@ MonoBehaviour:
   m_RequiresOpaqueTextureOption: 1
   m_CameraType: 0
   m_Cameras: []
-  m_RendererIndex: 1
+  m_RendererIndex: -1
   m_VolumeLayerMask:
     serializedVersion: 2
     m_Bits: 1
@@ -7336,8 +7337,9 @@ MonoBehaviour:
   _fileName: Tree
   _captureWidth: 512
   _captureHeight: 512
-  _fileCounter: 4
+  _fileCounter: 6
   mainCamera: {fileID: 1114840771}
+  _isTransparent: 1
 --- !u!1 &1232478361
 GameObject:
   m_ObjectHideFlags: 0

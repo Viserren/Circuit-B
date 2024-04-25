@@ -9,7 +9,8 @@ using Random = UnityEngine.Random;
 public class AudioManager : MonoBehaviour
 {
     [SerializeField] AudioMixer _audioMixer;
-    public Sound[] sounds;
+    public Sound[] allMusic;
+    public Sound[] allSounds;
 
 
     [Header("Background Music")]
@@ -38,7 +39,18 @@ public class AudioManager : MonoBehaviour
         }
         Instance = this;
 
-        foreach (Sound s in sounds)
+        foreach (Sound s in allMusic)
+        {
+            s.audioSource = gameObject.AddComponent<AudioSource>();
+            s.audioSource.clip = s.clip;
+            s.audioSource.volume = s.volume;
+            s.audioSource.pitch = s.pitch;
+            s.audioSource.loop = s.loop;
+            s.audioSource.playOnAwake = s.playOnAwake;
+            s.audioSource.outputAudioMixerGroup = s.mixerGroup;
+        }
+
+        foreach (Sound s in allSounds)
         {
             s.audioSource = gameObject.AddComponent<AudioSource>();
             s.audioSource.clip = s.clip;
@@ -54,14 +66,28 @@ public class AudioManager : MonoBehaviour
     {
         LoadVolumes();
         LoadBackgroundMusic();
-        StartCoroutine(PlayBackgroundMusic());
+        //StartCoroutine(PlayBackgroundMusic());
     }
 
-    public void Play(string name)
+    public void PlayMusic(string name)
     {
         try
         {
-            Sound s = Array.Find(sounds, sound => sound.name == name);
+            Sound s = Array.Find(allMusic, sound => sound.name == name);
+            s.audioSource.Play();
+        }
+        catch (Exception e)
+        {
+            Debug.Log($"{e.Message}");
+            throw;
+        }
+    }
+
+    public void PlaySound(string name)
+    {
+        try
+        {
+            Sound s = Array.Find(allSounds, sound => sound.name == name);
             s.audioSource.Play();
         }
         catch (Exception e)
@@ -79,13 +105,13 @@ public class AudioManager : MonoBehaviour
             if (!_currentPlayerMusic.audioSource.isPlaying)
             {
                 _currentPlayerMusic = _backgroundMusic[temp];
-                Play(_currentPlayerMusic.name);
+                PlayMusic(_currentPlayerMusic.name);
             }
         }
         else
         {
             _currentPlayerMusic = _backgroundMusic[temp];
-            Play(_currentPlayerMusic.name);
+            PlayMusic(_currentPlayerMusic.name);
         }
 
         yield return new WaitForSeconds(_secondsBetweenMusic);
@@ -95,7 +121,7 @@ public class AudioManager : MonoBehaviour
     {
         try
         {
-            _backgroundMusic = Array.FindAll(sounds, sound => sound.isMainBackgroundMusic == true);
+            _backgroundMusic = Array.FindAll(allMusic, sound => sound.isMainBackgroundMusic == true);
         }
         catch (Exception e)
         {

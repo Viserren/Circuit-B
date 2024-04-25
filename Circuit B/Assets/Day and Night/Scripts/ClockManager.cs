@@ -11,7 +11,7 @@ using UnityEngine.UI;
 public class ClockManager : MonoBehaviour
 {
     //public RectTransform ClockFace;
-    public TextMeshProUGUI Date, Time, Season, Week;
+    //public TextMeshProUGUI Date, Time, Season, Week;
 
     [SerializeField] AudioMixerSnapshot _daySnapshot, _nightSnapshot;
     [SerializeField] Color dayColour, nightColour;

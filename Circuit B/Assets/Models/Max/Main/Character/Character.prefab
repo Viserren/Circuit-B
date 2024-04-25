@@ -1756,10 +1756,6 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 6376662302087255616}
-    - targetCorrespondingSourceObject: {fileID: 796571245933008779, guid: 0e65753210b4a594aa5d7cb899ff7447,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 6363649035983836681}
     - targetCorrespondingSourceObject: {fileID: 9148548460791437811, guid: 0e65753210b4a594aa5d7cb899ff7447,
         type: 3}
       insertIndex: -1
@@ -2216,48 +2212,6 @@ MonoBehaviour:
   _originalMesh: {fileID: 0}
   _overgrownMesh: {fileID: -5919378269130905056, guid: 4c6be5516f62bf84d8fd350370ac0ac8,
     type: 3}
---- !u!114 &6363649035983836681
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7603008243726067762}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cee1753c508fec74fb681b606f8cd5bc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Dead:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 186881821239878585}
-        m_TargetAssemblyTypeName: PlayerStateManager, Assembly-CSharp
-        m_MethodName: Dead
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  Alive:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 186881821239878585}
-        m_TargetAssemblyTypeName: PlayerStateManager, Assembly-CSharp
-        m_MethodName: Alive
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1 &7642056592986423338 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 612695293790224275, guid: 0e65753210b4a594aa5d7cb899ff7447,

@@ -15,7 +15,7 @@ public class PlayerStateManager : MonoBehaviour, IDataPersistance
     PlayerInput _playerInput;
     CharacterController _characterController;
     Animator _animator;
-    BatteryHealth _batteryHealth;
+    //BatteryHealth _batteryHealth;
     SoundObject _soundObject;
     SoundEmissions[] _soundEmissions;
     [SerializeField] LayerMask _soundLayers;
@@ -71,7 +71,7 @@ public class PlayerStateManager : MonoBehaviour, IDataPersistance
     public PlayerBaseState CurrentState { get { return _currentState; } set { _currentState = value; } }
     public Animator Animator { get { return _animator; } }
     public SoundEmissions[] SoundEmissions { get { return _soundEmissions; } }
-    public BatteryHealth BatteryHealth { get { return _batteryHealth; } }
+    //public BatteryHealth BatteryHealth { get { return _batteryHealth; } }
     public Coroutine CurrentJumpResetRoutine { get { return _currentJumpResetRoutine; } set { _currentJumpResetRoutine = value; } }
     public Dictionary<int, float> InitialJumpVelocities { get { return _initialJumpVelocities; } }
     public Dictionary<int, float> JumpGravities { get { return _jumpGravities; } }
@@ -103,7 +103,7 @@ public class PlayerStateManager : MonoBehaviour, IDataPersistance
         _playerInput = new PlayerInput();
         _characterController = GetComponent<CharacterController>();
         _animator = GetComponent<Animator>();
-        _batteryHealth = GetComponentInChildren<BatteryHealth>(true);
+        //_batteryHealth = GetComponentInChildren<BatteryHealth>(true);
 
         _soundObject = gameObject.GetComponentInChildren<SoundObject>();
 
@@ -283,23 +283,23 @@ public class PlayerStateManager : MonoBehaviour, IDataPersistance
         return vectorRotatedToCameraSpace;
     }
 
-    Coroutine _resetHealthCoroutine;
-    void TakeBatteryHealth(int min, int max, int threshold, int damage)
-    {
-        if (_batteryHealth.enabled)
-        {
-            if (_resetHealthCoroutine == null)
-            {
-                int genNum = Random.Range(min, max);
+    //Coroutine _resetHealthCoroutine;
+    //void TakeBatteryHealth(int min, int max, int threshold, int damage)
+    //{
+    //    if (_batteryHealth.enabled)
+    //    {
+    //        if (_resetHealthCoroutine == null)
+    //        {
+    //            int genNum = Random.Range(min, max);
 
-                if (genNum <= threshold)
-                {
-                    BatteryHealth.GetComponent<BatteryHealth>().DecreaseHealth(damage);
-                    _resetHealthCoroutine = StartCoroutine(ResetTakeBatteryHealthTimer());
-                }
-            }
-        }
-    }
+    //            if (genNum <= threshold)
+    //            {
+    //                BatteryHealth.GetComponent<BatteryHealth>().DecreaseHealth(damage);
+    //                _resetHealthCoroutine = StartCoroutine(ResetTakeBatteryHealthTimer());
+    //            }
+    //        }
+    //    }
+    //}
 
     void SetupSounds()
     {
@@ -369,15 +369,15 @@ public class PlayerStateManager : MonoBehaviour, IDataPersistance
         int threshold = int.Parse(ParametersList[2]);
         int damage = int.Parse(ParametersList[3]);
 
-        TakeBatteryHealth(min, max, threshold, damage);
+        //TakeBatteryHealth(min, max, threshold, damage);
         PlayWalkingSound();
     }
 
-    IEnumerator ResetTakeBatteryHealthTimer()
-    {
-        yield return new WaitForSeconds(30);
-        _resetHealthCoroutine = null;
-    }
+    //IEnumerator ResetTakeBatteryHealthTimer()
+    //{
+    //    yield return new WaitForSeconds(30);
+    //    _resetHealthCoroutine = null;
+    //}
 
     public void Alive()
     {
@@ -403,7 +403,7 @@ public class PlayerStateManager : MonoBehaviour, IDataPersistance
     public void LoadData(GameData gameData)
     {
         SetCharacterPosition(gameData.startLocation, gameData.startRotation);
-        _resetHealthCoroutine = null;
+        //_resetHealthCoroutine = null;
         _animator.SetBool(_isJumpingHash, false);
         _animator.SetBool(_isRunningHash, false);
         _animator.SetBool(_isWalkingHash, false);

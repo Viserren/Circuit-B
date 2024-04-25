@@ -45,18 +45,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _audioMixer: {fileID: 24100000, guid: 3714d3b16d3edb04b8957209b5bf2309, type: 2}
-  sounds:
-  - name: Music 1
+  allMusic:
+  - name: Elevated Consciousness
     clip: {fileID: 8300000, guid: 337f7acb4a5bfa94cac17be3690b188c, type: 3}
-    volume: 0
+    volume: 1
     pitch: 1
     loop: 0
     playOnAwake: 0
-    isMainBackgroundMusic: 0
+    isMainBackgroundMusic: 1
     audioSource: {fileID: 0}
     mixerGroup: {fileID: -2511588224459882221, guid: 3714d3b16d3edb04b8957209b5bf2309,
       type: 2}
-  - name: Music 2
+  - name: Let Her Go
     clip: {fileID: 8300000, guid: ddaa7d9b7389e2240a32be64c13fa161, type: 3}
     volume: 1
     pitch: 1
@@ -66,7 +66,7 @@ MonoBehaviour:
     audioSource: {fileID: 0}
     mixerGroup: {fileID: -2511588224459882221, guid: 3714d3b16d3edb04b8957209b5bf2309,
       type: 2}
-  - name: Music 3
+  - name: Woodland Sunrays
     clip: {fileID: 8300000, guid: c764552f51c08584290de85305833e11, type: 3}
     volume: 1
     pitch: 1
@@ -76,14 +76,15 @@ MonoBehaviour:
     audioSource: {fileID: 0}
     mixerGroup: {fileID: -2511588224459882221, guid: 3714d3b16d3edb04b8957209b5bf2309,
       type: 2}
-  - name: Music 4
+  - name: You Want Dark Tunes
     clip: {fileID: 8300000, guid: 14278fc677cb7ab4c9c9d390309cc526, type: 3}
     volume: 1
     pitch: 1
     loop: 0
     playOnAwake: 0
-    isMainBackgroundMusic: 0
+    isMainBackgroundMusic: 1
     audioSource: {fileID: 0}
     mixerGroup: {fileID: -2511588224459882221, guid: 3714d3b16d3edb04b8957209b5bf2309,
       type: 2}
+  allSounds: []
   _secondsBetweenMusic: 60
