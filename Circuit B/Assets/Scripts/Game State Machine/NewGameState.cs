@@ -42,7 +42,8 @@ public class NewGameState : GameBaseState
     {
         DataPersistanceManager.Instance.NewGame();
         await Task.Delay(1000);
-
+        AudioManager.Instance.StopMusicInMenu(5);
+        AudioManager.Instance.TransitionToInGameMusic(5);
         AudioManager.Instance.PlayMusic("You Want Dark Tunes");
 
         MenuManager.Instance.Menus.FindAll(r => r.MenuType == MenuType.MainMenu).ForEach(r => { r.IsActive = false; });
@@ -53,12 +54,12 @@ public class NewGameState : GameBaseState
         Context.Clip.stopped += OnPlayableDirectorStopped;
     }
 
+
+
     public void OnPlayableDirectorStopped(PlayableDirector director)
     {
         if (Context.Clip == director)
         {
-            Context.DoneLoading = true;
-            GameObject.FindAnyObjectByType<PlayerStateManager>().SetCharacterPosition(new Vector3(33.1020012f, 0.931999981f, 51.5740013f), new Quaternion(0, -0.700010002f, 0, -0.714133084f));
             MenuManager.Instance.Menus.FindAll(r => r.MenuType == MenuType.InGame).Find(r => r.MenuName == "Console Panel").IsActive = false;
             MenuManager.Instance.Menus.FindAll(r => r.MenuType == MenuType.InGame).Find(r => r.MenuName == "Thoughts Panel").IsActive = false;
         }

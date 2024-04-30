@@ -27,6 +27,7 @@ public class ClockManager : MonoBehaviour
     //public TimeToUseWhenUpdating timeToUseWhenUpdating;
     public AnimationCurve dayNightCurve;
     public AnimationCurve sunHeightCurve;
+    bool _isDayNext;
 
     //float tSeconds;
     //float tMinutes;
@@ -35,6 +36,7 @@ public class ClockManager : MonoBehaviour
     [SerializeField] int _secondsToAdd;
     [Tooltip("1 Second is 1 Seconds in real life, so 0.5 will be 2x as fast as real time")]
     [SerializeField] float _timeInterval;
+    float linierTime;
     public int secondsToAdd { get { return _secondsToAdd; } set { _secondsToAdd = value; } }
 
     int _totalSeconds;
@@ -46,6 +48,11 @@ public class ClockManager : MonoBehaviour
     {
         //startingRotation = ClockFace.eulerAngles.z;
         sunStartingRotation = sunLight.transform.eulerAngles.z;
+    }
+
+    private void Start()
+    {
+        _isDayNext = linierTime > .25f && linierTime < .75f ? true : false;
     }
 
     private void FixedUpdate()
@@ -65,17 +72,25 @@ public class ClockManager : MonoBehaviour
         #endregion
 
         // Default 86400f
-        float linierTime = (float)_totalSeconds / 43200f;
+        linierTime = (float)_totalSeconds / 43200f;
         //Debug.Log($"0 To 1 Time: {linierTime}, 0 To 1 Week: {pos} Seconds: {_totalSeconds}");
         float newRotation = Mathf.Lerp(-180, 180, linierTime);
 
         if (linierTime > .25f && linierTime < .75f)
         {
-            _daySnapshot.TransitionTo(20);
+            if (_isDayNext)
+            {
+                _daySnapshot.TransitionTo(20);
+                _isDayNext = false;
+            }
         }
         else
         {
-            _nightSnapshot.TransitionTo(20);
+            if (!_isDayNext)
+            {
+                _nightSnapshot.TransitionTo(20);
+                _isDayNext = true;
+            }
         }
         //40 32 31
         // Winter 20

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.Playables;
 using UnityEngine.Timeline;
 
@@ -24,6 +25,7 @@ public class GameStateManager : MonoBehaviour
     public bool FirstLoadComplete { get { return _firstLoadComplete; } set { _firstLoadComplete = value; } }
     public bool IsPaused { get { return _isPaused; } set { _isPaused = value; } }
     public bool IsMainMenu { get { return _isMainMenu; } set { _isMainMenu = value; } }
+    
 
     public static GameStateManager Instance { get; private set; }
 
@@ -71,5 +73,12 @@ public class GameStateManager : MonoBehaviour
     public void DoneSceneLoad()
     {
         MenuManager.Instance.MainMenuScreen();
+    }
+
+    public void SpawnPlayer()
+    {
+        DoneLoading = true;
+        GameObject.FindAnyObjectByType<PlayerStateManager>().SetCharacterPosition(new Vector3(33.1020012f, 0.931999981f, 51.5740013f), new Quaternion(0, -0.700010002f, 0, -0.714133084f));
+        DataPersistanceManager.Instance.SaveGame();
     }
 }

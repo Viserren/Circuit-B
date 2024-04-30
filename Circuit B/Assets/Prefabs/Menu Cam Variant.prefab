@@ -43,6 +43,11 @@ PrefabInstance:
       propertyPath: m_QueuePriority
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 1940550016628398300, guid: 97a049d4f44a7e340aec4bbae200fea3,
+        type: 3}
+      propertyPath: m_Lens.NearClipPlane
+      value: 0.01
+      objectReference: {fileID: 0}
     - target: {fileID: 2578589674775969973, guid: 97a049d4f44a7e340aec4bbae200fea3,
         type: 3}
       propertyPath: m_Path

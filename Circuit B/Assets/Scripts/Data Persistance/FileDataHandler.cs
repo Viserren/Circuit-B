@@ -59,8 +59,8 @@ public class FileDataHandler
 
                     GameData updatedData = new GameData("","");
 
-                    JsonUtility.FromJsonOverwrite(Base64Decode(dataToLoad), updatedData);
-
+                    //JsonUtility.FromJsonOverwrite(Base64Decode(dataToLoad), updatedData);
+                    JsonUtility.FromJsonOverwrite(dataToLoad, updatedData);
 
 
                     loadedData.Add(updatedData);
@@ -110,7 +110,8 @@ public class FileDataHandler
             {
                 using (StreamWriter writer = new StreamWriter(stream))
                 {
-                    writer.Write(Base64Encode(jsonData));
+                    //writer.Write(Base64Encode(jsonData));
+                    writer.Write(jsonData);
                 }
             }
         }

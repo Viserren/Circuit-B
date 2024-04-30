@@ -12,6 +12,8 @@ public class MenuManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI _versionText;
 
     [SerializeField] List<Menus> _menus = new List<Menus>();
+    [SerializeField] Animator _mainMenuAnimator, _musicMenuAnimator;
+    bool _isMusicMenu;
 
     [SerializeField] GameObject _opening;
     [SerializeField] Button _selectedButton;
@@ -72,18 +74,37 @@ public class MenuManager : MonoBehaviour
 
     private void Update()
     {
-        if (_timeOut > 0)
-        {
-            _timeOut -= Time.deltaTime;
+        if (GameStateManager.Instance.IsMainMenu){
+            if (_timeOut > 0)
+            {
+                _timeOut -= Time.deltaTime;
+            }
+            else
+            {
+                if (!_isMusicMenu)
+                {
+                    _mainMenuAnimator.SetTrigger("toMusic");
+                    _musicMenuAnimator.SetTrigger("toMusic");
+                    _isMusicMenu = true;
+                    AudioManager.Instance.TransitionToMenuMusic(5);
+                }
+            }
         }
     }
 
     public void TestCheckInput(InputAction.CallbackContext ctx)
     {
-        if (ctx.phase == InputActionPhase.Waiting)
+        if (ctx.phase == InputActionPhase.Performed)
         {
             _timeOut = _timeOutTime;
         }
+    }
+
+    public void HideMusicScreen()
+    {
+        _mainMenuAnimator.SetTrigger("toMenu");
+        _musicMenuAnimator.SetTrigger("toMenu");
+        _isMusicMenu = false;
     }
 
     public void NewGameButton()
@@ -93,19 +114,25 @@ public class MenuManager : MonoBehaviour
 
     void PauseScreen(InputAction.CallbackContext ctx)
     {
-        if (_menus.Find(r => r.MenuName == "Memories").IsActive)
+        if (!_isMusicMenu)
         {
-            MemoriesScreen();
-        }
-        else
-        {
-            if (!GameStateManager.Instance.IsMainMenu && !_deadMenu)
+            if (_menus.Find(r => r.MenuName == "Memories").IsActive)
             {
-                PauseScreen();
-                OptionsMenuLoaded.Invoke();
+                MemoriesScreen();
+            }
+            else if (_menus.Find(r => r.MenuName == "Main Menu").IsActive)
+            {
+
+            }
+            else
+            {
+                if (!GameStateManager.Instance.IsMainMenu && !_deadMenu)
+                {
+                    PauseScreen();
+                    OptionsMenuLoaded.Invoke();
+                }
             }
         }
-
     }
 
     void MemoriesScreen(InputAction.CallbackContext ctx)
@@ -115,22 +142,25 @@ public class MenuManager : MonoBehaviour
 
     public void MemoriesScreen()
     {
-        if (!GameStateManager.Instance.IsPaused && !_deadMenu)
+        if (!_isMusicMenu)
         {
-            if (_menus.Find(r => r.MenuName == "Memories").IsActive)
+            if (!GameStateManager.Instance.IsPaused && !_deadMenu)
             {
-                HideAllScreenButton();
-                ShowScreenButton("In Game");
-                HideScreenButton("Memories");
-                Cursor.lockState = CursorLockMode.Locked;
-            }
-            else
-            {
-                HideAllScreenButton();
-                ShowScreenButton("In Game");
-                ShowScreenButton("Memories");
-                Cursor.lockState = CursorLockMode.None;
-                Cursor.visible = true;
+                if (_menus.Find(r => r.MenuName == "Memories").IsActive)
+                {
+                    HideAllScreenButton();
+                    ShowScreenButton("In Game");
+                    HideScreenButton("Memories");
+                    Cursor.lockState = CursorLockMode.Locked;
+                }
+                else
+                {
+                    HideAllScreenButton();
+                    ShowScreenButton("In Game");
+                    ShowScreenButton("Memories");
+                    Cursor.lockState = CursorLockMode.None;
+                    Cursor.visible = true;
+                }
             }
         }
     }
@@ -153,22 +183,25 @@ public class MenuManager : MonoBehaviour
 
     public void PauseScreen()
     {
-        if (GameStateManager.Instance.IsPaused)
+        if (!_isMusicMenu)
         {
-            HideAllScreenButton();
-            ShowScreenButton("In Game");
-            HideScreenButton("Pause");
-            Cursor.lockState = CursorLockMode.Locked;
-            GameStateManager.Instance.IsPaused = false;
-        }
-        else
-        {
-            HideAllScreenButton();
-            ShowScreenButton("In Game");
-            ShowScreenButton("Pause");
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
-            GameStateManager.Instance.IsPaused = true;
+            if (GameStateManager.Instance.IsPaused)
+            {
+                HideAllScreenButton();
+                ShowScreenButton("In Game");
+                HideScreenButton("Pause");
+                Cursor.lockState = CursorLockMode.Locked;
+                GameStateManager.Instance.IsPaused = false;
+            }
+            else
+            {
+                HideAllScreenButton();
+                ShowScreenButton("In Game");
+                ShowScreenButton("Pause");
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
+                GameStateManager.Instance.IsPaused = true;
+            }
         }
     }
 
@@ -204,26 +237,38 @@ public class MenuManager : MonoBehaviour
 
     public void ShowScreenButton(string screenName)
     {
-        _menus.Find(r => r.MenuName == screenName).IsActive = true;
+        if (!_isMusicMenu)
+        {
+            _menus.Find(r => r.MenuName == screenName).IsActive = true;
+        }
     }
 
     public void HideAllScreenButton()
     {
-        foreach (var menu in _menus)
+        if (!_isMusicMenu)
         {
-            menu.IsActive = false;
+            foreach (var menu in _menus)
+            {
+                menu.IsActive = false;
+            }
         }
     }
 
     public void HideScreenButton(string screenName)
     {
-        _menus.Find(r => r.MenuName == screenName).IsActive = false;
+        if (!_isMusicMenu)
+        {
+            _menus.Find(r => r.MenuName == screenName).IsActive = false;
+        }
     }
 
     public void QuitGameButton()
     {
-        Debug.Log("Quit");
-        Application.Quit();
+        if (!_isMusicMenu)
+        {
+            Debug.Log("Quit");
+            Application.Quit();
+        }
     }
 
 

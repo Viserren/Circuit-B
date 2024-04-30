@@ -13,6 +13,8 @@ public class PopulateLoadButton : MonoBehaviour
     public System.DateTime date { get { return System.DateTime.Parse(_date); } }
     string _uuid;
     Button _self;
+
+    public string UUID { get { return _uuid; } }
     
     public void Populate(string uuid, string saveTitle, string location, string date)
     {

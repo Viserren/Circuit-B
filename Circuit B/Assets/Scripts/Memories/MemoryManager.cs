@@ -20,7 +20,7 @@ public class MemoryManager : MonoBehaviour, IDataPersistance
     [SerializeField] AudioSource _memoryAudioSource;
 
     public static MemoryManager Instance { get; private set; }
-    public List<Memories> Memories { get { return _memoriesDefault; } }
+    public List<Memories> Memories { get { return DeepCopyMemoriesList(_memoriesDefault); } }
 
     private void Awake()
     {
@@ -129,7 +129,7 @@ public class MemoryManager : MonoBehaviour, IDataPersistance
         //Debug.Log(gameData.memories.Count);
         foreach (Memories mem in gameData.memories)
         {
-            //Debug.Log($"{gameData.uuid} - {mem.MemoryName}, {mem.HasCollected}");
+            //Debug.Log($"{gameData.UUID} - {mem.MemoryName}, {mem.HasCollected}");
             if (mem.HasCollected)
             {
                 UnlockMemory(mem.MemoryName);
