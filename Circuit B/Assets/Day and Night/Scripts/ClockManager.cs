@@ -36,6 +36,7 @@ public class ClockManager : MonoBehaviour
     [SerializeField] int _secondsToAdd;
     [Tooltip("1 Second is 1 Seconds in real life, so 0.5 will be 2x as fast as real time")]
     [SerializeField] float _timeInterval;
+    [SerializeField] int _totalTimeInDay = 43200;
     float linierTime;
     public int secondsToAdd { get { return _secondsToAdd; } set { _secondsToAdd = value; } }
 
@@ -72,7 +73,7 @@ public class ClockManager : MonoBehaviour
         #endregion
 
         // Default 86400f
-        linierTime = (float)_totalSeconds / 43200f;
+        linierTime = (float)_totalSeconds / (float)_totalTimeInDay;
         //Debug.Log($"0 To 1 Time: {linierTime}, 0 To 1 Week: {pos} Seconds: {_totalSeconds}");
         float newRotation = Mathf.Lerp(-180, 180, linierTime);
 
@@ -118,6 +119,16 @@ public class ClockManager : MonoBehaviour
         {
             _moveTime = StartCoroutine(UpdateSeconds());
         }
+    }
+
+    public void ResetTime()
+    {
+        if (_moveTime != null)
+        {
+            StopCoroutine(_moveTime);
+            _moveTime = null;
+        }
+        _totalSeconds = 0;
     }
 
     IEnumerator UpdateSeconds()
@@ -238,7 +249,7 @@ public class ClockManager : MonoBehaviour
     //    }
     //}
 }
-
+#if UNITY_EDITOR
 [CustomEditor(typeof(ClockManager))]
 public class ClockManagerEditor : Editor
 {
@@ -254,6 +265,7 @@ public class ClockManagerEditor : Editor
         }
     }
 }
+#endif
 
 //[System.Serializable]
 //public enum TimeToUseWhenUpdating

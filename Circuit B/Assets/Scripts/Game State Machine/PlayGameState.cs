@@ -27,6 +27,7 @@ public class PlayGameState : GameBaseState
         Context.IsMainMenu = false;
         Debug.Log("Enter Playing");
         CameraManager.Instance.MainMenuCamera(false, this);
+        GameObject.FindAnyObjectByType<ClockManager>().AddSeconds(10800);
         MenuManager.Instance.Menus.FindAll(r => r.MenuType == MenuType.MainMenu).ForEach(r => { r.IsActive = false; }); 
         MenuManager.Instance.Menus.FindAll(r => r.MenuType == MenuType.InGame).ForEach(r => { r.IsActive = false; });
         MenuManager.Instance.Menus.FindAll(r => r.MenuType == MenuType.InGame).Find(r => r.MenuName == "In Game").IsActive = true;

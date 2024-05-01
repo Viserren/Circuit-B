@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.385569, g: 0.39949465, b: 0.21617745, a: 1}
+  m_IndirectSpecularColor: {r: 0.20198646, g: 0.201404, b: 0.114685565, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3388,36 +3388,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ShowMaskGraphic: 0
---- !u!1 &305165970 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1828570503777725538, guid: 57fb2b4ee9d5d514fb397d709d05ed04,
-    type: 3}
-  m_PrefabInstance: {fileID: 815561298}
-  m_PrefabAsset: {fileID: 0}
 --- !u!20 &305165973 stripped
 Camera:
   m_CorrespondingSourceObject: {fileID: 1922156938394824198, guid: 57fb2b4ee9d5d514fb397d709d05ed04,
     type: 3}
   m_PrefabInstance: {fileID: 815561298}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &305165975
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 305165970}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b5f947c5ecf71d444999c69c39e1ffb2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _fileName: Test UI
-  _captureWidth: 1920
-  _captureHeight: 1080
-  _fileCounter: 4
-  mainCamera: {fileID: 305165973}
-  _isTransparent: 1
 --- !u!1 &306724772
 GameObject:
   m_ObjectHideFlags: 0
@@ -9531,44 +9507,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Main Camera
       objectReference: {fileID: 0}
-    - target: {fileID: 1922156938394824198, guid: 57fb2b4ee9d5d514fb397d709d05ed04,
-        type: 3}
-      propertyPath: field of view
-      value: 70
-      objectReference: {fileID: 0}
-    - target: {fileID: 1922156938394824198, guid: 57fb2b4ee9d5d514fb397d709d05ed04,
-        type: 3}
-      propertyPath: far clip plane
-      value: 5000
-      objectReference: {fileID: 0}
-    - target: {fileID: 1922156938394824198, guid: 57fb2b4ee9d5d514fb397d709d05ed04,
-        type: 3}
-      propertyPath: orthographic size
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 1922156938394824198, guid: 57fb2b4ee9d5d514fb397d709d05ed04,
-        type: 3}
-      propertyPath: m_BackGroundColor.b
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1922156938394824198, guid: 57fb2b4ee9d5d514fb397d709d05ed04,
-        type: 3}
-      propertyPath: m_BackGroundColor.g
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1922156938394824198, guid: 57fb2b4ee9d5d514fb397d709d05ed04,
-        type: 3}
-      propertyPath: m_BackGroundColor.r
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1828570503777725538, guid: 57fb2b4ee9d5d514fb397d709d05ed04,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 305165975}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57fb2b4ee9d5d514fb397d709d05ed04, type: 3}
 --- !u!1 &822440039
 GameObject:
@@ -17133,7 +17075,7 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 1
-  m_Camera: {fileID: 305165973}
+  m_Camera: {fileID: 1851228545}
   m_PlaneDistance: 0
   m_PixelPerfect: 1
   m_ReceivesEvents: 1
@@ -19564,7 +19506,7 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 1
-  m_Camera: {fileID: 305165973}
+  m_Camera: {fileID: 1851228545}
   m_PlaneDistance: 100
   m_PixelPerfect: 1
   m_ReceivesEvents: 1
@@ -22375,6 +22317,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1840720670}
   m_CullTransparentMesh: 1
+--- !u!20 &1851228545 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 1393791701989581910, guid: 57fb2b4ee9d5d514fb397d709d05ed04,
+    type: 3}
+  m_PrefabInstance: {fileID: 815561298}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1853779129
 GameObject:
   m_ObjectHideFlags: 0
