@@ -78,6 +78,18 @@ MonoBehaviour:
     _menuNumber: 7
     _menuObject: {fileID: 0}
     _menuType: 1
+  - _menuName: Console Panel
+    _menuNumber: 8
+    _menuObject: {fileID: 0}
+    _menuType: 1
+  - _menuName: Thoughts Panel
+    _menuNumber: 9
+    _menuObject: {fileID: 0}
+    _menuType: 1
+  - _menuName: Interactive Thoughts
+    _menuNumber: 10
+    _menuObject: {fileID: 0}
+    _menuType: 1
   _mainMenuAnimator: {fileID: 0}
   _musicMenuAnimator: {fileID: 0}
   _opening: {fileID: 0}

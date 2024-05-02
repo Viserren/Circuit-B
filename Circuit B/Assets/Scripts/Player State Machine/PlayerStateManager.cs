@@ -1,11 +1,7 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Net.NetworkInformation;
-using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Playables;
 using Random = UnityEngine.Random;
 
 public class PlayerStateManager : MonoBehaviour, IDataPersistance
