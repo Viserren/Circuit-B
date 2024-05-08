@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Scrapyard
   m_EditorClassIdentifier: 
   _title: Scrapyard
-  _description: 'These bottles contain traces of an organic sustenance. These can''t
-    be used as power cells. '
-  _picture: {fileID: 0}
+  _description: 'Reductions in processing time, balance, memory, lifespan, and fuel
+    capacity. The only increases are aggression and fatigue. This might be the shittest
+    power cell Unit B601 has ever seen! '
+  _picture: {fileID: 21300000, guid: 50225e1537aaa5d42aebced8aa324e2c, type: 3}

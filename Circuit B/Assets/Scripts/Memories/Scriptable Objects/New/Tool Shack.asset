@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Tool Shack
   m_EditorClassIdentifier: 
   _title: Tool Shack
-  _description: "Makeshift tools, survival equipment\u2026 These crates were in use
-    after the buildings were destroyed. "
-  _picture: {fileID: 0}
+  _description: 'These crates were utilised as makeshift homes after the city was
+    destroyed. They''re littered with tools and other survival equipment. '
+  _picture: {fileID: 21300000, guid: f9bf290660e50a84f94f3cb507bb50ce, type: 3}

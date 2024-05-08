@@ -50,42 +50,42 @@ MonoBehaviour:
     _hasCollected: 0
     _spawnLocation: {x: 36.57, y: -0.685, z: 5.64}
     _soMemory: {fileID: 11400000, guid: abc270e9e7f5b5547a2231ec00f8154f, type: 2}
-    _audioClip: {fileID: 0}
+    _audioClip: {fileID: 8300000, guid: 932a55b3e09cda64e8a9fac23039881c, type: 3}
   - _memoryName: Car
     _hasCollected: 0
     _spawnLocation: {x: 38.567, y: -0.685, z: -16.662}
     _soMemory: {fileID: 11400000, guid: eca7dce03ca70604f8d56bb0bd97eeaa, type: 2}
-    _audioClip: {fileID: 0}
+    _audioClip: {fileID: 8300000, guid: 733c793268e5b9e4cbddd7b6e3226719, type: 3}
   - _memoryName: Flag
     _hasCollected: 0
     _spawnLocation: {x: 43.276, y: -0.685, z: -22.652}
     _soMemory: {fileID: 11400000, guid: 6988494475d68c24a9f69db187c01e53, type: 2}
-    _audioClip: {fileID: 0}
+    _audioClip: {fileID: 8300000, guid: ebeb0b9843e36b340a61285b3728fbbd, type: 3}
   - _memoryName: Graffiti
     _hasCollected: 0
     _spawnLocation: {x: 31.88, y: -0.685, z: -44.5}
     _soMemory: {fileID: 11400000, guid: 2236acb57cfb8d041b1a42645f9f68fb, type: 2}
-    _audioClip: {fileID: 0}
+    _audioClip: {fileID: 8300000, guid: 8930b739543315d418b4c84e0917bc00, type: 3}
   - _memoryName: Plants
     _hasCollected: 0
     _spawnLocation: {x: 19.76, y: -0.65, z: 28.52}
     _soMemory: {fileID: 11400000, guid: ad494bcc425d8a444b664250c4ed72d5, type: 2}
-    _audioClip: {fileID: 0}
+    _audioClip: {fileID: 8300000, guid: d9b47db0554a7554f99d51cbdb37cbe4, type: 3}
   - _memoryName: Scrapyard
     _hasCollected: 0
     _spawnLocation: {x: -28.895, y: 1.283, z: 4.036}
     _soMemory: {fileID: 11400000, guid: 551bb3edb91a71d498c87f91cc3190b3, type: 2}
-    _audioClip: {fileID: 0}
+    _audioClip: {fileID: 8300000, guid: 854e68dab889740439d65ec9ba648849, type: 3}
   - _memoryName: Sky
     _hasCollected: 0
     _spawnLocation: {x: -3.24, y: -0.855, z: 42}
     _soMemory: {fileID: 11400000, guid: 91b902c44e2dfa44c80628dac3f5618e, type: 2}
-    _audioClip: {fileID: 0}
+    _audioClip: {fileID: 8300000, guid: 0d1349476ff9b2f4e84a12a649604130, type: 3}
   - _memoryName: Tool Shack
     _hasCollected: 0
     _spawnLocation: {x: 30.279, y: 0.92, z: 41.575}
     _soMemory: {fileID: 11400000, guid: aeaa683ea6575ef4182d1f561a572ea4, type: 2}
-    _audioClip: {fileID: 0}
+    _audioClip: {fileID: 8300000, guid: 314d775fb406bb34b91608d4b349afd1, type: 3}
   _content: {fileID: 0}
   _buttonPrefab: {fileID: 2450496050097848945, guid: 25ebf466e7470ca4187431a470de14ab,
     type: 3}

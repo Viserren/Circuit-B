@@ -13,5 +13,7 @@ MonoBehaviour:
   m_Name: Car
   m_EditorClassIdentifier: 
   _title: Robots?
-  _description: "These robots don\u2019t look very self-sufficient\u2026 "
-  _picture: {fileID: 0}
+  _description: "This robot doesn't look very self-sufficient\u2026 Unit B601 finds
+    himself captivated by the red and white robot\u2026 Unit B601 wishes this would
+    come back to life. "
+  _picture: {fileID: 21300000, guid: 587987e5c1dcf77428764e94c6acbac3, type: 3}

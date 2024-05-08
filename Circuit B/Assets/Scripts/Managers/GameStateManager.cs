@@ -11,13 +11,16 @@ public class GameStateManager : MonoBehaviour
     bool _creatingNewGame;
     bool _loadingGame;
     bool _doneLoading;
+    bool _inCutScene;
 
     bool _isPaused;
     bool _isMainMenu;
 
-    [SerializeField] PlayableDirector _playableDirector;
+    [SerializeField] PlayableDirector _playableDirectorStartGame;
+    [SerializeField] PlayableDirector _playableDirectorEndGame;
 
-    public PlayableDirector Clip { get { return _playableDirector; } }
+    public PlayableDirector ClipStartGame { get { return _playableDirectorStartGame; } }
+    public PlayableDirector ClipEndGame { get { return _playableDirectorEndGame; } }
 
     public bool CreatingNewGame { get { return _creatingNewGame; } set { _creatingNewGame = value; } }
     public bool LoadingGame { get { return _loadingGame; } set { _loadingGame = value; } }
@@ -25,6 +28,7 @@ public class GameStateManager : MonoBehaviour
     public bool FirstLoadComplete { get { return _firstLoadComplete; } set { _firstLoadComplete = value; } }
     public bool IsPaused { get { return _isPaused; } set { _isPaused = value; } }
     public bool IsMainMenu { get { return _isMainMenu; } set { _isMainMenu = value; } }
+    public bool InCutScene { get { return _inCutScene; } set { _inCutScene = value; } }
     
 
     public static GameStateManager Instance { get; private set; }
@@ -80,5 +84,11 @@ public class GameStateManager : MonoBehaviour
         DoneLoading = true;
         GameObject.FindAnyObjectByType<PlayerStateManager>().SetCharacterPosition(new Vector3(33.1020012f, 0.931999981f, 51.5740013f), new Quaternion(0, -0.700010002f, 0, -0.714133084f));
         DataPersistanceManager.Instance.SaveGame();
+        GameObject.FindAnyObjectByType<ClockManager>().AddSeconds(10800);
+    }
+
+    public void KillPlayer()
+    {
+        GameObject.FindAnyObjectByType<PlayerStateManager>().Dead();
     }
 }

@@ -19,6 +19,7 @@ public class PlayerDeadState : PlayerBaseState, IRootState
         Context.Animator.SetTrigger(Context.ShouldDieHash);
         Context.AppliedMovementX = 0;
         Context.AppliedMovementZ = 0;
+        MenuManager.Instance.DeadScreen();
     }
 
     public override void ExitState()

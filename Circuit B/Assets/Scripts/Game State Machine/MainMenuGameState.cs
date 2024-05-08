@@ -26,6 +26,12 @@ public class MainMenuGameState : GameBaseState
         Context.CreatingNewGame = false;
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
+        MemoryManager.Instance.StopMemoryCoroutine();
+
+        if(GameObject.FindAnyObjectByType<ClockManager>() != null)
+        {
+            GameObject.FindAnyObjectByType<ClockManager>().PauseTime();
+        }
 
         if (!Context.FirstLoadComplete)
         {

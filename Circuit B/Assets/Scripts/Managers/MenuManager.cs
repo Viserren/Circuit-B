@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Utilities;
 using UnityEngine.UI;
 
 public class MenuManager : MonoBehaviour
@@ -28,8 +29,10 @@ public class MenuManager : MonoBehaviour
     public UnityEvent OptionsMenuLoaded = new UnityEvent();
 
     bool _deadMenu;
+    bool _memoryMenu;
 
     public List<Menus> Menus { get { return _menus; } set { _menus = value; } }
+    public bool MemoryMenu { get { return _memoryMenu; } }
 
     private void Awake()
     {
@@ -74,7 +77,7 @@ public class MenuManager : MonoBehaviour
 
     private void Update()
     {
-        if (GameStateManager.Instance.IsMainMenu){
+        if (GameStateManager.Instance.CurrentState == GameStateManager.Instance.StateFactory.MainMenu()){
             if (_timeOut > 0)
             {
                 _timeOut -= Time.deltaTime;
@@ -109,7 +112,10 @@ public class MenuManager : MonoBehaviour
 
     public void NewGameButton()
     {
-        GameStateManager.Instance.CreatingNewGame = true;
+        if (!_isMusicMenu)
+        {
+            GameStateManager.Instance.CreatingNewGame = true;
+        }
     }
 
     void PauseScreen(InputAction.CallbackContext ctx)
@@ -123,6 +129,12 @@ public class MenuManager : MonoBehaviour
             else if (_menus.Find(r => r.MenuName == "Main Menu").IsActive)
             {
 
+            }
+            else if (ThoughtsManager.Instance.IsShowing)
+            {
+                ThoughtsManager.Instance.HideThought();
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
             }
             else
             {
@@ -152,6 +164,8 @@ public class MenuManager : MonoBehaviour
                     ShowScreenButton("In Game");
                     HideScreenButton("Memories");
                     Cursor.lockState = CursorLockMode.Locked;
+                    _memoryMenu = false;
+                    MemoryManager.Instance.FinalMemoryCutScene();
                 }
                 else
                 {
@@ -160,6 +174,7 @@ public class MenuManager : MonoBehaviour
                     ShowScreenButton("Memories");
                     Cursor.lockState = CursorLockMode.None;
                     Cursor.visible = true;
+                    _memoryMenu = true;
                 }
             }
         }
@@ -179,6 +194,7 @@ public class MenuManager : MonoBehaviour
         ShowScreenButton("No Power");
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
+        DataPersistanceManager.Instance.SaveGame();
     }
 
     public void PauseScreen()
@@ -191,6 +207,7 @@ public class MenuManager : MonoBehaviour
                 ShowScreenButton("In Game");
                 HideScreenButton("Pause");
                 Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
                 GameStateManager.Instance.IsPaused = false;
             }
             else

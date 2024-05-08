@@ -74,6 +74,7 @@ public class AudioManager : MonoBehaviour
     {
         try
         {
+            Debug.Log("Playing Music");
             _currentPlayerMusic = Array.Find(allMusic, sound => sound.name == name);
             _currentPlayerMusic.audioSource.outputAudioMixerGroup = _currentPlayerMusic.mixerGroup;
             _currentPlayerMusic.audioSource.Play();

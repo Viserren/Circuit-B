@@ -42,23 +42,23 @@ public class NewGameState : GameBaseState
     {
         DataPersistanceManager.Instance.NewGame();
         await Task.Delay(1000);
-        AudioManager.Instance.StopMusicInMenu(5);
+        //AudioManager.Instance.StopMusicInMenu(5);
         AudioManager.Instance.TransitionToInGameMusic(5);
-        AudioManager.Instance.PlayMusic("You Want Dark Tunes");
+        AudioManager.Instance.PlayMusic("Woodland Sunrays");
 
         MenuManager.Instance.Menus.FindAll(r => r.MenuType == MenuType.MainMenu).ForEach(r => { r.IsActive = false; });
         MenuManager.Instance.Menus.FindAll(r => r.MenuType == MenuType.InGame).ForEach(r => { r.IsActive = false; });
         MenuManager.Instance.Menus.FindAll(r => r.MenuType == MenuType.InGame).Find(r => r.MenuName == "Console Panel").IsActive = true;
         MenuManager.Instance.Menus.FindAll(r => r.MenuType == MenuType.InGame).Find(r => r.MenuName == "Thoughts Panel").IsActive = true;
-        Context.Clip.Play();
-        Context.Clip.stopped += OnPlayableDirectorStopped;
+        Context.ClipStartGame.Play();
+        Context.ClipStartGame.stopped += OnPlayableDirectorStopped;
     }
 
 
 
     public void OnPlayableDirectorStopped(PlayableDirector director)
     {
-        if (Context.Clip == director)
+        if (Context.ClipStartGame == director)
         {
             MenuManager.Instance.Menus.FindAll(r => r.MenuType == MenuType.InGame).Find(r => r.MenuName == "Console Panel").IsActive = false;
             MenuManager.Instance.Menus.FindAll(r => r.MenuType == MenuType.InGame).Find(r => r.MenuName == "Thoughts Panel").IsActive = false;

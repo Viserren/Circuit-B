@@ -18,6 +18,8 @@ public class GameData
     public string dateCreated;
     public bool isDead;
     public bool hasBattery;
+    public int currentTime;
+    public int timeThatsPassed;
 
     // Memories
     public List<Memories> memories;
@@ -39,6 +41,8 @@ public class GameData
         this.maxHealth = 10;
         this.isDead = false;
         this.hasBattery = false;
+        this.currentTime = 0;
+        this.timeThatsPassed = 0;
         //this.inventory = new List<InventoryItem>();
         this.startLocation = new Vector3(31.9375f, -4.09375f, 53.03125f);
         this.startRotation = new Quaternion(0, -0.216590568f, 0, -0.976262569f);

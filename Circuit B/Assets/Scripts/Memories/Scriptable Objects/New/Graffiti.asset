@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Graffiti
   m_EditorClassIdentifier: 
   _title: Graffiti
-  _description: 'Do these strange images represent factions? Not at all typical of
-    robots. Highly suspicious. '
-  _picture: {fileID: 0}
+  _description: "Small factions marked their territories by spraying strange images.
+    Behaviour is atypical of robots. Unit B601 registers a peculiar word ringing
+    quietly in the hollows of this memory\u2026 What on Earth is a \"Banksy\"? "
+  _picture: {fileID: 21300000, guid: 3fabbb8c1510b6042bfe704028c97a84, type: 3}

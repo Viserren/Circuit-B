@@ -43,17 +43,17 @@ Material:
     - _Foam_Cutoff: 3
     - _Foam_Scale: 50
     - _Foam_Speed: 0.01
-    - _Noise_Offset_Scale: 1
+    - _Noise_Offset_Scale: 1.5
     - _Noise_Offset_Speed: 0.5
     - _Noise_Speed: -0.01
     - _Normal_Scale: 10
-    - _Normal_Strength: 10
+    - _Normal_Strength: 0.02
     - _Pixel_Size: 256
     - _QueueControl: 0
     - _QueueOffset: 0
     - _Refraction_Scale: 0.4
     - _Refraction_Speed: -0.02
-    - _Refraction_Strength: 0.5
+    - _Refraction_Strength: 0.03
     - _Voronoi_Density: 1
     - _Voronoi_Speed: -0.1
     - _Water_Depth: 2
@@ -62,7 +62,7 @@ Material:
     - _Deep_Water: {r: 0.18943554, g: 0.28988075, b: 0.9339623, a: 0.31764707}
     - _Foam_Colour: {r: 0.911714, g: 0.9528302, b: 0.8944019, a: 0.5372549}
     - _Foam_Speed: {r: 0.1, g: 0.1, b: 0, a: 0}
-    - _Noise_Offset_Speed: {r: 0.01, g: -0.01, b: 0, a: 0}
+    - _Noise_Offset_Speed: {r: 0.01, g: 0, b: 0, a: 0}
     - _Refraction_Speed: {r: -0.01, g: 0.01, b: 0, a: 0}
     - _Shallow_Water: {r: 0.36320713, g: 0.6977974, b: 1, a: 0.34117648}
   m_BuildTextureStacks: []

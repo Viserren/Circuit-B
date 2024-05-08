@@ -18,6 +18,8 @@ public class MemoryManager : MonoBehaviour, IDataPersistance
     [SerializeField] TextMeshProUGUI _memoryDescription;
     [SerializeField] Image _memoryImage;
     [SerializeField] AudioSource _memoryAudioSource;
+    int _memoriesUnlocked;
+    Coroutine _finalMemory;
 
     public static MemoryManager Instance { get; private set; }
     public List<Memories> Memories { get { return DeepCopyMemoriesList(_memoriesDefault); } }
@@ -49,7 +51,7 @@ public class MemoryManager : MonoBehaviour, IDataPersistance
     {
         Memories tempMemory = _memoriesInGame.Find(r => r.MemoryName == memoryToFind);
         UnlockMemory(tempMemory);
-        _memoryAudioSource.PlayOneShot(_memoryAudioSource.clip);
+        _memoryAudioSource.PlayOneShot(tempMemory.MemoryAudio);
 
         MenuManager.Instance.MemoriesScreen();
     }
@@ -59,6 +61,9 @@ public class MemoryManager : MonoBehaviour, IDataPersistance
         memoryToFind.HasCollected = true;
         memoryToFind.MemoryButton.GetComponent<MemoryButton>().ButtonText.text = memoryToFind.MemoryName;
         UpdateMemoryViewer(memoryToFind);
+
+        _memoriesUnlocked++;
+        //FinalMemoryCutScene();
     }
 
     public void UnlockMemory(string memoryToFind)
@@ -67,6 +72,9 @@ public class MemoryManager : MonoBehaviour, IDataPersistance
         tempMemory.HasCollected = true;
         tempMemory.MemoryButton.GetComponent<MemoryButton>().ButtonText.text = tempMemory.MemoryName;
         UpdateMemoryViewer(memoryToFind);
+
+        _memoriesUnlocked++;
+        //FinalMemoryCutScene();
     }
 
     public void UpdateMemoryViewer(string memoryToFind, bool lockMemory = false)
@@ -108,14 +116,26 @@ public class MemoryManager : MonoBehaviour, IDataPersistance
 
     public void LockMemory(string memoryToFind)
     {
+
         Memories tempMemory = _memoriesInGame.Find(r => r.MemoryName == memoryToFind);
         tempMemory.HasCollected = false;
         tempMemory.MemoryButton.GetComponent<MemoryButton>().ButtonText.text = "???";
         UpdateMemoryViewer(memoryToFind, true);
     }
 
+    public void StopMemoryCoroutine()
+    {
+        if (_finalMemory != null)
+        {
+            StopCoroutine(_finalMemory);
+            StopAllCoroutines();
+            _finalMemory = null;
+        }
+    }
+
     public void LoadData(GameData gameData)
     {
+        _memoriesUnlocked = 0;
         foreach (Memories memory in _memoriesInGame)
         {
             Destroy(memory.MemoryObject);
@@ -144,11 +164,27 @@ public class MemoryManager : MonoBehaviour, IDataPersistance
                 //mem.MemoryObject.gameObject.SetActive(true);
             }
         }
+        FinalMemoryCutScene();
     }
 
     public void SaveData(ref GameData gameData)
     {
         gameData.memories = _memoriesInGame;
+    }
+
+    IEnumerator StartCountdown()
+    {
+        yield return new WaitForSeconds(10f);
+        GameStateManager.Instance.ClipEndGame.Play();
+    }
+
+    public void FinalMemoryCutScene()
+    {
+        if (_memoriesUnlocked == _memoriesInGame.Count)
+        {
+            Debug.Log("Hello");
+            _finalMemory = StartCoroutine(StartCountdown());
+        }
     }
 
     private List<Memories> DeepCopyMemoriesList(List<Memories> sourceList)
@@ -159,7 +195,8 @@ public class MemoryManager : MonoBehaviour, IDataPersistance
             memory.MemoryName,
             memory.HasCollected,
             memory.SpawnLocation,
-            memory.SOMemory
+            memory.SOMemory,
+            memory.MemoryAudio
         )).ToList();
     }
 }
@@ -182,9 +219,9 @@ public class Memories
     public bool HasCollected { get { return _hasCollected; } set { _hasCollected = value; } }
     public Vector3 SpawnLocation { get { return _spawnLocation; } set { _spawnLocation = value; } }
     public SO_Memory SOMemory { get { return _soMemory; } }
-    public AudioClip MemnoryAudio { get { return _audioClip; } }
+    public AudioClip MemoryAudio { get { return _audioClip; } }
 
-    public Memories(GameObject memoryButton, string memoryName, bool hasCollected, Vector3 spawnLocation, SO_Memory soMemory)
+    public Memories(GameObject memoryButton, string memoryName, bool hasCollected, Vector3 spawnLocation, SO_Memory soMemory, AudioClip audioClip)
     {
         //_memoryObject = memoryObject;
         _memoryButton = memoryButton;
@@ -192,5 +229,6 @@ public class Memories
         _hasCollected = hasCollected;
         _spawnLocation = spawnLocation;
         _soMemory = soMemory;
+        _audioClip = audioClip;
     }
 }

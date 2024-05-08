@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Plants
   m_EditorClassIdentifier: 
   _title: Plants
-  _description: This green stuff appears to be some kind of organism. Perhaps there
-    really was intelligent life here.
-  _picture: {fileID: 0}
+  _description: 'Confirming green substance to possess ability of time-based growth;
+    possibility of organic quality. Updating prospect of intelligent organic life
+    on Earth. '
+  _picture: {fileID: 21300000, guid: 5eb5feab9a9d5ad4a9d3811caa77a60f, type: 3}

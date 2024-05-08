@@ -15,6 +15,8 @@ public class PlayerStateManager : MonoBehaviour, IDataPersistance
     SoundEmissions[] _soundEmissions;
     [SerializeField] LayerMask _soundLayers;
     Sound[] _grassSounds, _concreteSounds, _gravelSounds;
+    [SerializeField] ParticleSystem _grassParticles;
+    [SerializeField] ParticleSystem _dustParticles;
 
     // Animation variables
     int _isWalkingHash;
@@ -34,7 +36,7 @@ public class PlayerStateManager : MonoBehaviour, IDataPersistance
     bool _isMovementPressed = false;
     bool _isRunPressed = false;
     float _rotationFactorPerFrame = 15;
-    float _runMultiplier = 3.0f;
+    float _runMultiplier = 2f;
 
     bool _isDead = false;
 
@@ -138,8 +140,8 @@ public class PlayerStateManager : MonoBehaviour, IDataPersistance
         _playerInput.CharacterControls.Run.performed += OnRun;
         _playerInput.CharacterControls.Run.canceled += OnRun;
 
-        _playerInput.CharacterControls.Jump.started += OnJump;
-        _playerInput.CharacterControls.Jump.canceled += OnJump;
+        //_playerInput.CharacterControls.Jump.started += OnJump;
+        //.CharacterControls.Jump.canceled += OnJump;
 
 
     }
@@ -154,14 +156,14 @@ public class PlayerStateManager : MonoBehaviour, IDataPersistance
         _playerInput.CharacterControls.Run.performed -= OnRun;
         _playerInput.CharacterControls.Run.canceled -= OnRun;
 
-        _playerInput.CharacterControls.Jump.started -= OnJump;
-        _playerInput.CharacterControls.Jump.canceled -= OnJump;
+        //_playerInput.CharacterControls.Jump.started -= OnJump;
+        //_playerInput.CharacterControls.Jump.canceled -= OnJump;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (GameStateManager.Instance.CurrentState == GameStateManager.Instance.StateFactory.Playing())
+        if (GameStateManager.Instance.CurrentState == GameStateManager.Instance.StateFactory.Playing() && !GameStateManager.Instance.InCutScene)
         {
             foreach (ChangeBodyMeshes bodyMesh in _bodyMeshes)
             {
@@ -174,11 +176,17 @@ public class PlayerStateManager : MonoBehaviour, IDataPersistance
             _cameraRelativeMovement = ConvertToCameraSpace(_appliedMovement);
             _characterController.Move(_cameraRelativeMovement * Time.deltaTime);
         }
+        else if (GameStateManager.Instance.InCutScene)
+        {
+            _characterController.Move(ConvertToCameraSpace(new Vector3(0, _appliedMovement.y, 0)));
+            _currentState.UpdateStates();
+            _isMovementPressed = false;
+        }
     }
 
     void OnMove(InputAction.CallbackContext ctx)
     {
-        if (GameStateManager.Instance.CurrentState == GameStateManager.Instance.StateFactory.Playing())
+        if (GameStateManager.Instance.CurrentState == GameStateManager.Instance.StateFactory.Playing() && !GameStateManager.Instance.InCutScene)
         {
             // Read the value of the input action
             _currentMovementInput = ctx.ReadValue<Vector2>();
@@ -193,7 +201,7 @@ public class PlayerStateManager : MonoBehaviour, IDataPersistance
 
     void OnRun(InputAction.CallbackContext ctx)
     {
-        if (GameStateManager.Instance.CurrentState == GameStateManager.Instance.StateFactory.Playing())
+        if (GameStateManager.Instance.CurrentState == GameStateManager.Instance.StateFactory.Playing() && !GameStateManager.Instance.InCutScene)
         {
             _isRunPressed = ctx.ReadValueAsButton();
         }
@@ -201,7 +209,7 @@ public class PlayerStateManager : MonoBehaviour, IDataPersistance
 
     void OnJump(InputAction.CallbackContext ctx)
     {
-        if (GameStateManager.Instance.CurrentState == GameStateManager.Instance.StateFactory.Playing())
+        if (GameStateManager.Instance.CurrentState == GameStateManager.Instance.StateFactory.Playing() && !GameStateManager.Instance.InCutScene)
         {
             _isJumpPressed = ctx.ReadValueAsButton();
             _requireNewJumpPress = false;
@@ -313,15 +321,19 @@ public class PlayerStateManager : MonoBehaviour, IDataPersistance
             {
                 case "Concrete":
                     PlaySound(_concreteSounds);
+                    _dustParticles.Play();
                     break;
                 case "Grass":
                     PlaySound(_grassSounds);
+                    _grassParticles.Play();
                     break;
                 case "Gravel":
                     PlaySound(_gravelSounds);
+                    _dustParticles.Play();
                     break;
                 default:
                     PlaySound(_grassSounds);
+                    _grassParticles.Play();
                     break;
             }
         }
@@ -399,6 +411,7 @@ public class PlayerStateManager : MonoBehaviour, IDataPersistance
     {
         SetCharacterPosition(gameData.startLocation, gameData.startRotation);
         //_resetHealthCoroutine = null;
+        _isDead = gameData.isDead;
         _animator.SetBool(_isJumpingHash, false);
         _animator.SetBool(_isRunningHash, false);
         _animator.SetBool(_isWalkingHash, false);
@@ -407,6 +420,7 @@ public class PlayerStateManager : MonoBehaviour, IDataPersistance
 
     public void SaveData(ref GameData gameData)
     {
+        gameData.isDead = _isDead;
         gameData.startLocation = transform.position;
         gameData.startRotation = transform.rotation;
         gameData.dateLastSaved = System.DateTime.Now.ToString();

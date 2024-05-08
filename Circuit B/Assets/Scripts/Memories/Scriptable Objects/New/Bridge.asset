@@ -13,5 +13,7 @@ MonoBehaviour:
   m_Name: Bridge
   m_EditorClassIdentifier: 
   _title: The Water
-  _description: 'Bubbles! There IS sentient life on this planet! '
-  _picture: {fileID: 0}
+  _description: "...Bubbles... Little globules of carbon dioxide that divulge the
+    presence of\u2026 slimy, limbless, anamniotic vertebrates! There WAS sentient
+    life on this planet! "
+  _picture: {fileID: 21300000, guid: 6c571ecd8a29dec42a92abdf6cd009f0, type: 3}

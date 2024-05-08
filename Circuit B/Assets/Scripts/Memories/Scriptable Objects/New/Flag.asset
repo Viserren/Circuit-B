@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Flag
   m_EditorClassIdentifier: 
   _title: Flag
-  _description: "Flags\u2026 hierarchy\u2026 chaos\u2026 Society must have fallen
-    gradually. Not at all what happens during an invasion."
-  _picture: {fileID: 0}
+  _description: "Flags\u2026 hierarchy\u2026 chaos\u2026 Memory does not match expected
+    aftermath of our invasion. Unit B601 fails to understand why Earthlings were
+    not disabled wth EMP. "
+  _picture: {fileID: 21300000, guid: 5bd6c318404f25b4a85cda2582627234, type: 3}

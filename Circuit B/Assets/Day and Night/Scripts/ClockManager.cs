@@ -8,7 +8,7 @@ using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
 
-public class ClockManager : MonoBehaviour
+public class ClockManager : MonoBehaviour, IDataPersistance
 {
     //public RectTransform ClockFace;
     //public TextMeshProUGUI Date, Time, Season, Week;
@@ -34,13 +34,13 @@ public class ClockManager : MonoBehaviour
     //float tHours;
 
     [SerializeField] int _secondsToAdd;
-    [Tooltip("1 Second is 1 Seconds in real life, so 0.5 will be 2x as fast as real time")]
+    [Tooltip("1 Second is 1 Seconds in real life, so 0.5 will be 2x as fast as real currentTime")]
     [SerializeField] float _timeInterval;
     [SerializeField] int _totalTimeInDay = 43200;
     float linierTime;
     public int secondsToAdd { get { return _secondsToAdd; } set { _secondsToAdd = value; } }
 
-    int _totalSeconds;
+    int _totalSecondsThatHavePassed;
     int _secondsAim;
 
     Coroutine _moveTime;
@@ -62,6 +62,18 @@ public class ClockManager : MonoBehaviour
         UpdateTime();
     }
 
+    private void Update()
+    {
+        if (_totalSecondsThatHavePassed >= _secondsAim)
+        {
+            if (_moveTime != null)
+            {
+                StopCoroutine(_moveTime);
+                _moveTime = null;
+            }
+        }
+    }
+
     public void UpdateTime()
     {
         DateTimeFormatInfo dfi = DateTimeFormatInfo.CurrentInfo;
@@ -73,8 +85,8 @@ public class ClockManager : MonoBehaviour
         #endregion
 
         // Default 86400f
-        linierTime = (float)_totalSeconds / (float)_totalTimeInDay;
-        //Debug.Log($"0 To 1 Time: {linierTime}, 0 To 1 Week: {pos} Seconds: {_totalSeconds}");
+        linierTime = (float)_totalSecondsThatHavePassed / (float)_totalTimeInDay;
+        //Debug.Log($"0 To 1 Time: {linierTime}, 0 To 1 Week: {pos} Seconds: {_totalSecondsThatHavePassed}");
         float newRotation = Mathf.Lerp(-180, 180, linierTime);
 
         if (linierTime > .25f && linierTime < .75f)
@@ -121,6 +133,22 @@ public class ClockManager : MonoBehaviour
         }
     }
 
+    public void PauseTime()
+    {
+        if (_moveTime != null)
+        {
+            StopCoroutine(_moveTime);
+        }
+    }
+
+    public void ResumeTime()
+    {
+        if (_moveTime != null)
+        {
+            _moveTime = StartCoroutine(UpdateSeconds());
+        }
+    }
+
     public void ResetTime()
     {
         if (_moveTime != null)
@@ -128,15 +156,16 @@ public class ClockManager : MonoBehaviour
             StopCoroutine(_moveTime);
             _moveTime = null;
         }
-        _totalSeconds = 0;
+        _secondsAim = 0;
+        _totalSecondsThatHavePassed = 0;
     }
 
     IEnumerator UpdateSeconds()
     {
         for (int i = 0; i < _secondsAim; i++)
         {
-            _totalSeconds++;
-            //Debug.Log($"Total Seconds: {_totalSeconds} : Time Interval: {_timeInterval}");
+            _totalSecondsThatHavePassed++;
+            //Debug.Log($"Total Seconds: {_totalSecondsThatHavePassed} : Time Interval: {_timeInterval}");
             yield return new WaitForSeconds(_timeInterval);
         }
         _moveTime = null;
@@ -155,7 +184,7 @@ public class ClockManager : MonoBehaviour
         int totalSeconds = (totalMinutes * 60) + System.DateTime.Now.Second;
 
         float linierTime = (float)totalSeconds / 86400f;
-        //Debug.Log($"0 To 1 Time: {linierTime}, 0 To 1 Week: {pos} Seconds: {_totalSeconds}");
+        //Debug.Log($"0 To 1 Time: {linierTime}, 0 To 1 Week: {pos} Seconds: {_totalSecondsThatHavePassed}");
         float newRotation = Mathf.Lerp(-180, 180, linierTime);
 
         if (linierTime > .25f && linierTime < .75f)
@@ -183,6 +212,27 @@ public class ClockManager : MonoBehaviour
             sunLight.intensity = Mathf.Lerp(nightIntensity, dayIntensity, sunIntensity);
             RenderSettings.fogColor = Color.Lerp(dayColour, nightColour, sunPos);
         }
+    }
+
+    public void LoadData(GameData gameData)
+    {
+        ResetTime();
+        Debug.Log(gameData.currentTime);
+        if(gameData.timeThatsPassed > 0)
+        {
+            _totalSecondsThatHavePassed = gameData.timeThatsPassed;
+        }
+        if (gameData.currentTime > 0)
+        {
+            AddSeconds(gameData.currentTime);
+        }
+        
+    }
+
+    public void SaveData(ref GameData gameData)
+    {
+        gameData.currentTime = _secondsAim;
+        gameData.timeThatsPassed = _totalSecondsThatHavePassed;
     }
 
     //public void UpdateDateTime(DateTime dateTime)
