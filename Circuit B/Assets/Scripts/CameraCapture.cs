@@ -10,25 +10,26 @@ using UnityEngine.UI;
 #if UNITY_EDITOR
 public class CameraCapture : MonoBehaviour
 {
+    [Header("Capture Settings")]
     [SerializeField] string _fileName;
     [SerializeField] int _captureWidth, _captureHeight;
     [SerializeField] int _fileCounter = 0;
     [SerializeField] Camera mainCamera;
     [SerializeField] bool _isTransparent;
 
-    private void Start()
+    //private void Start()
+    //{
+    //    StartCoroutine(Capture());
+    //}
+
+    public void Capture()
     {
-        StartCoroutine(Capture());
+        StartCoroutine(CoroutineScreenshot());
     }
 
-    IEnumerator Capture()
+    public IEnumerator CamCapture()
     {
         yield return new WaitForEndOfFrame();
-        CamCapture();
-    }
-
-    public void CamCapture()
-    {
         RenderTexture currentRT = new RenderTexture(_captureWidth, _captureHeight, 32, GraphicsFormat.B8G8R8A8_SRGB);
         currentRT.depthStencilFormat = GraphicsFormat.D24_UNorm_S8_UInt;
 
@@ -70,8 +71,28 @@ public class CameraCapture : MonoBehaviour
         File.WriteAllBytes($"{Application.dataPath}/Backgrounds/{_fileName} {_fileCounter}.png", Bytes);
 
         _fileCounter++;
+
+        AssetDatabase.Refresh();
+    }
+
+    public IEnumerator CoroutineScreenshot()
+    {
+        yield return new WaitForEndOfFrame();
+
+        Texture2D texture = new Texture2D(_captureWidth, _captureHeight, TextureFormat.ARGB32, false);
+        Rect rect = new Rect(0,0, _captureWidth, _captureHeight);
+        texture.ReadPixels(rect,0,0);
+        texture.Apply();
+
+        var Bytes = texture.EncodeToPNG();
+        File.WriteAllBytes($"{Application.dataPath}/Backgrounds/{_fileName} {_fileCounter}.png", Bytes);
+
+        _fileCounter++;
+
+        AssetDatabase.Refresh();
     }
 }
+
 
 [CustomEditor(typeof(CameraCapture))]
 public class CameraCaptureEditor : Editor
@@ -83,7 +104,7 @@ public class CameraCaptureEditor : Editor
 
         if (GUILayout.Button("Capture"))
         {
-            _target.CamCapture();
+            _target.Capture();
         }
     }
 }
